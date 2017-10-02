@@ -19,7 +19,7 @@ namespace DynAI.MachineLearning
         // dataset
         public double[] inputs;
         public double[] outputs;
-        public double test;
+        public double testValue;
 
         // regression
         public SimpleLinearRegression regression;
@@ -46,35 +46,41 @@ namespace DynAI.MachineLearning
             // set up linear regression using OLS
             regression = new SimpleLinearRegression();
             ols = new OrdinaryLeastSquares();
+
+            // nulls
+            testValue = new double();
+            result = new double();
         }
 
         /// <summary>
         /// Use the object's inputs and outputs to learn the model of the linear regression, using OrdinaryLeastSquares
         /// </summary>
-        public void Learn()
+        public LinearRegression Learn()
         {
-            regression = ols.Learn(inputs, outputs);
+            regression = this.ols.Learn(inputs, outputs);
             learned = true;
+
+            return this;
         }
 
         /// <summary>
         /// Using the learned model, predict an output for the specified input
         /// </summary>
-        /// <param name="value">The value to use as input for the prediction</param>
+        /// <param name="test">The value to use as input for the prediction</param>
         /// <returns>The predicted value</returns>
-        public double Predict(double value)
+        public double Predict(double test)
         {
             // don't predict if we haven't learned the model yet
-            if (learned != true) throw new Exception("Cannot predict before the machine has learned.");
+            if (this.learned != true) throw new Exception("Cannot predict before the machine has learned.");
 
             // check we haven't already predicted for this input
-            if (value == test && learned == true) return result;
+            if (test == this.testValue && this.learned == true) return this.result;
 
             // predict
-            test = value;
-            result = regression.Transform(test);
+            this.testValue = test;
+            this.result = this.regression.Transform(this.testValue);
 
-            return result;
+            return this.result;
         }
     }
     #endregion
