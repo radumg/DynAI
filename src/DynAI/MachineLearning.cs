@@ -99,22 +99,22 @@ namespace DynAI.MachineLearning
     {
         #region public properties
         // dataset
-        public string[][] dataset;
-        public string[] columns;
-        public string outputColumn;
+        public string[][] dataset { get; private set; }
+        public string[] columns { get; private set; }
+        public string outputColumn { get; private set; }
         public int[][] inputs;
         public int[] outputs;
 
         // classifier
         public Accord.MachineLearning.Bayes.NaiveBayes classifier;
         public NaiveBayesLearning learner;
-        public Codification codebook;
+        public Codification codebook { get; private set; }
 
         // state & result
-        public bool learned = false;
-        public string[] testValue;
-        public string result;
-        double[] probs;
+        public bool learned { get; private set; }
+        public string[] testValue { get; private set; }
+        public string result { get; private set; }
+        public double[] probs { get; private set; }
         #endregion
 
         /// <summary>
@@ -149,6 +149,7 @@ namespace DynAI.MachineLearning
             testValue = null;
             result = null;
             probs = null;
+            this.learned = false;
         }
 
         /// <summary>
