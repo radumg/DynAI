@@ -15,16 +15,18 @@ namespace DynAI.MachineLearning
     /// </summary>
     public class LinearRegression
     {
+        #region public properties
         // dataset
-        double[] inputs;
-        double[] outputs;
-        double test;
+        public double[] inputs;
+        public double[] outputs;
+        public double test;
 
         // regression
-        SimpleLinearRegression regression;
-        OrdinaryLeastSquares ols;
-        bool learned = false;
-        double result;
+        public SimpleLinearRegression regression;
+        public OrdinaryLeastSquares ols;
+        public bool learned = false;
+        public double result;
+        #endregion
 
         /// <summary>
         /// Constructs a new LinearRegression machine.
