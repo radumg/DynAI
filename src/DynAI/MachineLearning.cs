@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DynAI.MachineLearning
+namespace AI.MachineLearning
 {
     #region Linear Regression
 

@@ -7,8 +7,8 @@
     <ProjectGuid>{5990DC45-28B6-4E1E-B3EA-C6549EE270F7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DynAI</RootNamespace>
-    <AssemblyName>DynAI.MachineLearning</AssemblyName>
+    <RootNamespace>AI</RootNamespace>
+    <AssemblyName>AI</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
@@ -22,7 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\DynAI.MachineLearning.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\AI.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
