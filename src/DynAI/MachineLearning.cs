@@ -1,4 +1,7 @@
-﻿using Accord.Math.Random;
+﻿using Accord.MachineLearning.Bayes;
+using Accord.Math;
+using Accord.Math.Random;
+using Accord.Statistics.Filters;
 using Accord.Statistics.Models.Regression.Linear;
 using System;
 using System.Collections.Generic;
@@ -17,15 +20,17 @@ namespace DynAI.MachineLearning
     {
         #region public properties
         // dataset
-        public double[] inputs;
-        public double[] outputs;
-        public double testValue;
+        public double[] inputs { get; private set; }
+        public double[] outputs { get; private set; }
+        public double testValue { get; private set; }
 
         // regression
-        public SimpleLinearRegression regression;
+        public SimpleLinearRegression regression { get; private set; }
         public OrdinaryLeastSquares ols;
-        public bool learned = false;
-        public double result;
+
+        // state & result
+        public bool learned { get; private set; }
+        public double result { get; private set; }
         #endregion
 
         /// <summary>
@@ -50,6 +55,7 @@ namespace DynAI.MachineLearning
             // nulls
             testValue = new double();
             result = new double();
+            this.learned = false;
         }
 
         /// <summary>
@@ -86,7 +92,105 @@ namespace DynAI.MachineLearning
     #endregion
 
     #region Classifiers
+    /// <summary>
+    /// Class providing support for Naive Bayes classification machines.
+    /// </summary>
+    public class NaiveBayes
+    {
+        #region public properties
+        // dataset
+        public string[][] dataset;
+        public string[] columns;
+        public string outputColumn;
+        public int[][] inputs;
+        public int[] outputs;
 
+        // classifier
+        public Accord.MachineLearning.Bayes.NaiveBayes classifier;
+        public NaiveBayesLearning learner;
+        public Codification codebook;
+
+        // state & result
+        public bool learned = false;
+        public string[] testValue;
+        public string result;
+        double[] probs;
+        #endregion
+
+        /// <summary>
+        /// Constructs a new NaiveBayes classification machine.
+        /// </summary>
+        public NaiveBayes(string[][] data, List<string> columnList, string outputColumn)
+        {
+            // validation
+            if (data == null || columnList == null || outputColumn==null) throw new ArgumentNullException("Neither the input list nor the column list can be NULL");
+
+            // initialise seed value
+            Generator.Seed = new Random().Next();
+
+            // process input and output lists into arrays
+            this.dataset = data;
+            this.columns = columnList.ToArray();
+            this.outputColumn = outputColumn;
+
+            // Create a new codification codebook to
+            // convert strings into discrete symbols
+            this.codebook = new Codification(columns, this.dataset);
+
+            // Extract input and output pairs to train
+            int[][] symbols = this.codebook.Transform(this.dataset);
+            this.inputs = symbols.Get(null, 0, -1); // Gets all rows, from 0 to the last (but not the last)
+            this.outputs = symbols.GetColumn(-1);     // Gets only the last column
+
+            // Create a new Naive Bayes learning
+            this.learner = new NaiveBayesLearning();
+
+            // nulls
+            testValue = null;
+            result = null;
+            probs = null;
+        }
+
+        /// <summary>
+        /// Use the object's inputs and outputs to learn the model of the linear regression, using OrdinaryLeastSquares
+        /// </summary>
+        public NaiveBayes Learn()
+        {
+            this.classifier = this.learner.Learn(inputs, outputs);
+            this.learned = true;
+
+            return this;
+        }
+
+        /// <summary>
+        /// Using the learned model, predict an output for the specified input
+        /// </summary>
+        /// <param name="test">The value to use as input for the prediction</param>
+        /// <returns>The predicted value</returns>
+        public string Predict(string[] test)
+        {
+            // don't predict if we haven't learned the model yet
+            if (this.learned != true) throw new Exception("Cannot predict before the machine has learned.");
+
+            // check we haven't already predicted for this input
+            if (test == this.testValue && this.learned == true) return this.result;
+
+            // predict
+            // First encode the test instance
+            int[] instance = this.codebook.Transform(test);
+
+            // Let us obtain the numeric output that represents the answer
+            int codeword = this.classifier.Decide(instance);
+
+            // Now let us convert the numeric output to an actual answer
+            this.result = this.codebook.Revert(this.outputColumn, codeword);
+
+            // We can also extract the probabilities for each possible answer
+            this.probs = this.classifier.Probabilities(instance);
+
+            return this.result;
+        }
+    }
     #endregion
 
     #region Helpers
