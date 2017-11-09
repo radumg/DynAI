@@ -58,7 +58,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Machine\IMachine.cs" />
+    <Compile Include="LinearRegression\LinearRegression.cs" />
     <Compile Include="MachineLearning.cs" />
+    <Compile Include="Machine\MachineBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
