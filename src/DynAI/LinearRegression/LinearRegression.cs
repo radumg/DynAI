@@ -49,6 +49,11 @@ namespace AI.MachineLearning.LinearRegression
 
             return this.Result;
         }
+
+        public override IMachine SaveModel()
+        {
+
+        }
         #endregion
     }
 }

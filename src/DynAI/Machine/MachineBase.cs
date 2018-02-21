@@ -27,6 +27,21 @@ namespace AI.Machine
 
         public abstract double Predict(IMachine machine, double inputData);
 
+        public IMachine Learn(IMachine machine)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IMachine SaveModel(IMachine machine)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IMachine LoadModel(IMachine machine)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
     }
 }

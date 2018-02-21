@@ -15,9 +15,8 @@ namespace AI
         /// Enables a machine to learn from training data.
         /// </summary>
         /// <param name="machine">The machine that will learn.</param>
-        /// <param name="trainingData">The data that will be used to train the machine's learning.</param>
         /// <returns>The input machine, now trained.</returns>
-        IMachine Learn(IMachine machine, ITrainingData trainingData);
+        IMachine Learn(IMachine machine);
 
         /// <summary>
         /// Enables a machine to provide a prediction from an input value.
@@ -26,6 +25,10 @@ namespace AI
         /// <param name="inputData">Input for the prediction</param>
         /// <returns>The predicted value</returns>
         double Predict(IMachine machine, double inputData);
+
+        IMachine SaveModel(IMachine machine);
+
+        IMachine LoadModel(IMachine machine);
     }
 
     /// <summary>
