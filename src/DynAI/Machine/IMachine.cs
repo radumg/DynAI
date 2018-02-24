@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AI
+namespace AI.Machine
 {
     /// <summary>
     /// The generic capabilities of a machine, used for machine learning
@@ -21,10 +21,14 @@ namespace AI
         #endregion
 
         #region ML
+
+        Type Algorithm { get; set; }
+
         /// <summary>
         /// Enables a machine to learn from training data.
         /// </summary>
         /// <param name="machine">The machine that will learn.</param>
+        /// <param name="trainingData">The dataset used to train the machine.</param>
         /// <returns>The input machine, now trained.</returns>
         IMachine Learn(IMachine machine, object trainingData);
 

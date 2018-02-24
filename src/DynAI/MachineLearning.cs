@@ -16,7 +16,7 @@ namespace AI.MachineLearning
     /// <summary>
     /// Class providing support for linear regression ML algorithms
     /// </summary>
-    public class SimpleLinearRegression
+    internal class AISimpleLinearRegression
     {
         #region public properties
         // dataset
@@ -36,7 +36,7 @@ namespace AI.MachineLearning
         /// <summary>
         /// Constructs a new LinearRegression machine.
         /// </summary>
-        public SimpleLinearRegression(List<double> inputList, List<double> outputList)
+        public AISimpleLinearRegression(List<double> inputList, List<double> outputList)
         {
             // validation
             if (inputList == null || outputList == null) throw new ArgumentNullException("Neither the input list nor the output list can be NULL");
@@ -61,7 +61,7 @@ namespace AI.MachineLearning
         /// <summary>
         /// Use the object's inputs and outputs to learn the model of the linear regression, using OrdinaryLeastSquares
         /// </summary>
-        public SimpleLinearRegression Learn()
+        public AISimpleLinearRegression Learn()
         {
             regression = this.ols.Learn(inputs, outputs);
             learned = true;
@@ -95,7 +95,7 @@ namespace AI.MachineLearning
     /// <summary>
     /// Class providing support for Naive Bayes classification machines.
     /// </summary>
-    public class NaiveBayes
+    internal class NaiveBayes
     {
         #region public properties
         // dataset
@@ -193,9 +193,4 @@ namespace AI.MachineLearning
         }
     }
     #endregion
-
-    #region Helpers
-
-    #endregion
-
 }

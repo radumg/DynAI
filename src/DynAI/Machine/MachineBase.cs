@@ -11,13 +11,13 @@ namespace AI.Machine
         #region Metadata
 
         // metadata
-
         public string Name { get; set; }
         public string GUID { get; set; }
         public string Description { get; set; }
         public bool Learned { get; set; }
 
         // input data
+        public Type Algorithm { get; set; }
         public IInputData<double> Inputs { get; set; }
         public virtual double[] Outputs { get; set; }
         public virtual double TestValue { get; set; }
