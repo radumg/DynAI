@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AI.Utilities;
 
 namespace AI.Machine
 {
-    public abstract class MachineBase : IMachine
+    public class MachineBase : IMachine
     {
         #region Metadata
 
@@ -38,7 +39,10 @@ namespace AI.Machine
         /// <param name="machine">The machine that will learn.</param>
         /// <param name="trainingData">The dataset used to train the machine.</param>
         /// <returns>The input machine, now trained.</returns>
-        public abstract IMachine Learn(IMachine machine, object trainingData);
+        public virtual IMachine Learn(IMachine machine, object trainingData)
+        {
+            throw new NotImplementedException();
+        }
 
         /// <summary>
         /// Enables a trained machine to provide a prediction from an input value.
@@ -46,7 +50,10 @@ namespace AI.Machine
         /// <param name="machine">The machine that will predict, needs to be trained already.</param>
         /// <param name="inputData">Input for the prediction</param>
         /// <returns>The predicted value.</returns>
-        public abstract object Predict(IMachine machine, object inputData);
+        public virtual object Predict(IMachine machine, object inputData)
+        {
+            throw new NotImplementedException();
+        }
 
         /// <summary>
         /// Serialises a machine to JSON and saves to specified file on disk.
@@ -56,7 +63,7 @@ namespace AI.Machine
         /// <returns>True if operation succeeded, false otherwise.</returns>
         public bool SaveModel(IMachine machine, string filePath)
         {
-            throw new NotImplementedException();
+            return Json.ToJsonFile(machine, filePath);
         }
 
         /// <summary>
@@ -66,7 +73,7 @@ namespace AI.Machine
         /// <returns>The trained machine. Throws Exception if deserialisation did not succeed.</returns>
         public IMachine LoadModel(string filePath)
         {
-            throw new NotImplementedException();
+            return Json.FromJsonFileTo<MachineBase>(filePath);
         }
 
         #endregion
