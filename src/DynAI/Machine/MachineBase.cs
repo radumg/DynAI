@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using AI.Utilities;
+using Autodesk.DesignScript.Runtime;
 
 namespace AI.Machine
 {
+    [IsVisibleInDynamoLibrary(false)]
     public class MachineBase : IMachine
     {
         #region Metadata

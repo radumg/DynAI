@@ -1,5 +1,4 @@
-﻿using Accord.MachineLearning;
-using Accord.Statistics.Models.Regression.Linear;
+﻿using Accord.Statistics.Models.Regression.Linear;
 using AI.Machine;
 using System;
 using System.Linq;

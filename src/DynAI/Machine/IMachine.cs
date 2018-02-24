@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Autodesk.DesignScript.Runtime;
 
 namespace AI.Machine
 {
     /// <summary>
     /// The generic capabilities of a machine, used for machine learning
     /// </summary>
+    [IsVisibleInDynamoLibrary(false)]
     public interface IMachine
     {
         #region Metadata
@@ -65,6 +63,7 @@ namespace AI.Machine
     /// <summary>
     /// This provides an abstraction so that different machines can use different formats for training data.
     /// </summary>
+    [IsVisibleInDynamoLibrary(false)]
     public interface ITrainingData
     {
         /// <summary>
@@ -80,6 +79,7 @@ namespace AI.Machine
         bool SetTrainingData();
     }
 
+    [IsVisibleInDynamoLibrary(false)]
     public interface IInputData<T>
     {
         /// <summary>
