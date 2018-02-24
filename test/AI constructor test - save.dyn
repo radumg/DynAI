@@ -1,0 +1,41 @@
+<Workspace Version="1.3.0.875" X="-23.9974999999999" Y="124.83" zoom="0.8425" ScaleFactor="1" Name="Home" Description="" RunType="Automatic" RunPeriod="1000" HasRunWithoutCrash="True">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="59070ff9-9dc7-4530-83d6-3c7bfb9b43bd" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="164.270029673591" y="403.691394658754" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="&quot;TestMachine #1&quot;;&#xA;&quot;simple machine&quot;;" ShouldFocus="false" />
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="6cb13dbc-82f2-433b-8313-7fbddc13e222" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="RegressionMachine.RegressionMachine" x="441.985163204748" y="287.887240356083" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="..\src\DynAI\bin\Debug\AI.dll" function="AI.Machine.RegressionMachine.RegressionMachine@var,string,string">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <PortInfo index="2" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <CoreNodeModels.Input.Filename guid="7ed0edeb-d1bc-4311-a628-cc0a3fbe4d50" type="CoreNodeModels.Input.Filename" nickname="File Path" x="420.175074183976" y="742.041543026706" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <System.String>.\AI constructor test.json</System.String>
+      <HintPath>T:\My Documents\GitHub\DynAI\test\AI constructor test.json</HintPath>
+    </CoreNodeModels.Input.Filename>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="04138bc8-acd5-45e9-8ad0-411d320b1537" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Regression.SimpleLinearRegression" x="89.4629080118693" y="265.3353115727" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="..\src\DynAI\bin\Debug\AI.dll" function="AI.MachineLearning.Regression.SimpleLinearRegression" />
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="30f98da2-946e-4ecf-bc8b-3448e8fae0da" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="RegressionMachine.SaveModel" x="1152.96439169139" y="709.252225519288" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="true" assembly="..\src\DynAI\bin\Debug\AI.dll" function="AI.Machine.RegressionMachine.SaveModel@var,string">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="67c27302-f24d-4561-a763-fdf602aed3f2" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="RegressionMachine.Name" x="890.649851632047" y="285.513353115727" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="true" assembly="..\src\DynAI\bin\Debug\AI.dll" function="AI.Machine.RegressionMachine.Name">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="ab37eb66-226b-4d96-9834-084f567094c3" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="RegressionMachine.GUID" x="897.771513353116" y="419.637982195846" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="true" assembly="..\src\DynAI\bin\Debug\AI.dll" function="AI.Machine.RegressionMachine.GUID">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="59070ff9-9dc7-4530-83d6-3c7bfb9b43bd" start_index="0" end="6cb13dbc-82f2-433b-8313-7fbddc13e222" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="59070ff9-9dc7-4530-83d6-3c7bfb9b43bd" start_index="1" end="6cb13dbc-82f2-433b-8313-7fbddc13e222" end_index="2" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="6cb13dbc-82f2-433b-8313-7fbddc13e222" start_index="0" end="67c27302-f24d-4561-a763-fdf602aed3f2" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="6cb13dbc-82f2-433b-8313-7fbddc13e222" start_index="0" end="ab37eb66-226b-4d96-9834-084f567094c3" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="6cb13dbc-82f2-433b-8313-7fbddc13e222" start_index="0" end="30f98da2-946e-4ecf-bc8b-3448e8fae0da" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="7ed0edeb-d1bc-4311-a628-cc0a3fbe4d50" start_index="0" end="30f98da2-946e-4ecf-bc8b-3448e8fae0da" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="04138bc8-acd5-45e9-8ad0-411d320b1537" start_index="0" end="6cb13dbc-82f2-433b-8313-7fbddc13e222" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>
