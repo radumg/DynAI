@@ -23,13 +23,14 @@ namespace AI.MachineLearning
 
         #region Constructors
 
-        public RegressionMachine(Type algorithm, string name = null, string description = null)
+        public RegressionMachine(object algorithm, string name = null, string description = null)
         {
+            var type = algorithm.GetType();
             if (
-                !algorithm.GetInterfaces().Contains(typeof(ILinearRegression)) ||
-                algorithm != typeof(SimpleLinearRegression) ||
-                algorithm != typeof(SimpleLinearRegression) ||
-                algorithm != typeof(SimpleLinearRegression)
+                !type.GetInterfaces().Contains(typeof(ILinearRegression)) ||
+                type != typeof(SimpleLinearRegression) ||
+                type != typeof(SimpleLinearRegression) ||
+                type != typeof(SimpleLinearRegression)
                 ) throw new ArgumentException("The algorithm supplied is not valid.");
             GUID = Guid.NewGuid().ToString();
             Name = string.IsNullOrWhiteSpace(name) ? GUID : name;
