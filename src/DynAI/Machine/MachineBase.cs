@@ -23,21 +23,21 @@ namespace AI.Machine
         #endregion
 
         #region IMachine methods
-        public abstract IMachine Learn(IMachine machine, ITrainingData trainingData);
+        public abstract IMachine Learn(IMachine machine, object trainingData);
 
-        public abstract double Predict(IMachine machine, double inputData);
+        public abstract object Predict(IMachine machine, object inputData);
 
         public IMachine Learn(IMachine machine)
         {
             throw new NotImplementedException();
         }
 
-        public IMachine SaveModel(IMachine machine)
+        public bool SaveModel(IMachine machine, string filePath)
         {
             throw new NotImplementedException();
         }
 
-        public IMachine LoadModel(IMachine machine)
+        public IMachine LoadModel(string filePath)
         {
             throw new NotImplementedException();
         }
