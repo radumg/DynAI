@@ -11,22 +11,34 @@ namespace AI
     /// </summary>
     public interface IMachine
     {
+        #region Metadata
+
+        string Name { get; set; }
+        string GUID { get; }
+        string Description { get; }
+        bool Learned { get; set; }
+
+        #endregion
+
+        #region ML
         /// <summary>
         /// Enables a machine to learn from training data.
         /// </summary>
         /// <param name="machine">The machine that will learn.</param>
         /// <returns>The input machine, now trained.</returns>
-        IMachine Learn(IMachine machine);
+        IMachine Learn(IMachine machine, object trainingData);
 
         /// <summary>
-        /// Enables a machine to provide a prediction from an input value.
+        /// Enables a trained machine to provide a prediction from an input value.
         /// </summary>
-        /// <param name="machine">The machine that will predict.</param>
+        /// <param name="machine">The machine that will predict, needs to be trained already.</param>
         /// <param name="inputData">Input for the prediction</param>
         /// <returns>The predicted value</returns>
         object Predict(IMachine machine, object inputData);
 
-        // Serialisation
+        #endregion
+
+        #region Serialisation
 
         /// <summary>
         /// Serialises a machine to JSON and saves to specified file on disk.
@@ -42,6 +54,8 @@ namespace AI
         /// <param name="filePath">The JSON file to load from.</param>
         /// <returns>The trained machine. Throws Exception if deserialisation did not succeed.</returns>
         IMachine LoadModel(string filePath);
+
+        #endregion
     }
 
     /// <summary>
