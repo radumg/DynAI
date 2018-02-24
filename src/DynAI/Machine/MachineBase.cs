@@ -31,13 +31,16 @@ namespace AI.Machine
 
         #region ML
 
+        /// The ML Learn and Predict functions should be abstract as each algorithm needs to have its own implementation.
+        /// This would however break serialisation in this base class, so they're virtual and explictly not implemented.
+
         /// <summary>
         /// Enables a machine to learn from training data.
         /// </summary>
         /// <param name="machine">The machine that will learn.</param>
         /// <param name="trainingData">The dataset used to train the machine.</param>
         /// <returns>The input machine, now trained.</returns>
-        public virtual IMachine Learn(IMachine machine, object trainingData)
+        public virtual IMachine Learn(object trainingData)
         {
             throw new NotImplementedException();
         }
@@ -48,10 +51,14 @@ namespace AI.Machine
         /// <param name="machine">The machine that will predict, needs to be trained already.</param>
         /// <param name="inputData">Input for the prediction</param>
         /// <returns>The predicted value.</returns>
-        public virtual object Predict(IMachine machine, object inputData)
+        public virtual object Predict(object inputData)
         {
             throw new NotImplementedException();
         }
+
+        #endregion
+
+        #region IO
 
         /// <summary>
         /// Serialises a machine to JSON and saves to specified file on disk.
@@ -59,7 +66,7 @@ namespace AI.Machine
         /// <param name="machine">The machine to serialise.</param>
         /// <param name="filePath">The destination file on disk.</param>
         /// <returns>True if operation succeeded, false otherwise.</returns>
-        public bool SaveModel(IMachine machine, string filePath)
+        public virtual bool SaveModel(IMachine machine, string filePath)
         {
             return Json.ToJsonFile(machine, filePath);
         }
@@ -69,7 +76,7 @@ namespace AI.Machine
         /// </summary>
         /// <param name="filePath">The JSON file to load from.</param>
         /// <returns>The trained machine. Throws Exception if deserialisation did not succeed.</returns>
-        public IMachine LoadModel(string filePath)
+        public virtual IMachine LoadModel(string filePath)
         {
             return Json.FromJsonFileTo<MachineBase>(filePath);
         }
