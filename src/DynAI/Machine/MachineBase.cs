@@ -4,8 +4,8 @@ using Autodesk.DesignScript.Runtime;
 
 namespace AI.Machine
 {
-    [IsVisibleInDynamoLibrary(false)]
-    public class MachineBase : IMachine
+    //[IsVisibleInDynamoLibrary(false)]
+    public class Machine : IMachine
     {
         #region Metadata
 
@@ -13,16 +13,16 @@ namespace AI.Machine
         public string Name { get; set; }
         public string GUID { get; set; }
         public string Description { get; set; }
-        public bool Learned { get; set; }
+        public bool Trained { get; set; }
 
         // input data
-        public Type Algorithm { get; set; }
         public IInputData<double> Inputs { get; set; }
         public virtual double[] Outputs { get; set; }
         public virtual double TestValue { get; set; }
+        //ITrainingData TrainingData { get; set; }
 
-        // training data
-        ITrainingData TrainingData { get; set; }
+        // Learning & predicting
+        public object Algorithm { get; set; }
 
         // Result
         public double Result { get; set; }
@@ -78,7 +78,7 @@ namespace AI.Machine
         /// <returns>The trained machine. Throws Exception if deserialisation did not succeed.</returns>
         public virtual IMachine LoadModel(string filePath)
         {
-            return Json.FromJsonFileTo<MachineBase>(filePath);
+            return Json.FromJsonFileTo<Machine>(filePath);
         }
 
         #endregion

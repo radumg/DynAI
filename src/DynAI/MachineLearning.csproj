@@ -80,6 +80,7 @@
   <ItemGroup>
     <Compile Include="MachineLearning\Regression.cs" />
     <Compile Include="Machine\IMachine.cs" />
+    <Compile Include="Machine\MachineBase.cs" />
     <Compile Include="Machine\RegressionMachine.cs" />
     <Compile Include="Utils\JSON.cs" />
     <Compile Include="MachineLearning.cs" />

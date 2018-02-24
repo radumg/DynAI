@@ -9,30 +9,16 @@ using Accord.Statistics.Models.Regression;
 
 namespace AI.Machine
 {
-    public class RegressionMachine : IMachine
+    public class RegressionMachine : Machine
     {
         #region Metadata
 
-        // metadata
-        public string Name { get; set; }
-        public string GUID { get; set; }
-        public string Description { get; set; }
-        public bool Learned { get; set; }
-
         // input data
-        public Type Algorithm { get; set; }
         public SimpleLinearRegression Regression { get; private set; }
         public OrdinaryLeastSquares ols;
 
-        public double[] Inputs { get; set; }
-        public double[] Outputs { get; set; }
-        public double TestValue { get; set; }
-
-        // training data
-        ITrainingData TrainingData { get; set; }
-
-        // Result
-        public double Result { get; set; }
+        // override Inputs
+        public new double[] Inputs { get; set; }
 
         #endregion
 
@@ -85,7 +71,7 @@ namespace AI.Machine
             try
             {
                 this.Regression = this.ols.Learn((double[])trainingData, this.Outputs);
-                this.Learned = true;
+                this.Trained = true;
             }
             catch (Exception)
             {
@@ -115,10 +101,10 @@ namespace AI.Machine
             }
 
             // don't predict if we haven't learned the model yet
-            if (this.Learned != true) throw new Exception("Cannot predict before the machine has learned.");
+            if (this.Trained != true) throw new Exception("Cannot predict before the machine has learned.");
 
             // check we haven't already predicted for this input
-            if (input == this.TestValue && this.Learned == true) return this.Result;
+            if (input == this.TestValue && this.Trained == true) return this.Result;
 
             // predict
             this.TestValue = input;

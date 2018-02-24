@@ -14,13 +14,16 @@ namespace AI.Machine
         string Name { get; set; }
         string GUID { get; }
         string Description { get; }
-        bool Learned { get; set; }
+        bool Trained { get; set; }
 
         #endregion
 
         #region ML
 
-        Type Algorithm { get; set; }
+        /// <summary>
+        /// This object is the learning/predicting algorithm and will be used in the Learn and Predict methods.
+        /// </summary>
+        object Algorithm { get; set; }
 
         /// <summary>
         /// Enables a machine to learn from training data.
