@@ -14,7 +14,23 @@ namespace AI.Machine
         string Name { get; set; }
         string GUID { get; }
         string Description { get; }
-        bool Trained { get; set; }
+
+        // State
+        /// <summary>
+        /// Indicates whether the machine has been trained already or not.
+        /// Required to be TRUE for Predict() to work.
+        /// </summary>
+        bool IsTrained { get; }
+
+        /// <summary>
+        /// The last value that was used as input for prediction, usually known as the test value.
+        /// </summary>
+        object LastTestValue { get; }
+
+        /// <summary>
+        /// The result of the prediction.
+        /// </summary>
+        dynamic Result { get; }
 
         #endregion
 
@@ -23,23 +39,20 @@ namespace AI.Machine
         /// <summary>
         /// This object is the learning/predicting algorithm and will be used in the Learn and Predict methods.
         /// </summary>
-        object Algorithm { get; set; }
+        IAlgorithm Algorithm { get; set; }
 
         /// <summary>
         /// Enables a machine to learn from training data.
         /// </summary>
-        /// <param name="machine">The machine that will learn.</param>
-        /// <param name="trainingData">The dataset used to train the machine.</param>
         /// <returns>The input machine, now trained.</returns>
-        IMachine Learn(object trainingData);
+        IMachine Learn();
 
         /// <summary>
         /// Enables a trained machine to provide a prediction from an input value.
         /// </summary>
-        /// <param name="machine">The machine that will predict, needs to be trained already.</param>
         /// <param name="inputData">Input for the prediction</param>
         /// <returns>The predicted value</returns>
-        object Predict(object inputData);
+        dynamic Predict(dynamic inputData);
 
         #endregion
     }
