@@ -1,9 +1,0 @@
-{
-  "Name": "TestMachine #1",
-  "GUID": "64bdc0dd-16d8-43a1-8d08-2159cf3eb373",
-  "Description": "simple machine",
-  "Trained": false,
-  "TestValue": 0.0,
-  "Algorithm": "Accord.Statistics.Models.Regression.Linear.MultivariateLinearRegression, Accord.Statistics, Version=3.7.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7",
-  "Result": 0.0
-}

@@ -1,0 +1,17 @@
+{
+  "$type": "AI.Machine.Machine, AI",
+  "Name": "TestMachine #1",
+  "GUID": "4c5d8a58-2113-4a87-806d-90925f55618c",
+  "Description": "simple machine",
+  "Algorithm": {
+    "$type": "AI.MachineLearning.Regression.SimpleLinearRegression, AI",
+    "Name": "Simple Linear Regression",
+    "Type": 0,
+    "HasTrainingDataLoaded": true,
+    "IsTrained": false,
+    "PredictionType": "System.Double, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+    "ResultType": "System.Double, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+  },
+  "IsTrained": false,
+  "ResultDataType": "System.Double"
+}

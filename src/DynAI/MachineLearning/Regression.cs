@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace AI.MachineLearning
 {
+    /*
     /// <summary>
     /// Regression algoritms.
     /// </summary>
@@ -42,4 +43,5 @@ namespace AI.MachineLearning
         /// </summary>
         public static LogisticRegression LogisticRegression { get { return new LogisticRegression(); } }
     }
+    */
 }
