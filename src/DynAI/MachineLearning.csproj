@@ -79,6 +79,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MachineLearning\Regression.cs" />
+    <Compile Include="MachineLearning\SimpleLinearRegression.cs" />
+    <Compile Include="Machine\IAlgorithm.cs" />
     <Compile Include="Machine\IMachine.cs" />
     <Compile Include="Machine\MachineBase.cs" />
     <Compile Include="Machine\RegressionMachine.cs" />
