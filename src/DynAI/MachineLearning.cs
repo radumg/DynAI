@@ -16,7 +16,7 @@ namespace AI.MachineLearning
     /// <summary>
     /// Class providing support for linear regression ML algorithms
     /// </summary>
-    public class LinearRegression
+    internal class AISimpleLinearRegression
     {
         #region public properties
         // dataset
@@ -25,7 +25,7 @@ namespace AI.MachineLearning
         public double testValue { get; private set; }
 
         // regression
-        public SimpleLinearRegression regression { get; private set; }
+        public Accord.Statistics.Models.Regression.Linear.SimpleLinearRegression regression { get; private set; }
         public OrdinaryLeastSquares ols;
 
         // state & result
@@ -36,7 +36,7 @@ namespace AI.MachineLearning
         /// <summary>
         /// Constructs a new LinearRegression machine.
         /// </summary>
-        public LinearRegression(List<double> inputList, List<double> outputList)
+        public AISimpleLinearRegression(List<double> inputList, List<double> outputList)
         {
             // validation
             if (inputList == null || outputList == null) throw new ArgumentNullException("Neither the input list nor the output list can be NULL");
@@ -49,7 +49,7 @@ namespace AI.MachineLearning
             outputs = outputList.ToArray();
 
             // set up linear regression using OLS
-            regression = new SimpleLinearRegression();
+            regression = new Accord.Statistics.Models.Regression.Linear.SimpleLinearRegression();
             ols = new OrdinaryLeastSquares();
 
             // nulls
@@ -61,7 +61,7 @@ namespace AI.MachineLearning
         /// <summary>
         /// Use the object's inputs and outputs to learn the model of the linear regression, using OrdinaryLeastSquares
         /// </summary>
-        public LinearRegression Learn()
+        public AISimpleLinearRegression Learn()
         {
             regression = this.ols.Learn(inputs, outputs);
             learned = true;
@@ -95,7 +95,7 @@ namespace AI.MachineLearning
     /// <summary>
     /// Class providing support for Naive Bayes classification machines.
     /// </summary>
-    public class NaiveBayes
+    internal class NaiveBayes
     {
         #region public properties
         // dataset
@@ -193,9 +193,4 @@ namespace AI.MachineLearning
         }
     }
     #endregion
-
-    #region Helpers
-
-    #endregion
-
 }

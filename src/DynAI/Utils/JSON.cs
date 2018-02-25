@@ -20,7 +20,8 @@ namespace AI.Utilities
                 NullValueHandling = NullValueHandling.Ignore,
                 MissingMemberHandling = MissingMemberHandling.Ignore,
                 CheckAdditionalContent = true,
-                Formatting = Formatting.Indented
+                Formatting = Formatting.Indented,
+                TypeNameHandling = TypeNameHandling.All
             };
         }
 
@@ -39,7 +40,7 @@ namespace AI.Utilities
             }
             catch (Exception e)
             {
-                throw new Exception("Deserialisation failed.");
+                throw new Exception("Deserialisation failed, inner exception : " + e.Message);
             }
         }
 
@@ -77,7 +78,7 @@ namespace AI.Utilities
             }
             catch (Exception e)
             {
-                throw new Exception("Serialisation failed");
+                throw new Exception("Serialisation failed, inner exception : " + e.Message);
             }
         }
 
