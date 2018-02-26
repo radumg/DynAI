@@ -1,7 +1,7 @@
 ﻿using System;
 using Autodesk.DesignScript.Runtime;
 
-namespace AI.Machine
+namespace AI
 {
     /// <summary>
     /// The generic capabilities of a machine, used for machine learning

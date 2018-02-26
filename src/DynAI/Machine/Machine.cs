@@ -1,9 +1,8 @@
 ﻿using System;
 using AI.Utilities;
 using Autodesk.DesignScript.Runtime;
-using AI.Machine;
 
-namespace AI.Machine
+namespace AI
 {
     /// <summary>
     /// Machines are entities that can leverage different algorithms to learn from training data and then predict new values.
