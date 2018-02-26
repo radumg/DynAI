@@ -79,8 +79,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Algorithms\Classifier-NaiveBayes.cs" />
-    <Compile Include="Algorithms\Regression-SimpleLinear.cs" />
+    <Compile Include="Algorithms\Classifier\NaiveBayesClassifier.cs" />
+    <Compile Include="Algorithms\Regression\SimpleLinearRegression.cs" />
     <Compile Include="Interfaces\IAlgorithm.cs" />
     <Compile Include="Interfaces\IMachine.cs" />
     <Compile Include="Machine\Machine.cs" />
