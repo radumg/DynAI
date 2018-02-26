@@ -16,7 +16,7 @@ namespace AI.Algorithms.Regression
         // Metadata
         public string Name { get; set; }
         public AlgorithmType Type { get; }
-        public bool HasTrainingDataLoaded => HasTrainingData();
+        public bool IsTrainingDataLoaded => HasTrainingData();
         public bool IsTrained { get; set; }
 
         // Type support
@@ -52,7 +52,7 @@ namespace AI.Algorithms.Regression
         public SimpleLinearRegression(List<double> inputList, List<double> outputList)
         {
             Name = "Simple Linear Regression";
-            Type = AlgorithmType.Supervised;
+            Type = AlgorithmType.Regression;
             IsTrained = false;
             PredictionType = typeof(double);
             ResultType = typeof(double);
@@ -96,7 +96,7 @@ namespace AI.Algorithms.Regression
         }
 
         [IsVisibleInDynamoLibrary(false)]
-        public object Predict(object inputData)
+        public dynamic Predict(dynamic inputData)
         {
             // parse input to required type - throws error if not possible
             var input = ConvertToValidInputType(inputData);
