@@ -1,12 +1,14 @@
 ﻿using Accord.Math.Random;
 using Accord.Statistics.Models.Regression.Linear;
-using AI.Machine;
 using Autodesk.DesignScript.Runtime;
 using System;
 using System.Collections.Generic;
 
-namespace AI.MachineLearning.Regression
+namespace AI.Algorithms.Regression
 {
+    /// <summary>
+    ///  In linear regression, the model specification is that the dependent variable, y is a linear combination of the parameters (but need not be linear in the independent variables). 
+    /// </summary>
     public class SimpleLinearRegression : IAlgorithm
     {
         #region Interface Properties

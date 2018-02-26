@@ -78,12 +78,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MachineLearning\Regression.cs" />
-    <Compile Include="MachineLearning\SimpleLinearRegression.cs" />
-    <Compile Include="Machine\IAlgorithm.cs" />
-    <Compile Include="Machine\IMachine.cs" />
-    <Compile Include="Machine\MachineBase.cs" />
-    <Compile Include="Machine\RegressionMachine.cs" />
+    <Compile Include="Algorithms\SimpleLinearRegression.cs" />
+    <Compile Include="Interfaces\IAlgorithm.cs" />
+    <Compile Include="Interfaces\IMachine.cs" />
+    <Compile Include="Machine\Machine.cs" />
     <Compile Include="Utils\JSON.cs" />
     <Compile Include="MachineLearning.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
