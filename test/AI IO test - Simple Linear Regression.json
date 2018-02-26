@@ -1,10 +1,10 @@
 {
-  "$type": "AI.Machine.Machine, AI",
+  "$type": "AI.Machine, AI",
   "Name": "TestMachine #1",
-  "GUID": "4c5d8a58-2113-4a87-806d-90925f55618c",
+  "GUID": "70fe025a-c694-4350-9775-06b7ff30652e",
   "Description": "simple machine",
   "Algorithm": {
-    "$type": "AI.MachineLearning.Regression.SimpleLinearRegression, AI",
+    "$type": "AI.Algorithms.Regression.SimpleLinearRegression, AI",
     "Name": "Simple Linear Regression",
     "Type": 0,
     "HasTrainingDataLoaded": true,
