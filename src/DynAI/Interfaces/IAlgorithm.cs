@@ -9,12 +9,12 @@ namespace AI
         // Metadata and State
         string Name { get; set; }
         AlgorithmType Type { get; }
-        bool HasTrainingDataLoaded { get; }
+        bool IsTrainingDataLoaded { get; }
         bool IsTrained { get; set; }
 
         // dataset
-        object LastResult { get; }
-        object LastTestValue { get; }
+        dynamic LastResult { get; }
+        dynamic LastTestValue { get; }
 
         // Type support
         Type PredictionType { get; }
@@ -22,13 +22,16 @@ namespace AI
 
         // ML Methods
         void Learn();
-        object Predict(object inputData);
+        dynamic Predict(dynamic inputData);
     }
 
     [IsVisibleInDynamoLibrary(false)]
     public enum AlgorithmType
     {
-        Supervised,
-        Unsupervised
+        Regression,
+        Classifier,
+        Clustering,
+        DecisionTree,
+        VectorMachine
     }
 }

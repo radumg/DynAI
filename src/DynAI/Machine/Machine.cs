@@ -39,12 +39,12 @@ namespace AI
         /// <summary>
         /// Indicates whether training data was successfully loaded into the machine and that it has learned from it.
         /// </summary>
-        public bool IsTrained => Algorithm.HasTrainingDataLoaded && Algorithm.IsTrained;
+        public bool IsTrained => Algorithm.IsTrainingDataLoaded && Algorithm.IsTrained;
 
         /// <summary>
         /// The result supplied by the prediction algorithm used.
         /// </summary>
-        public object Result => Algorithm.LastResult;
+        public dynamic Result => Algorithm.LastResult;
 
         /// <summary>
         /// The datatype of the result, useful for data validation.
@@ -87,7 +87,7 @@ namespace AI
             var algo = (IAlgorithm)algorithm;
 
             // check we already have training data in the algorithm.
-            if (!algo.HasTrainingDataLoaded) throw new ArgumentException("The specified algorithm has no training data.");
+            if (!algo.IsTrainingDataLoaded) throw new ArgumentException("The specified algorithm has no training data.");
 
             // record the algorithm used as an object and its type, required in GetAlgorithm method.
             this.Algorithm = algo;
@@ -137,18 +137,19 @@ namespace AI
 
         /// <summary>
         /// Enables a trained machine to provide a prediction from an input value.
+        /// Note that each algorithm expects a different data type as input.
         /// </summary>
-        /// <param name="inputData">Input for the prediction</param>
+        /// <param name="testData">The value(s) to use as input in the prediction.</param>
         /// <returns>The predicted value.</returns>
-        public dynamic Predict(object inputData)
+        public dynamic Predict(dynamic testData)
         {
             // don't predict if we haven't learned the model yet
             if (!this.IsTrained) throw new Exception("Cannot predict before the algorithm has learned.");
 
             // check we haven't already predicted for this input and use cache if so
-            if (inputData == this.LastTestValue && this.IsTrained == true) return this.Result;
+            if (object.Equals(testData,this.LastTestValue) && this.IsTrained == true) return this.Result;
 
-            return Algorithm.Predict(inputData);
+            return Algorithm.Predict(testData);
         }
 
         #endregion
@@ -160,7 +161,7 @@ namespace AI
         /// </summary>
         /// <param name="filePath">The destination file on disk.</param>
         /// <returns>True if operation succeeded, false otherwise.</returns>
-        public bool SaveModel(string filePath)
+        public bool Save(string filePath)
         {
             return Json.ToJsonFile(this, filePath);
         }
@@ -170,7 +171,7 @@ namespace AI
         /// </summary>
         /// <param name="filePath">The JSON file to load from.</param>
         /// <returns>The trained machine. Throws Exception if deserialisation did not succeed.</returns>
-        public static Machine LoadModel(string filePath)
+        public static Machine Load(string filePath)
         {
             return Json.FromJsonFileTo<Machine>(filePath);
         }

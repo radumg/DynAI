@@ -52,9 +52,9 @@ namespace AI
         /// <summary>
         /// Enables a trained machine to provide a prediction from an input value.
         /// </summary>
-        /// <param name="inputData">Input for the prediction</param>
+        /// <param name="testData">Input for the prediction</param>
         /// <returns>The predicted value</returns>
-        dynamic Predict(dynamic inputData);
+        dynamic Predict(dynamic testData);
 
         #endregion
     }
