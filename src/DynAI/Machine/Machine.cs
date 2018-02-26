@@ -129,9 +129,9 @@ namespace AI
         /// Tells a machine to learn from its training data.
         /// </summary>
         /// <returns>The input machine, now trained.</returns>
-        public IMachine Learn()
+        public Machine Learn()
         {
-            Algorithm.Learn();
+            this.Algorithm.Learn();
             return this;
         }
 

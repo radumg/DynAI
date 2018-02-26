@@ -45,7 +45,9 @@ namespace AI
         /// Enables a machine to learn from training data.
         /// </summary>
         /// <returns>The input machine, now trained.</returns>
-        IMachine Learn();
+        Machine Learn();
+        // ideally, the above would return an IMachine, but Dynamo has problems with nodes that have interfaces as declared return types.
+        // So, we resort to returning the concrete class.
 
         /// <summary>
         /// Enables a trained machine to provide a prediction from an input value.
