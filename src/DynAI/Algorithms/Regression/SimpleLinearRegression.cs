@@ -72,6 +72,11 @@ namespace AI.Algorithms.Regression
             ols = new OrdinaryLeastSquares();
         }
 
+        [IsVisibleInDynamoLibrary(false)]
+        public SimpleLinearRegression()
+        {
+
+        }
         #endregion
 
         #region ML
