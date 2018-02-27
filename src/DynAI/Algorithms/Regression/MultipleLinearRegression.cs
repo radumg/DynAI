@@ -1,4 +1,5 @@
 ﻿using Accord.Math.Random;
+using Accord.Statistics.Filters;
 using Accord.Statistics.Models.Regression.Linear;
 using Autodesk.DesignScript.Runtime;
 using System;
@@ -34,11 +35,14 @@ namespace AI.Algorithms.Regression
 
         private double[][] Inputs;
         private double[] Outputs;
-        private double[][] TestValue;
-        private double[] Result;
+        private double[] TestValue;
+        private double? Result;
 
         // Learner & predictor - these are not part of the interface
         private Accord.Statistics.Models.Regression.Linear.MultipleLinearRegression regression;
+        private Codification codebook;
+        private bool Codify;
+        private string CodifyColumn = string.Empty;
         private OrdinaryLeastSquares ols;
 
         #endregion
@@ -50,17 +54,22 @@ namespace AI.Algorithms.Regression
         /// </summary>
         /// <param name="inputList">Use inputList as rows with equal numbers of featurs, which used for learning.</param>
         /// <param name="outputList">Use outputList as the rows that define the result column for each</param>
-        public MultipleLinearRegression(List<List<double>> inputList, List<double> outputList)
+        public MultipleLinearRegression(List<List<double>> inputList, List<double> outputList, string codifyColumn=null)
         {
             Name = "Multiple Linear Regression";
             Type = AlgorithmType.Regression;
             IsTrained = false;
-            PredictionType = typeof(double[][]);
-            ResultType = typeof(double[]);
+            PredictionType = typeof(double[]);
+            ResultType = typeof(double);
             Inputs = null;
             Outputs = null;
             TestValue = null;
             Result = null;
+            if (!string.IsNullOrWhiteSpace(codifyColumn))
+            {
+                Codify = true;
+                CodifyColumn = codifyColumn;
+            }
 
             // initialise seed value for Accord framework
             Generator.Seed = new Random().Next();
@@ -84,6 +93,10 @@ namespace AI.Algorithms.Regression
 
         public bool Learn()
         {
+            if (Codify)
+            {
+                // ADD CODE FOR CODIFICATION SUPPORT HERE.
+            }
             try
             {
                 regression = this.ols.Learn(Inputs, Outputs);
@@ -105,11 +118,13 @@ namespace AI.Algorithms.Regression
             throw new NotImplementedException();
         }
 
-        public dynamic Predict(List<List<double>> inputData)
+        public dynamic Predict(List<double> inputData)
         {
+            var input = inputData.ToArray();
+
             // predict & cache test value
-            this.TestValue = inputData.Select(x=>x.ToArray()).ToArray();
-            this.Result = this.regression.Transform(Inputs);
+            this.TestValue = inputData.ToArray();
+            this.Result = this.regression.Transform(input);
 
             return this.Result;
         }
@@ -126,6 +141,24 @@ namespace AI.Algorithms.Regression
             // process input and output lists into arrays
             Inputs = inputList.Select(x => x.ToArray()).ToArray();
             Outputs = outputList.ToArray();
+
+            if (Codify)
+            {
+                /*
+                
+                ADD CODE FOR CODIFICATION SUPPORT HERE.    
+
+
+                // Create a new codification codebook to convert strings into discrete symbols
+                this.codebook = new Codification(CodifyColumn, codebook.Columns.);
+
+                // Extract input and output pairs to train
+                int[][] symbols = this.codebook.Transform(CodifyColumn,);
+                this.codifiedDataset = symbols.Get(null, 0, -1); // Gets all rows, from 0 to the last (but not the last)
+                this.codifiedOutputs = symbols.GetColumn(-1);     // Gets only the last column
+                */
+                
+            }
         }
 
         private bool HasTrainingData()
