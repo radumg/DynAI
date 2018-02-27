@@ -21,7 +21,7 @@ namespace AI
         Type ResultType { get; }
 
         // ML Methods
-        void Learn();
+        bool Learn();
         dynamic Predict(dynamic inputData);
     }
 

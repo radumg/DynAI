@@ -77,12 +77,13 @@ namespace AI.Algorithms.Regression
         #region ML
 
         [IsVisibleInDynamoLibrary(false)]
-        public void Learn()
+        public bool Learn()
         {
             try
             {
                 regression = this.ols.Learn(Inputs, Outputs);
                 IsTrained = true;
+                return true;
             }
             catch (Exception e)
             {
@@ -91,7 +92,6 @@ namespace AI.Algorithms.Regression
                     "Inner exception : " + e.Message
                     );
             }
-
            // return this as IAlgorithm;
         }
 

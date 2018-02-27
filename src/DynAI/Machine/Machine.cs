@@ -72,7 +72,7 @@ namespace AI
         /// Sets the algorithm to the specified object, throws if argument is null or doesn't implement IAlgorithm.
         /// </summary>
         /// <param name="algorithm">The object to set algorithm to.</param>
-        private void SetAlgorithm(object algorithm)
+        public void SetAlgorithm(object algorithm)
         {
             // Check algorithm implements the IAlgorithm interface and it's not null.
             // This is because the learning and prediction methods accept IAlgorithm objects only.
@@ -131,8 +131,7 @@ namespace AI
         /// <returns>The input machine, now trained.</returns>
         public Machine Learn()
         {
-            this.Algorithm.Learn();
-            return this;
+            return this.Algorithm.Learn()== true ? this : null;
         }
 
         /// <summary>

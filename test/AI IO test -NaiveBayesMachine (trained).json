@@ -1,7 +1,7 @@
 {
   "$type": "AI.Machine, AI",
   "Name": "NaiveBayesMachine",
-  "GUID": "0f127079-70a8-4d02-8c7e-c3d8b469cc7b",
+  "GUID": "c6767b1e-66d3-4324-8a0c-423c1799fb2b",
   "Description": "simple machine",
   "Algorithm": {
     "$type": "AI.Algorithms.Regression.NaiveBayesClassifier, AI",
@@ -166,8 +166,35 @@
     "IsTrained": true,
     "PredictionType": "System.String[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
     "ResultType": "System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
-    "OutputColumn": "PlayTennis"
+    "LastTestValue": {
+      "$type": "System.String[], mscorlib",
+      "$values": [
+        "Overcast",
+        "Hot",
+        "High",
+        "Weak"
+      ]
+    },
+    "LastResult": "Yes",
+    "OutputColumn": "PlayTennis",
+    "Probabilities": {
+      "$type": "System.Double[], mscorlib",
+      "$values": [
+        3.2399999986262393E-10,
+        0.99999999967600006
+      ]
+    }
   },
   "IsTrained": true,
-  "ResultDataType": "System.String"
+  "Result": "Yes",
+  "ResultDataType": "System.String",
+  "LastTestValue": {
+    "$type": "System.String[], mscorlib",
+    "$values": [
+      "Overcast",
+      "Hot",
+      "High",
+      "Weak"
+    ]
+  }
 }

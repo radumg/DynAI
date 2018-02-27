@@ -95,15 +95,44 @@ namespace AI.Algorithms.Regression
 
         #region ML
 
-        [IsVisibleInDynamoLibrary(false)]
-        public void Learn()
+        public bool Learn()
         {
-            this.classifier = this.learner.Learn(this.codifiedDataset, this.codifiedOutputs);
-            IsTrained = true;
+            try
+            {
+                this.classifier = this.learner.Learn(this.codifiedDataset, this.codifiedOutputs);
+                IsTrained = true;
+                return true;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(
+                    "Failed to learn using specified training data." + Environment.NewLine +
+                    "Inner exception : " + e.Message
+                    );
+            }
         }
 
-        [IsVisibleInDynamoLibrary(false)]
         public dynamic Predict(dynamic inputData)
+        {
+            // parse input to required type - throws error if not possible
+            this.TestValue = inputData;
+
+            // First encode the test instance
+            int[] instance = this.codebook.Transform(inputData);
+
+            // Let us obtain the numeric output that represents the answer
+            int codeword = this.classifier.Decide(instance);
+
+            // Now let us convert the numeric output to an actual answer
+            this.Result = this.codebook.Revert(this.OutputColumn, codeword);
+
+            // We can also extract the probabilities for each possible answer
+            this.Probabilities = this.classifier.Probabilities(instance);
+
+            return this.Result;
+        }
+
+        public string Predict(string[] inputData)
         {
             // parse input to required type - throws error if not possible
             this.TestValue = inputData;
