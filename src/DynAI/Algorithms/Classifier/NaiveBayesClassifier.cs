@@ -91,6 +91,11 @@ namespace AI.Algorithms.Regression
             this.learner = new NaiveBayesLearning();
         }
 
+        [IsVisibleInDynamoLibrary(false)]
+        public NaiveBayesClassifier()
+        {
+
+        }
         #endregion
 
         #region ML
