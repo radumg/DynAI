@@ -6,7 +6,6 @@ namespace AI.Utils
 {
     internal static class Types
     {
-        [IsVisibleInDynamoLibrary(false)]
         public static bool IsList(object o)
         {
             if (o == null) return false;
@@ -15,13 +14,17 @@ namespace AI.Utils
                    o.GetType().GetGenericTypeDefinition().IsAssignableFrom(typeof(List<>));
         }
 
-        [IsVisibleInDynamoLibrary(false)]
         public static bool IsDictionary(object o)
         {
             if (o == null) return false;
             return o is IDictionary &&
                    o.GetType().IsGenericType &&
                    o.GetType().GetGenericTypeDefinition().IsAssignableFrom(typeof(Dictionary<,>));
+        }
+
+        public static string[] IngestStringArray(string[] array)
+        {
+            return array;
         }
     }
 }
