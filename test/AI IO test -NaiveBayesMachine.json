@@ -1,7 +1,7 @@
 {
   "$type": "AI.Machine, AI",
-  "Name": "TestMachine #1",
-  "GUID": "2bee2d25-6c6a-4414-ad5e-63dbea5d693d",
+  "Name": "NaiveBayesMachine",
+  "GUID": "2cd755e8-cca1-48de-9e67-48deecb1ece5",
   "Description": "simple machine",
   "Algorithm": {
     "$type": "AI.Algorithms.Regression.SimpleLinearRegression, AI",

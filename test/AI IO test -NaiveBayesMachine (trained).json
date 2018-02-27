@@ -1,0 +1,200 @@
+{
+  "$type": "AI.Machine, AI",
+  "Name": "NaiveBayesMachine",
+  "GUID": "c6767b1e-66d3-4324-8a0c-423c1799fb2b",
+  "Description": "simple machine",
+  "Algorithm": {
+    "$type": "AI.Algorithms.Regression.NaiveBayesClassifier, AI",
+    "Dataset": {
+      "$type": "System.String[][], mscorlib",
+      "$values": [
+        {
+          "$type": "System.String[], mscorlib",
+          "$values": [
+            "Sunny",
+            "Hot",
+            "High",
+            "Weak",
+            "No"
+          ]
+        },
+        {
+          "$type": "System.String[], mscorlib",
+          "$values": [
+            "Sunny",
+            "Hot",
+            "High",
+            "Strong",
+            "No"
+          ]
+        },
+        {
+          "$type": "System.String[], mscorlib",
+          "$values": [
+            "Overcast",
+            "Hot",
+            "High",
+            "Weak",
+            "Yes"
+          ]
+        },
+        {
+          "$type": "System.String[], mscorlib",
+          "$values": [
+            "Rain",
+            "Mild",
+            "High",
+            "Weak",
+            "Yes"
+          ]
+        },
+        {
+          "$type": "System.String[], mscorlib",
+          "$values": [
+            "Rain",
+            "Cool",
+            "Normal",
+            "Weak",
+            "Yes"
+          ]
+        },
+        {
+          "$type": "System.String[], mscorlib",
+          "$values": [
+            "Rain",
+            "Cool",
+            "Normal",
+            "Strong",
+            "No"
+          ]
+        },
+        {
+          "$type": "System.String[], mscorlib",
+          "$values": [
+            "Overcast",
+            "Cool",
+            "Normal",
+            "Strong",
+            "Yes"
+          ]
+        },
+        {
+          "$type": "System.String[], mscorlib",
+          "$values": [
+            "Sunny",
+            "Mild",
+            "High",
+            "Weak",
+            "No"
+          ]
+        },
+        {
+          "$type": "System.String[], mscorlib",
+          "$values": [
+            "Sunny",
+            "Cool",
+            "Normal",
+            "Weak",
+            "Yes"
+          ]
+        },
+        {
+          "$type": "System.String[], mscorlib",
+          "$values": [
+            "Rain",
+            "Mild",
+            "Normal",
+            "Weak",
+            "Yes"
+          ]
+        },
+        {
+          "$type": "System.String[], mscorlib",
+          "$values": [
+            "Sunny",
+            "Mild",
+            "Normal",
+            "Strong",
+            "Yes"
+          ]
+        },
+        {
+          "$type": "System.String[], mscorlib",
+          "$values": [
+            "Overcast",
+            "Mild",
+            "High",
+            "Strong",
+            "Yes"
+          ]
+        },
+        {
+          "$type": "System.String[], mscorlib",
+          "$values": [
+            "Overcast",
+            "Hot",
+            "Normal",
+            "Weak",
+            "Yes"
+          ]
+        },
+        {
+          "$type": "System.String[], mscorlib",
+          "$values": [
+            "Rain",
+            "Mild",
+            "High",
+            "Strong",
+            "No"
+          ]
+        }
+      ]
+    },
+    "Outputs": {
+      "$type": "System.String[], mscorlib",
+      "$values": [
+        "Outlook",
+        "Temperature",
+        "Humidity",
+        "Wind",
+        "PlayTennis"
+      ]
+    },
+    "Name": "Naive Bayes Classifier",
+    "Type": 1,
+    "IsTrainingDataLoaded": true,
+    "IsTrained": true,
+    "PredictionType": "System.String[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+    "ResultType": "System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+    "LastTestValue": {
+      "$type": "System.String[], mscorlib",
+      "$values": [
+        "Overcast",
+        "Hot",
+        "High",
+        "Weak"
+      ]
+    },
+    "LastResult": "Yes",
+    "OutputColumn": "PlayTennis",
+    "Probabilities": {
+      "$type": "System.Double[], mscorlib",
+      "$values": [
+        3.2399999986262393E-10,
+        0.99999999967600006
+      ]
+    }
+  },
+  "IsTrained": true,
+  "Result": "Yes",
+  "ResultDataType": "System.String",
+  "LastTestValue": {
+    "$type": "System.String[], mscorlib",
+    "$values": [
+      "Overcast",
+      "Hot",
+      "High",
+      "Weak"
+    ]
+  }
+}

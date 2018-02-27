@@ -70,6 +70,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -78,13 +79,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Algorithms\SimpleLinearRegression.cs" />
+    <Compile Include="Algorithms\Classifier\NaiveBayesClassifier.cs" />
+    <Compile Include="Algorithms\Regression\SimpleLinearRegression.cs" />
     <Compile Include="Interfaces\IAlgorithm.cs" />
     <Compile Include="Interfaces\IMachine.cs" />
     <Compile Include="Machine\Machine.cs" />
     <Compile Include="Utils\JSON.cs" />
     <Compile Include="MachineLearning.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\Types.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

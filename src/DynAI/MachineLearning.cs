@@ -95,12 +95,12 @@ namespace AI.Algorithms
     /// <summary>
     /// Class providing support for Naive Bayes classification machines.
     /// </summary>
-    internal class NaiveBayes
+    internal class AINaiveBayes
     {
         #region public properties
         // dataset
         public string[][] dataset { get; private set; }
-        public string[] columns { get; private set; }
+        public string[] Outputs { get; private set; }
         public string outputColumn { get; private set; }
         public int[][] inputs;
         public int[] outputs;
@@ -120,7 +120,7 @@ namespace AI.Algorithms
         /// <summary>
         /// Constructs a new NaiveBayes classification machine.
         /// </summary>
-        public NaiveBayes(string[][] data, List<string> columnList, string outputColumn)
+        public AINaiveBayes(string[][] data, List<string> columnList, string outputColumn)
         {
             // validation
             if (data == null || columnList == null || outputColumn==null) throw new ArgumentNullException("Neither the input list nor the column list can be NULL");
@@ -130,12 +130,12 @@ namespace AI.Algorithms
 
             // process input and output lists into arrays
             this.dataset = data;
-            this.columns = columnList.ToArray();
+            this.Outputs = columnList.ToArray();
             this.outputColumn = outputColumn;
 
             // Create a new codification codebook to
             // convert strings into discrete symbols
-            this.codebook = new Codification(columns, this.dataset);
+            this.codebook = new Codification(Outputs, this.dataset);
 
             // Extract input and output pairs to train
             int[][] symbols = this.codebook.Transform(this.dataset);
@@ -155,7 +155,7 @@ namespace AI.Algorithms
         /// <summary>
         /// Use the object's inputs and outputs to learn the model of the linear regression, using OrdinaryLeastSquares
         /// </summary>
-        public NaiveBayes Learn()
+        public AINaiveBayes Learn()
         {
             this.classifier = this.learner.Learn(inputs, outputs);
             this.learned = true;
