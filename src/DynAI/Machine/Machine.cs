@@ -37,8 +37,6 @@ namespace AI
         /// </summary>
         public TimeSpan PredictionTime { get; private set; }
 
-
-
         #endregion
 
         #region Algorithm
@@ -117,13 +115,12 @@ namespace AI
         /// <param name="algorithm">The algorithm to use for learning. Has to contain training data already.</param>
         /// <param name="name">(optional) Specify a name for this machine.</param>
         /// <param name="description">(optional) specify a description for this machine.</param>
-        public Machine(object algorithm, string name = null, string description = null)
+        public Machine(object algorithm, string name = null, string description = null) : this()
         {
             // record the algorithm used as an object and its type, required in GetAlgorithm method.
             SetAlgorithm(algorithm);
 
             // default values
-            GUID = Guid.NewGuid().ToString();
             Name = string.IsNullOrWhiteSpace(name) ? GUID : name;
             Description = string.IsNullOrWhiteSpace(description) ? string.Empty : description;
         }
@@ -132,7 +129,12 @@ namespace AI
         /// Public parameterless constructor needed for deserialisation.
         /// </summary>
         [IsVisibleInDynamoLibrary(false)]
-        public Machine() { }
+        public Machine()
+        {
+            GUID = Guid.NewGuid().ToString();
+            TrainingTime = TimeSpan.Zero;
+            PredictionTime = TimeSpan.Zero;
+        }
 
         #endregion
 
@@ -168,7 +170,7 @@ namespace AI
             if (!this.IsTrained) throw new Exception("Cannot predict before the algorithm has learned.");
 
             // check we haven't already predicted for this input and use cache if so
-            if (object.Equals(testData,this.LastTestValue)) return this.Result;
+            if (object.Equals(testData, this.LastTestValue)) return this.Result;
 
             // time the prediction operation
             var timer = new Stopwatch();
