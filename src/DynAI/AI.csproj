@@ -112,12 +112,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithms\AlgorithmTypeEnum.cs" />
     <Compile Include="Algorithms\Classifier\NaiveBayesClassifier.cs" />
     <Compile Include="Algorithms\Regression\MultipleLinearRegression.cs" />
     <Compile Include="Algorithms\Regression\MultivariateLinearRegression.cs" />
     <Compile Include="Algorithms\Regression\SimpleLinearRegression.cs" />
     <Compile Include="Interfaces\IAlgorithm.cs" />
+    <Compile Include="Interfaces\IInputData.cs" />
     <Compile Include="Interfaces\IMachine.cs" />
+    <Compile Include="Interfaces\ITrainingData.cs" />
     <Compile Include="Machine\Machine.cs" />
     <Compile Include="Utils\JSON.cs" />
     <Compile Include="MachineLearning.cs" />

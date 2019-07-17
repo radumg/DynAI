@@ -3,13 +3,14 @@ using Accord.Statistics.Filters;
 using Accord.Statistics.Models.Regression.Linear;
 using Autodesk.DesignScript.Runtime;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace AI.Algorithms.Regression
 {
     /// <summary>
-    ///  In linear regression, the model specification is that the dependent variable, y is a linear combination of the parameters (but need not be linear in the independent variables). 
+    ///  Multiple linear regression. 
     /// </summary>
     public class MultipleLinearRegression :IAlgorithm
     {
@@ -26,22 +27,22 @@ namespace AI.Algorithms.Regression
         public Type ResultType { get; private set; }
 
         // dataset
-        public object LastTestValue => TestValue;
-        public object LastResult => Result;
+        public object LastTestValue => testValue;
+        public object LastResult => result;
 
         #endregion
 
         #region Custom properties
 
-        private double[][] Inputs;
-        private double[] Outputs;
-        private double[] TestValue;
-        private double? Result;
+        private double[][] inputs;
+        private double[] outputs;
+        private double[] testValue;
+        private double? result;
 
         // Learner & predictor - these are not part of the interface
         private Accord.Statistics.Models.Regression.Linear.MultipleLinearRegression regression;
         private Codification codebook;
-        private bool Codify;
+        private bool codify;
         private string CodifyColumn = string.Empty;
         private OrdinaryLeastSquares ols;
 
@@ -61,13 +62,13 @@ namespace AI.Algorithms.Regression
             IsTrained = false;
             PredictionType = typeof(double[]);
             ResultType = typeof(double);
-            Inputs = null;
-            Outputs = null;
-            TestValue = null;
-            Result = null;
+            inputs = null;
+            outputs = null;
+            testValue = null;
+            result = null;
             if (!string.IsNullOrWhiteSpace(codifyColumn))
             {
-                Codify = true;
+                codify = true;
                 CodifyColumn = codifyColumn;
             }
 
@@ -93,13 +94,13 @@ namespace AI.Algorithms.Regression
 
         public bool Learn()
         {
-            if (Codify)
+            if (codify)
             {
                 // ADD CODE FOR CODIFICATION SUPPORT HERE.
             }
             try
             {
-                regression = this.ols.Learn(Inputs, Outputs);
+                regression = this.ols.Learn(inputs, outputs);
                 IsTrained = true;
                 return true;
             }
@@ -118,15 +119,13 @@ namespace AI.Algorithms.Regression
             throw new NotImplementedException();
         }
 
-        public dynamic Predict(List<double> inputData)
+        public dynamic Predict(double[] input)
         {
-            var input = inputData.ToArray();
-
             // predict & cache test value
-            this.TestValue = inputData.ToArray();
-            this.Result = this.regression.Transform(input);
+            this.testValue = input;
+            this.result = this.regression.Transform(input);
 
-            return this.Result;
+            return this.result;
         }
 
         #endregion
@@ -139,10 +138,10 @@ namespace AI.Algorithms.Regression
             if (inputList == null || outputList == null) throw new ArgumentNullException("Neither the input list nor the output list can be NULL");
 
             // process input and output lists into arrays
-            Inputs = inputList.Select(x => x.ToArray()).ToArray();
-            Outputs = outputList.ToArray();
+            inputs = inputList.Select(x => x.ToArray()).ToArray();
+            outputs = outputList.ToArray();
 
-            if (Codify)
+            if (codify)
             {
                 /*
                 
@@ -163,8 +162,8 @@ namespace AI.Algorithms.Regression
 
         private bool HasTrainingData()
         {
-            if (this.Inputs == null) return false;
-            if (this.Inputs.Length == 0) return false;
+            if (this.inputs == null) return false;
+            if (this.inputs.Length == 0) return false;
             return true;
         }
 
