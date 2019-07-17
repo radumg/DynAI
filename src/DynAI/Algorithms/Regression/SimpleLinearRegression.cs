@@ -50,7 +50,18 @@ namespace AI.Algorithms.Regression
         /// </summary>
         /// <param name="inputList">Use inputList as rows with equal numbers of featurs, which used for learning.</param>
         /// <param name="outputList">Use outputList as the rows that define the result column for each</param>
-        public SimpleLinearRegression(List<double> inputList, List<double> outputList)
+        public SimpleLinearRegression(List<double> inputList, List<double> outputList) : this()
+        {
+            // Process training data
+            LoadTrainingData(inputList, outputList);
+
+            // set up linear regression using OrdinaryLeastSquares
+            Regression = new Accord.Statistics.Models.Regression.Linear.SimpleLinearRegression();
+            ols = new OrdinaryLeastSquares();
+        }
+
+        [IsVisibleInDynamoLibrary(false)]
+        public SimpleLinearRegression()
         {
             Name = "Simple Linear Regression";
             Type = AlgorithmType.Regression;
@@ -64,19 +75,6 @@ namespace AI.Algorithms.Regression
 
             // initialise seed value for Accord framework
             Generator.Seed = new Random().Next();
-
-            // Process training data
-            LoadTrainingData(inputList, outputList);
-
-            // set up linear regression using OrdinaryLeastSquares
-            Regression = new Accord.Statistics.Models.Regression.Linear.SimpleLinearRegression();
-            ols = new OrdinaryLeastSquares();
-        }
-
-        [IsVisibleInDynamoLibrary(false)]
-        public SimpleLinearRegression()
-        {
-
         }
         #endregion
 
@@ -98,7 +96,7 @@ namespace AI.Algorithms.Regression
                     "Inner exception : " + e.Message
                     );
             }
-           // return this as IAlgorithm;
+            // return this as IAlgorithm;
         }
 
         [IsVisibleInDynamoLibrary(false)]
@@ -125,11 +123,13 @@ namespace AI.Algorithms.Regression
             // if not exact same type, try parsing as double
             var parsed = new double();
 
-            if (!double.TryParse(inputData.ToString(), out parsed)){
+            if (!double.TryParse(inputData.ToString(), out parsed))
+            {
                 throw new Exception(
                     "Input data type is not valid and conversion failed." + Environment.NewLine +
                     "Supplied : " + inputData.GetType().ToString() + Environment.NewLine +
-                    "Expected : " + PredictionType.ToString()); }
+                    "Expected : " + PredictionType.ToString());
+            }
             else return parsed;
         }
 

@@ -63,9 +63,6 @@ namespace AI.Algorithms.Regression
                 CodifyColumn = codifyColumn;
             }
 
-            // initialise seed value for Accord framework
-            Generator.Seed = new Random().Next();
-
             // Process training data
             LoadTrainingData(inputList, outputList);
 
@@ -86,6 +83,9 @@ namespace AI.Algorithms.Regression
             outputs = null;
             testValue = null;
             result = null;
+
+            // initialise seed value for Accord framework
+            Generator.Seed = new Random().Next();
         }
         #endregion
 

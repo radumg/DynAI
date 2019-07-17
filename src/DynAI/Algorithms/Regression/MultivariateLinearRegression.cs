@@ -51,7 +51,7 @@ namespace AI.Algorithms.Regression
         /// </summary>
         /// <param name="inputList">Use inputList as rows with equal numbers of featurs, which used for learning.</param>
         /// <param name="outputList">Use outputList as the rows that define the result column for each</param>
-        public MultivariateLinearRegression(List<List<double>> inputList, List<List<double>> outputList):this()
+        public MultivariateLinearRegression(List<List<double>> inputList, List<List<double>> outputList) : this()
         {
             // Process training data
             LoadTrainingData(inputList, outputList);
@@ -96,7 +96,7 @@ namespace AI.Algorithms.Regression
                     "Inner exception : " + e.Message
                     );
             }
-           // return this as IAlgorithm;
+            // return this as IAlgorithm;
         }
 
         [IsVisibleInDynamoLibrary(false)]
