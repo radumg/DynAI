@@ -1,4 +1,5 @@
-﻿using Autodesk.DesignScript.Runtime;
+﻿using AI.Algorithms;
+using Autodesk.DesignScript.Runtime;
 using System;
 
 namespace AI
@@ -23,15 +24,5 @@ namespace AI
         // ML Methods
         bool Learn();
         dynamic Predict(dynamic inputData);
-    }
-
-    [IsVisibleInDynamoLibrary(false)]
-    public enum AlgorithmType
-    {
-        Regression,
-        Classifier,
-        Clustering,
-        DecisionTree,
-        VectorMachine
     }
 }
