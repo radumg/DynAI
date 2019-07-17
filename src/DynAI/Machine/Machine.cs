@@ -111,19 +111,32 @@ namespace AI
         #region Constructor
 
         /// <summary>
-        /// Build a new machine, to learn from training data and predict outcomes.
+        /// Build a new machine, to learn from training data and predict outcomes, using a specific training algorithm.
         /// </summary>
         /// <param name="algorithm">The algorithm to use for learning. Has to contain training data already.</param>
-        /// <param name="name">(optional) Specify a name for this machine.</param>
-        /// <param name="description">(optional) specify a description for this machine.</param>
-        public Machine(object algorithm, string name = null, string description = null) : this()
+        public static Machine ByAlgorithm(object algorithm) 
         {
-            // record the algorithm used as an object and its type, required in GetAlgorithm method.
-            this.SetAlgorithm(algorithm);
+            if (algorithm == null)
+                throw new ArgumentNullException(nameof(algorithm));
 
-            // default values
-            this.Name = string.IsNullOrWhiteSpace(name) ? this.GUID : name;
-            this.Description = string.IsNullOrWhiteSpace(description) ? string.Empty : description;
+            var machine = new Machine();
+            machine.SetAlgorithm(algorithm);
+            return machine;
+        }
+
+        /// <summary>
+        /// Create a new machine starting with an Algorithm, a Name and a Description for your machine.
+        /// </summary>
+        /// <param name="algorithm">The algorithm to use.</param>
+        /// <param name="name">The name of the machine.</param>
+        /// <param name="description">The description of the machine.</param>
+        /// <returns></returns>
+        public static Machine WithNameDescription(object algorithm, string name, string description)
+        {
+            var machine = ByAlgorithm(algorithm);
+            machine.Name = string.IsNullOrWhiteSpace(name) ? machine.GUID : name;
+            machine.Description = string.IsNullOrWhiteSpace(description) ? string.Empty : description;
+            return machine;
         }
 
         /// <summary>
@@ -174,7 +187,7 @@ namespace AI
             if (!this.IsTrained && !this.Algorithm.IsTrainingDataLoaded) throw new Exception("Cannot predict before the algorithm has learned.");
 
             // check we haven't already predicted for this input and use cache if so
-            if (object.Equals(testData, this.LastTestValue)) return this.Result;
+            if (object.Equals(testData, this.LastTestValue)) DictFromResult(this.Result);
 
             // time the prediction operation
             var timer = new Stopwatch();
@@ -183,6 +196,11 @@ namespace AI
             timer.Stop();
             this.PredictionTime = TimeSpan.FromMilliseconds(timer.ElapsedMilliseconds);
 
+            return DictFromResult(prediction);
+        }
+
+        private Dictionary<string, object> DictFromResult(dynamic prediction)
+        {
             // format the results into a multi-return dictionary
             var dictionary = new Dictionary<string, object>
             {
@@ -201,7 +219,7 @@ namespace AI
         /// </summary>
         /// <param name="filePath">The destination file on disk.</param>
         /// <returns>True if operation succeeded, false otherwise.</returns>
-        public bool Save(string filePath)
+        public bool SaveToFile(string filePath)
         {
             return Json.ToJsonFile(this, filePath);
         }
@@ -211,7 +229,7 @@ namespace AI
         /// </summary>
         /// <param name="filePath">The JSON file to load from.</param>
         /// <returns>The trained machine. Throws Exception if deserialisation did not succeed.</returns>
-        public static Machine Load(string filePath)
+        public static Machine FromFile(string filePath)
         {
             var machine = Json.FromJsonFileTo<Machine>(filePath);
             return machine;
