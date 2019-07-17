@@ -36,11 +36,10 @@ namespace AI.Algorithms.Regression
         private double? TestValue;
         private double? Result;
 
-        // Learner & predictor - these are not part of the interface
-        [IsVisibleInDynamoLibrary(false)]
-        public Accord.Statistics.Models.Regression.Linear.SimpleLinearRegression regression;
-        [IsVisibleInDynamoLibrary(false)]
-        public OrdinaryLeastSquares ols;
+        // Learner & predictor - these are not part of the interface but do get serialised
+        public Accord.Statistics.Models.Regression.Linear.SimpleLinearRegression Regression { get; set; }
+
+        private OrdinaryLeastSquares ols;
 
         #endregion
 
@@ -70,7 +69,7 @@ namespace AI.Algorithms.Regression
             LoadTrainingData(inputList, outputList);
 
             // set up linear regression using OrdinaryLeastSquares
-            regression = new Accord.Statistics.Models.Regression.Linear.SimpleLinearRegression();
+            Regression = new Accord.Statistics.Models.Regression.Linear.SimpleLinearRegression();
             ols = new OrdinaryLeastSquares();
         }
 
@@ -88,7 +87,7 @@ namespace AI.Algorithms.Regression
         {
             try
             {
-                regression = this.ols.Learn(Inputs, Outputs);
+                Regression = this.ols.Learn(Inputs, Outputs);
                 IsTrained = true;
                 return true;
             }
@@ -110,7 +109,7 @@ namespace AI.Algorithms.Regression
 
             // predict & cache test value
             this.TestValue = input;
-            this.Result = this.regression.Transform(input);
+            this.Result = this.Regression.Transform(input);
 
             return this.Result;
         }

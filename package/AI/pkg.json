@@ -1,0 +1,25 @@
+{
+"license": "AGPL-3.0",
+"file_hash": null,
+"name": "AI",
+"version": "1.0",
+"description": "AI is an experimental package aimed at Machine learning & other branches of AI, built for a lab session at the BiLT Europe 2017 conference. This first release is built on top of the Accord.NET framework and has support for simple linear regression and Naive Bayes classifiers. See the repo for more info and tweet me @radugidei for any feedback or question.",
+"group": "radugidei",
+"keywords": [
+"AI",
+"machine",
+"learning",
+"regression",
+"classifier"
+],
+"dependencies": [],
+"contents": "",
+"engine_version": "2.0.1",
+"engine": "dynamo",
+"engine_metadata": "",
+"site_url": "www.radugidei.com",
+"repository_url": "www.github.com/radumg/DynAI",
+"contains_binaries": true,
+"node_libraries": [
+"AI, Version=1.0.0, Culture=neutral, PublicKeyToken=null"]
+}

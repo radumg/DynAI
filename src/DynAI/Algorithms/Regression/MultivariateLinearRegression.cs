@@ -39,7 +39,7 @@ namespace AI.Algorithms.Regression
         private double[][] Result;
 
         // Learner & predictor - these are not part of the interface
-        private Accord.Statistics.Models.Regression.Linear.MultivariateLinearRegression regression;
+        public Accord.Statistics.Models.Regression.Linear.MultivariateLinearRegression Regression { get; set; }
         private OrdinaryLeastSquares ols;
 
         #endregion
@@ -57,7 +57,7 @@ namespace AI.Algorithms.Regression
             LoadTrainingData(inputList, outputList);
 
             // set up linear regression using OrdinaryLeastSquares
-            regression = new Accord.Statistics.Models.Regression.Linear.MultivariateLinearRegression();
+            Regression = new Accord.Statistics.Models.Regression.Linear.MultivariateLinearRegression();
             ols = new OrdinaryLeastSquares();
         }
 
@@ -85,7 +85,7 @@ namespace AI.Algorithms.Regression
         {
             try
             {
-                regression = this.ols.Learn(Inputs, Outputs);
+                Regression = this.ols.Learn(Inputs, Outputs);
                 IsTrained = true;
                 return true;
             }
@@ -112,7 +112,7 @@ namespace AI.Algorithms.Regression
         {
             // predict & cache test value
             this.TestValue = inputData;
-            this.Result = this.regression.Transform(inputData);
+            this.Result = this.Regression.Transform(inputData);
 
             return this.Result;
         }

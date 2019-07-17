@@ -1,53 +1,31 @@
 {
   "$type": "AI.Machine, AI",
   "Name": "TestMachine #1",
-  "GUID": "a7e9f89d-367b-49cb-9ba5-256987c8e35b",
+  "GUID": "c8f5ece6-834b-4ac8-81e8-0756bfe68f04",
   "Description": "simple machine",
-  "TrainingTime": "00:00:00",
+  "TrainingTime": "00:00:00.0180000",
   "PredictionTime": "00:00:00",
   "Algorithm": {
     "$type": "AI.Algorithms.Regression.SimpleLinearRegression, AI",
-    "regression": {
-      "$type": "Accord.Statistics.Models.Regression.Linear.SimpleLinearRegression, Accord.Statistics",
-      "Slope": 410.71898867526977,
-      "Intercept": 757835.13299973868,
-      "NumberOfParameters": 2,
-      "NumberOfInputs": 1,
-      "NumberOfOutputs": 1
-    },
-    "ols": {
-      "$type": "Accord.Statistics.Models.Regression.Linear.OrdinaryLeastSquares, Accord.Statistics",
-      "UseIntercept": true,
-      "IsRobust": false,
-      "Token": {
-        "$type": "System.Threading.CancellationToken, mscorlib",
-        "IsCancellationRequested": false,
-        "CanBeCanceled": false,
-        "WaitHandle": {
-          "$type": "System.Threading.ManualResetEvent, mscorlib",
-          "Handle": {
-            "$type": "System.IntPtr, mscorlib",
-            "value": 4352
-          },
-          "SafeWaitHandle": {
-            "$type": "Microsoft.Win32.SafeHandles.SafeWaitHandle, mscorlib",
-            "IsInvalid": false,
-            "IsClosed": false
-          }
-        }
-      }
-    },
     "Name": "Simple Linear Regression",
     "Type": 0,
     "IsTrainingDataLoaded": true,
     "IsTrained": true,
     "PredictionType": "System.Double, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
     "ResultType": "System.Double, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
-    "LastTestValue": 4506.0,
-    "LastResult": 2608534.8959705043
+    "LastTestValue": 500.0,
+    "LastResult": 963194.62733737356,
+    "Regression": {
+      "$type": "Accord.Statistics.Models.Regression.Linear.SimpleLinearRegression, Accord.Statistics",
+      "Slope": 410.71898867526977,
+      "Intercept": 757835.13299973868,
+      "NumberOfParameters": 2,
+      "NumberOfInputs": 1,
+      "NumberOfOutputs": 1
+    }
   },
   "IsTrained": true,
-  "Result": 2608534.8959705043,
+  "Result": 963194.62733737356,
   "ResultDataType": "System.Double",
-  "LastTestValue": 4506.0
+  "LastTestValue": 500.0
 }

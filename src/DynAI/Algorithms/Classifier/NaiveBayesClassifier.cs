@@ -53,7 +53,7 @@ namespace AI.Algorithms.Classifier
         public string OutputColumn { get; private set; }
 
         // Learner & predictor - these are not part of the interface
-        private NaiveBayes classifier;
+        public NaiveBayes Classifier { get; set; }
         private NaiveBayesLearning learner;
         private Codification codebook { get; set; }
         public double[] Probabilities { get; private set; }
@@ -102,7 +102,7 @@ namespace AI.Algorithms.Classifier
         {
             try
             {
-                this.classifier = this.learner.Learn(this.codifiedDataset, this.codifiedOutputs);
+                this.Classifier = this.learner.Learn(this.codifiedDataset, this.codifiedOutputs);
                 IsTrained = true;
                 return true;
             }
@@ -132,13 +132,13 @@ namespace AI.Algorithms.Classifier
             int[] instance = this.codebook.Transform(inputData);
 
             // Let us obtain the numeric output that represents the answer
-            int codeword = this.classifier.Decide(instance);
+            int codeword = this.Classifier.Decide(instance);
 
             // Now let us convert the numeric output to an actual answer
             this.Result = this.codebook.Revert(this.OutputColumn, codeword);
 
             // We can also extract the probabilities for each possible answer
-            this.Probabilities = this.classifier.Probabilities(instance);
+            this.Probabilities = this.Classifier.Probabilities(instance);
 
             return this.Result;
         }

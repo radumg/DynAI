@@ -51,7 +51,7 @@ namespace AI
         /// <summary>
         /// Indicates whether training data was successfully loaded into the machine and that it has learned from it.
         /// </summary>
-        public bool IsTrained => this.Algorithm.IsTrainingDataLoaded && this.Algorithm.IsTrained;
+        public bool IsTrained => this.Algorithm.IsTrained;
 
         /// <summary>
         /// The result supplied by the prediction algorithm used.
@@ -167,9 +167,11 @@ namespace AI
         /// <returns>The predicted value.</returns>
         public Dictionary<string, object> Predict([ArbitraryDimensionArrayImport] dynamic testData)
         {
+            // reset prediction time
             this.PredictionTime = TimeSpan.Zero;
+
             // don't predict if we haven't learned the model yet
-            if (!this.IsTrained) throw new Exception("Cannot predict before the algorithm has learned.");
+            if (!this.IsTrained && !this.Algorithm.IsTrainingDataLoaded) throw new Exception("Cannot predict before the algorithm has learned.");
 
             // check we haven't already predicted for this input and use cache if so
             if (object.Equals(testData, this.LastTestValue)) return this.Result;
@@ -211,7 +213,8 @@ namespace AI
         /// <returns>The trained machine. Throws Exception if deserialisation did not succeed.</returns>
         public static Machine Load(string filePath)
         {
-            return Json.FromJsonFileTo<Machine>(filePath);
+            var machine = Json.FromJsonFileTo<Machine>(filePath);
+            return machine;
         }
 
         #endregion

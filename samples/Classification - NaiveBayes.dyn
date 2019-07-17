@@ -2,7 +2,7 @@
   "Uuid": "3c9d0464-8643-5ffe-96e5-ab1769818209",
   "IsCustomNode": false,
   "Description": "",
-  "Name": "AI learn test - NaiveBayes",
+  "Name": "Classification - NaiveBayes",
   "ElementResolver": {
     "ResolutionMap": {}
   },
@@ -606,7 +606,7 @@
         "Height": 162.33333333333334,
         "FontSize": 36.0,
         "InitialTop": 152.44956606237338,
-        "InitialHeight": 139.0,
+        "InitialHeight": 145.0,
         "TextblockHeight": 43.333333333333336,
         "Background": "#FFFFC999"
       },

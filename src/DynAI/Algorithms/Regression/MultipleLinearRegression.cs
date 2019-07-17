@@ -40,7 +40,7 @@ namespace AI.Algorithms.Regression
         private double? result;
 
         // Learner & predictor - these are not part of the interface
-        private Accord.Statistics.Models.Regression.Linear.MultipleLinearRegression regression;
+        public Accord.Statistics.Models.Regression.Linear.MultipleLinearRegression Regression { get; set; }
         private Codification codebook;
         private bool codify;
         private string CodifyColumn = string.Empty;
@@ -70,7 +70,7 @@ namespace AI.Algorithms.Regression
             LoadTrainingData(inputList, outputList);
 
             // set up linear regression using OrdinaryLeastSquares
-            regression = new Accord.Statistics.Models.Regression.Linear.MultipleLinearRegression();
+            Regression = new Accord.Statistics.Models.Regression.Linear.MultipleLinearRegression();
             ols = new OrdinaryLeastSquares() { UseIntercept = true };
         }
 
@@ -99,7 +99,7 @@ namespace AI.Algorithms.Regression
             }
             try
             {
-                regression = this.ols.Learn(inputs, outputs);
+                Regression = this.ols.Learn(inputs, outputs);
                 IsTrained = true;
                 return true;
             }
@@ -125,7 +125,7 @@ namespace AI.Algorithms.Regression
         {
             // predict & cache test value
             this.testValue = input;
-            this.result = this.regression.Transform(input);
+            this.result = this.Regression.Transform(input);
 
             return this.result;
         }
