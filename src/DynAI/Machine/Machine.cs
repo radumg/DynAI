@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using AI.Utilities;
 using Autodesk.DesignScript.Runtime;
 
@@ -25,6 +26,18 @@ namespace AI
         /// The description of the machine. Useful when storing the results to disk, does not affect results in any way.
         /// </summary>
         public string Description { get; set; }
+
+        /// <summary>
+        /// The time it took for the machine to be trained.
+        /// </summary>
+        public TimeSpan TrainingTime { get; private set; }
+
+        /// <summary>
+        /// The time it took for the machine to predict the new outcome.
+        /// </summary>
+        public TimeSpan PredictionTime { get; private set; }
+
+
 
         #endregion
 
@@ -131,7 +144,15 @@ namespace AI
         /// <returns>The input machine, now trained.</returns>
         public Machine Learn()
         {
-            return this.Algorithm.Learn()== true ? this : null;
+            this.TrainingTime = TimeSpan.Zero;
+            var timer = new Stopwatch();
+            timer.Start();
+
+            var didLearn = this.Algorithm.Learn();
+            timer.Stop();
+            this.TrainingTime = TimeSpan.FromMilliseconds(timer.ElapsedMilliseconds);
+
+            return didLearn ? this : null;
         }
 
         /// <summary>
@@ -140,15 +161,23 @@ namespace AI
         /// </summary>
         /// <param name="testData">The value(s) to use as input in the prediction.</param>
         /// <returns>The predicted value.</returns>
-        public dynamic Predict(dynamic testData)
+        public dynamic Predict([ArbitraryDimensionArrayImport] dynamic testData)
         {
+            this.PredictionTime = TimeSpan.Zero;
             // don't predict if we haven't learned the model yet
             if (!this.IsTrained) throw new Exception("Cannot predict before the algorithm has learned.");
 
             // check we haven't already predicted for this input and use cache if so
-            if (object.Equals(testData,this.LastTestValue) && this.IsTrained == true) return this.Result;
+            if (object.Equals(testData,this.LastTestValue)) return this.Result;
 
-            return Algorithm.Predict(testData);
+            // time the prediction operation
+            var timer = new Stopwatch();
+            timer.Start();
+            var prediction = Algorithm.Predict(testData);
+            timer.Stop();
+            this.PredictionTime = TimeSpan.FromMilliseconds(timer.ElapsedMilliseconds);
+
+            return prediction;
         }
 
         #endregion

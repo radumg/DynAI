@@ -32,6 +32,16 @@ namespace AI
         /// </summary>
         dynamic Result { get; }
 
+        /// <summary>
+        /// The time it took to train the model.
+        /// </summary>
+        TimeSpan TrainingTime { get; }
+
+        /// <summary>
+        /// The time it took to predict the new outcome.
+        /// </summary>
+        TimeSpan PredictionTime { get; }
+
         #endregion
 
         #region ML
