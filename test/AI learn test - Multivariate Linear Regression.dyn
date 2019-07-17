@@ -223,8 +223,17 @@
       "Outputs": [
         {
           "Id": "56d16d77c12e4dce86f7760b1a39b2a7",
-          "Name": "var[]..[]",
-          "Description": "var[]..[]",
+          "Name": "Machine",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "83d390c3bfb9494dbd2b9b8408ae359b",
+          "Name": "Result",
+          "Description": "var",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -253,6 +262,35 @@
       ],
       "Replication": "Disabled",
       "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "30f982615f4343dc97f3b3b1f703f34e",
+      "Inputs": [
+        {
+          "Id": "1571b5ec1889493ab4465a6b4fcef776",
+          "Name": "",
+          "Description": "Node to evaluate.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "451f3bb8469749c999b291d3ddd0477b",
+          "Name": "",
+          "Description": "Watch contents.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualize the output of node."
     }
   ],
   "Connectors": [
@@ -290,6 +328,11 @@
       "Start": "47e3d02bfc874d8fb09e2cf0470ef270",
       "End": "abe0ff6e05444669982e9d3af9270921",
       "Id": "b541464cdfa8412ea6e1ae9809e34561"
+    },
+    {
+      "Start": "83d390c3bfb9494dbd2b9b8408ae359b",
+      "End": "1571b5ec1889493ab4465a6b4fcef776",
+      "Id": "2cb2bf88603a4a91ad25c2fc99a70f39"
     },
     {
       "Start": "aaa349edfdbb40258353108c737a7840",
@@ -400,6 +443,16 @@
         "Excluded": false,
         "X": 785.20953150518926,
         "Y": 1278.1470300427147
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Watch",
+        "Id": "30f982615f4343dc97f3b3b1f703f34e",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1371.2764483443443,
+        "Y": 1009.0665933146295
       }
     ],
     "Annotations": [
@@ -429,13 +482,13 @@
         ],
         "Left": 1068.3086740293727,
         "Top": 964.76907491301563,
-        "Width": 234.66666666666666,
+        "Width": 243.33333333333334,
         "Height": 201.0,
         "FontSize": 30.0,
         "InitialTop": 1046.7690749130156,
         "InitialHeight": 145.0,
         "TextblockHeight": 72.0,
-        "Background": "#FFC1D676"
+        "Background": "#FF71C6A8"
       },
       {
         "Id": "0a8f2524e73b4f5f94c10c57942166a7",
@@ -451,7 +504,7 @@
         "InitialTop": 1021.1441762583412,
         "InitialHeight": 145.0,
         "TextblockHeight": 43.333333333333336,
-        "Background": "#FFC1D676"
+        "Background": "#FF71C6A8"
       },
       {
         "Id": "9e9ee90381bb438fbc730bdd277d34f9",
@@ -488,6 +541,22 @@
         "Background": "#FF48B9FF"
       },
       {
+        "Id": "e1a28471e9924c9ba4d635b616c31072",
+        "Title": "Inspect",
+        "Nodes": [
+          "30f982615f4343dc97f3b3b1f703f34e"
+        ],
+        "Left": 1361.2764483443443,
+        "Top": 955.7332599812961,
+        "Width": 256.0,
+        "Height": 277.0,
+        "FontSize": 36.0,
+        "InitialTop": 1009.0665933146295,
+        "InitialHeight": 253.66666666666666,
+        "TextblockHeight": 43.333333333333336,
+        "Background": "#FFFFC999"
+      },
+      {
         "Id": "5cccfd81bf064f95b243bb4d559268c9",
         "Title": "In this exercise, we will be using the famous Play Tennis example by Tom Mitchell (1998). In Mitchell's example, one would like to infer if a person would play tennis or not based solely on four input variables :\r\n- Outlook\r\n- Temperature\r\n- Humidity\r\n- Wind \r\n\r\nThe rows of data presented below represent days on which the behavior of the person has been registered, pretty much building our set of observation instances for learning.",
         "Nodes": [],
@@ -502,8 +571,8 @@
         "Background": "#FFC1D676"
       }
     ],
-    "X": 374.71598451920028,
-    "Y": -373.24280094885421,
-    "Zoom": 0.61301814803942678
+    "X": 342.74851992945281,
+    "Y": -305.67781174161985,
+    "Zoom": 0.5561695050394343
   }
 }

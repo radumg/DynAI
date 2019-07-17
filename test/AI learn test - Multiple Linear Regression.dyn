@@ -98,36 +98,6 @@
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
       "NodeType": "FunctionNode",
-      "FunctionSignature": "AI.Machine.GetAlgorithm",
-      "Id": "53684aea20d740c2bad16eb112b5ac05",
-      "Inputs": [
-        {
-          "Id": "3303f67fe19949bc80d999b14e7ee44d",
-          "Name": "machine",
-          "Description": "AI.Machine",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "a6a67727fa4f46ffb26b09cec285c501",
-          "Name": "var[]..[]",
-          "Description": "The algorithm used by the machine for learning, as an object.",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Replication": "Auto",
-      "Description": "Get the algorithm used by the machine for learning.\n\nMachine.GetAlgorithm ( ): var[]..[]"
-    },
-    {
-      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "NodeType": "FunctionNode",
       "FunctionSignature": "AI.Algorithms.Regression.MultipleLinearRegression.MultipleLinearRegression@double[][],double[],string",
       "Id": "cb211660c64e4cb89f78c21ac04a97c4",
       "Inputs": [
@@ -429,8 +399,17 @@
       "Outputs": [
         {
           "Id": "63976989f08045c484657b8e3d79abf5",
-          "Name": "var[]..[]",
-          "Description": "var[]..[]",
+          "Name": "Machine",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "026674c401234bc39957206e2cbcf44f",
+          "Name": "Result",
+          "Description": "var",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -439,6 +418,65 @@
       ],
       "Replication": "Auto",
       "Description": "The time it took for the machine to predict the new outcome.\n\nMachine.Predict (testData: var[]..[]): var[]..[]"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "e647ea3fc988412e8b69b5d428eb61b1",
+      "Inputs": [
+        {
+          "Id": "8d1e68e8c7d0483580eb70eaa7c87075",
+          "Name": "",
+          "Description": "Node to evaluate.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "60b2d8da4d674db3bf566bf7033d3b0c",
+          "Name": "",
+          "Description": "Watch contents.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualize the output of node."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "AI.Machine.PredictionTime",
+      "Id": "4214b74691564e40ae762e85540aa978",
+      "Inputs": [
+        {
+          "Id": "bddd9c1762e74b109e2120155b2ca61c",
+          "Name": "machine",
+          "Description": "AI.Machine",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "b57feb4b2d47452d98dbc8a1fb71b4f4",
+          "Name": "var",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "The time it took for the machine to predict the new outcome.\n\nMachine.PredictionTime: var"
     }
   ],
   "Connectors": [
@@ -461,11 +499,6 @@
       "Start": "77cc4d0845e04a8983cc8a4a58f6ef32",
       "End": "b2353a0dfced4ba9a4e8cc269aaf80a5",
       "Id": "5a2ab52ded6a4b789542d0d736820795"
-    },
-    {
-      "Start": "e66f7350c8454f749a5cd1e6a878c056",
-      "End": "3303f67fe19949bc80d999b14e7ee44d",
-      "Id": "026551bde22e4f57b3cd2a0abcd2072a"
     },
     {
       "Start": "e66f7350c8454f749a5cd1e6a878c056",
@@ -511,6 +544,16 @@
       "Start": "50e912dbd3da455aa65cb17bc508b62c",
       "End": "230e116ae6564d36877ffacf6701e073",
       "Id": "3b8d81f98d104718a91451532928c1fa"
+    },
+    {
+      "Start": "63976989f08045c484657b8e3d79abf5",
+      "End": "bddd9c1762e74b109e2120155b2ca61c",
+      "Id": "eb3495db308b41d5b93091b31a5bb7b0"
+    },
+    {
+      "Start": "026674c401234bc39957206e2cbcf44f",
+      "End": "8d1e68e8c7d0483580eb70eaa7c87075",
+      "Id": "39fa47ca1ff34ffc8381ba11085ebae0"
     }
   ],
   "Dependencies": [],
@@ -545,7 +588,7 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "X": -877.776971461655,
-        "Y": 792.718293897016
+        "Y": 792.71829389701588
       },
       {
         "ShowGeometry": true,
@@ -556,16 +599,6 @@
         "Excluded": false,
         "X": 369.014743086577,
         "Y": 129.604254775305
-      },
-      {
-        "ShowGeometry": true,
-        "Name": "Machine.GetAlgorithm",
-        "Id": "53684aea20d740c2bad16eb112b5ac05",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "X": 963.882020761552,
-        "Y": 129.6853087119
       },
       {
         "ShowGeometry": true,
@@ -605,7 +638,7 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "X": -792.372157583878,
-        "Y": 13.9012786743461
+        "Y": 13.901278674346102
       },
       {
         "ShowGeometry": true,
@@ -655,7 +688,7 @@
         "IsSetAsOutput": false,
         "Excluded": false,
         "X": -602.797964190368,
-        "Y": 60.769501279757
+        "Y": 60.769501279757009
       },
       {
         "ShowGeometry": true,
@@ -664,8 +697,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 961.118789223646,
-        "Y": 366.438315674821
+        "X": 708.87649595557536,
+        "Y": 380.03221171920796
       },
       {
         "ShowGeometry": true,
@@ -674,8 +707,28 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 1314.8591541310873,
-        "Y": 133.91999876301645
+        "X": 1027.8769043051395,
+        "Y": 127.8782671877334
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Watch",
+        "Id": "e647ea3fc988412e8b69b5d428eb61b1",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1322.1871900242334,
+        "Y": 151.47640387523512
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Machine.PredictionTime",
+        "Id": "4214b74691564e40ae762e85540aa978",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1328.2289215995163,
+        "Y": 27.620906581931195
       }
     ],
     "Annotations": [
@@ -700,16 +753,14 @@
         "Id": "6b2fca3204604f2697c5fe8d1f02b74c",
         "Title": "Predict\r\n",
         "Nodes": [
-          "53684aea20d740c2bad16eb112b5ac05",
-          "e39289b9d9da4e69993cedad7b24a60d",
-          "fee72d53ce634eb39788a69145d2294f"
+          "e39289b9d9da4e69993cedad7b24a60d"
         ],
-        "Left": 953.882020761552,
-        "Top": 47.685308711900007,
-        "Width": 710.60040590325332,
-        "Height": 259.18303803561946,
+        "Left": 1017.8769043051395,
+        "Top": 45.8782671877334,
+        "Width": 243.33333333333334,
+        "Height": 201.0,
         "FontSize": 30.0,
-        "InitialTop": 129.6853087119,
+        "InitialTop": 127.8782671877334,
         "InitialHeight": 258.51637136895278,
         "TextblockHeight": 72.0,
         "Background": "#FF71C6A8"
@@ -732,7 +783,7 @@
       },
       {
         "Id": "f69fbff5e3494bdd9de3c297e176060e",
-        "Title": "<Click here to edit the group title>",
+        "Title": "Inputs",
         "Nodes": [
           "de9b2f2052b141d8ade8100080f5a37d",
           "473241019f4f4e26a1dc1e47d289e8ed",
@@ -743,13 +794,13 @@
           "a618542b46a24de0b6c53d846751aa29"
         ],
         "Left": -932.316090193445,
-        "Top": -68.0987213256539,
+        "Top": -32.0987213256539,
         "Width": 449.20578539845673,
-        "Height": 980.48368188933648,
+        "Height": 944.48368188933637,
         "FontSize": 30.0,
-        "InitialTop": 13.9012786743461,
+        "InitialTop": 13.901278674346102,
         "InitialHeight": 923.81701522266985,
-        "TextblockHeight": 72.0,
+        "TextblockHeight": 36.0,
         "Background": "#FF48B9FF"
       },
       {
@@ -775,22 +826,40 @@
         "Nodes": [
           "fe13625bd07441b2875caba48fa1f9cd"
         ],
-        "Left": 951.118789223646,
-        "Top": 284.438315674821,
+        "Left": 698.87649595557536,
+        "Top": 298.03221171920796,
         "Width": 248.0,
         "Height": 175.0,
         "FontSize": 30.0,
-        "InitialTop": 366.438315674821,
+        "InitialTop": 380.03221171920796,
         "InitialHeight": 145.0,
         "TextblockHeight": 72.0,
         "Background": "#FF48B9FF"
+      },
+      {
+        "Id": "c5a84bccc48b457d8889f3e3ff538aec",
+        "Title": "Inspect",
+        "Nodes": [
+          "e647ea3fc988412e8b69b5d428eb61b1",
+          "4214b74691564e40ae762e85540aa978",
+          "fee72d53ce634eb39788a69145d2294f"
+        ],
+        "Left": 1312.1871900242334,
+        "Top": -25.712426751402141,
+        "Width": 216.7083982419496,
+        "Height": 343.15380375566696,
+        "FontSize": 36.0,
+        "InitialTop": 27.620906581931195,
+        "InitialHeight": 319.82047042233364,
+        "TextblockHeight": 43.333333333333336,
+        "Background": "#FFFFC999"
       },
       {
         "Id": "5ba8ce86e6a94f44b2925d44c8dde144",
         "Title": "Inputs",
         "Nodes": [],
         "Left": -915.020963236689,
-        "Top": 45.6714741769425,
+        "Top": 45.671474176942496,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,
@@ -817,8 +886,8 @@
         "Id": "fee72d53ce634eb39788a69145d2294f",
         "Title": "Result should be\r\n2179.216",
         "Nodes": [],
-        "Left": 1547.1490933314719,
-        "Top": 248.20168008085278,
+        "Left": 1328.1363237274588,
+        "Top": 258.77471033759815,
         "Width": 0.0,
         "Height": 0.0,
         "FontSize": 36.0,
@@ -828,8 +897,8 @@
         "Background": "#FFC1D676"
       }
     ],
-    "X": 437.08686627375243,
-    "Y": 55.142167610831237,
-    "Zoom": 0.441374568439298
+    "X": 485.89167542775306,
+    "Y": 130.11346846393383,
+    "Zoom": 0.49429005985587338
   }
 }

@@ -213,8 +213,17 @@
       "Outputs": [
         {
           "Id": "b73718c8f3554a84b34f5d87ffc2d6a4",
-          "Name": "var[]..[]",
-          "Description": "var[]..[]",
+          "Name": "Machine",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0d6e4b60125f4acea2fe206810a6852e",
+          "Name": "Result",
+          "Description": "var",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -373,6 +382,35 @@
       ],
       "Replication": "Auto",
       "Description": "The time it took for the machine to be trained.\n\nMachine.TrainingTime: var"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "ac9691793f2948cf93db71f4e6f5f2ba",
+      "Inputs": [
+        {
+          "Id": "9181786784e04c89b535adb8561aac9d",
+          "Name": "",
+          "Description": "Node to evaluate.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "bd03e8f5cd9645b89d1cc351bd39a3cf",
+          "Name": "",
+          "Description": "Watch contents.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualize the output of node."
     }
   ],
   "Connectors": [
@@ -408,23 +446,28 @@
     },
     {
       "Start": "19dfffa85a504b7ea7e723e256c4a685",
-      "End": "48f110056f3f4595a9fc464b73c38616",
-      "Id": "d18fe1bdce494bb08195f81485971120"
-    },
-    {
-      "Start": "19dfffa85a504b7ea7e723e256c4a685",
-      "End": "e4d19e915c174f4dbb40bce4b44725e9",
-      "Id": "ca773047a05b47acab6145d2218c9299"
-    },
-    {
-      "Start": "19dfffa85a504b7ea7e723e256c4a685",
       "End": "c47c926c1bff4014821a0dd22d70544e",
-      "Id": "b133c94b0c6f4c6f8216fd00d3925ec8"
+      "Id": "2bc5f2c9ae704c80a72ad485af9dd0f1"
     },
     {
-      "Start": "19dfffa85a504b7ea7e723e256c4a685",
+      "Start": "b73718c8f3554a84b34f5d87ffc2d6a4",
+      "End": "48f110056f3f4595a9fc464b73c38616",
+      "Id": "9efccb35767f4f92929f1120060c6833"
+    },
+    {
+      "Start": "b73718c8f3554a84b34f5d87ffc2d6a4",
+      "End": "e4d19e915c174f4dbb40bce4b44725e9",
+      "Id": "079d3d1379d241ceb71e0a60a45db0a0"
+    },
+    {
+      "Start": "b73718c8f3554a84b34f5d87ffc2d6a4",
       "End": "505b052ee4054e0f8241d9e707225d27",
-      "Id": "39c4081595ec414381742dce0012a5b0"
+      "Id": "0a0c1692e5e7415da594a561eb3d0b27"
+    },
+    {
+      "Start": "0d6e4b60125f4acea2fe206810a6852e",
+      "End": "9181786784e04c89b535adb8561aac9d",
+      "Id": "ca079652994d402f82fe4e5eba6da1ab"
     },
     {
       "Start": "3689cd09bf9c402fa414b32d0b858d67",
@@ -434,7 +477,7 @@
     {
       "Start": "3f6229e569294666a5e2bd5559ab20e9",
       "End": "e2c7231c1d1740bf9d5241e0775e3b7e",
-      "Id": "baf15848fe8f409c96b3293052d72886"
+      "Id": "0d9cc9b6ecea4c07bf43d397d7795d4b"
     }
   ],
   "Dependencies": [],
@@ -538,8 +581,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 816.994542861035,
-        "Y": -158.29090187029209
+        "X": 1623.8238378128722,
+        "Y": -34.503393603708844
       },
       {
         "ShowGeometry": true,
@@ -548,8 +591,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 818.295775829403,
-        "Y": -71.108292989644
+        "X": 1625.1250707812403,
+        "Y": 52.67921527693926
       },
       {
         "ShowGeometry": true,
@@ -568,8 +611,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 1149.4122238443631,
-        "Y": -157.88710852030809
+        "X": 1879.9795717391091,
+        "Y": -32.994354644201763
       },
       {
         "ShowGeometry": true,
@@ -578,8 +621,18 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 821.17226589877123,
-        "Y": 23.635743008614384
+        "X": 1628.0015608506085,
+        "Y": 147.42325127519763
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Watch",
+        "Id": "ac9691793f2948cf93db71f4e6f5f2ba",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1627.160262812547,
+        "Y": 326.73698758939622
       }
     ],
     "Annotations": [
@@ -628,7 +681,7 @@
         ],
         "Left": 1081.4711625604498,
         "Top": 150.84904524855875,
-        "Width": 458.427486614068,
+        "Width": 467.09415328073476,
         "Height": 469.761130867328,
         "FontSize": 30.0,
         "InitialTop": 232.84904524855875,
@@ -645,13 +698,13 @@
           "670613dd65564252a74990782377d188",
           "8c17dfbc2b394503b0c67af398983a1d"
         ],
-        "Left": 806.994542861035,
-        "Top": -204.29090187029209,
-        "Width": 654.41768098332807,
+        "Left": 1613.8238378128722,
+        "Top": -80.503393603708844,
+        "Width": 578.155733926237,
         "Height": 320.92664487890647,
         "FontSize": 30.0,
-        "InitialTop": -158.29090187029209,
-        "InitialHeight": 232.1826088806481,
+        "InitialTop": -34.503393603708844,
+        "InitialHeight": 326.92664487890647,
         "TextblockHeight": 36.0,
         "Background": "#FFFFC999"
       },
@@ -672,6 +725,22 @@
         "Background": "#FF71C6A8"
       },
       {
+        "Id": "04134e32ae3e4f078d9f9af2ec366806",
+        "Title": "Result",
+        "Nodes": [
+          "ac9691793f2948cf93db71f4e6f5f2ba"
+        ],
+        "Left": 1617.160262812547,
+        "Top": 273.40365425606291,
+        "Width": 161.33333333333334,
+        "Height": 162.33333333333331,
+        "FontSize": 36.0,
+        "InitialTop": 326.73698758939622,
+        "InitialHeight": 139.0,
+        "TextblockHeight": 43.333333333333336,
+        "Background": "#FFFFC999"
+      },
+      {
         "Id": "b192c2ec8b1d479fb62301309a6058f5",
         "Title": "Our machine has never before seen this particular value as input, so it will have to predict what the corresponding output value is.\r\n\r\nThis is essentially what all the learning is about, being able to handle new scenarios.",
         "Nodes": [],
@@ -686,8 +755,8 @@
         "Background": "#FFC1D676"
       }
     ],
-    "X": 244.52267116464745,
-    "Y": 194.25075140213119,
-    "Zoom": 0.60318417998904938
+    "X": 199.11505879147194,
+    "Y": 218.36126305246984,
+    "Zoom": 0.4755093133379944
   }
 }

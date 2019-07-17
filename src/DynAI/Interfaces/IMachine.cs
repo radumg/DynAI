@@ -1,5 +1,6 @@
-﻿using System;
-using Autodesk.DesignScript.Runtime;
+﻿using Autodesk.DesignScript.Runtime;
+using System;
+using System.Collections.Generic;
 
 namespace AI
 {
@@ -64,7 +65,7 @@ namespace AI
         /// </summary>
         /// <param name="testData">Input for the prediction</param>
         /// <returns>The predicted value</returns>
-        dynamic Predict(dynamic testData);
+        Dictionary<string,object> Predict(dynamic testData);
 
         #endregion
     }

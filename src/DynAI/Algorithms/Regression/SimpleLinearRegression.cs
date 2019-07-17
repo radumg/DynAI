@@ -37,8 +37,10 @@ namespace AI.Algorithms.Regression
         private double? Result;
 
         // Learner & predictor - these are not part of the interface
-        private Accord.Statistics.Models.Regression.Linear.SimpleLinearRegression regression;
-        private OrdinaryLeastSquares ols;
+        [IsVisibleInDynamoLibrary(false)]
+        public Accord.Statistics.Models.Regression.Linear.SimpleLinearRegression regression;
+        [IsVisibleInDynamoLibrary(false)]
+        public OrdinaryLeastSquares ols;
 
         #endregion
 

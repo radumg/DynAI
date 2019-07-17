@@ -1,7 +1,8 @@
-﻿using System;
-using System.Diagnostics;
-using AI.Utilities;
+﻿using AI.Utilities;
 using Autodesk.DesignScript.Runtime;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace AI
 {
@@ -50,22 +51,22 @@ namespace AI
         /// <summary>
         /// Indicates whether training data was successfully loaded into the machine and that it has learned from it.
         /// </summary>
-        public bool IsTrained => Algorithm.IsTrainingDataLoaded && Algorithm.IsTrained;
+        public bool IsTrained => this.Algorithm.IsTrainingDataLoaded && this.Algorithm.IsTrained;
 
         /// <summary>
         /// The result supplied by the prediction algorithm used.
         /// </summary>
-        public dynamic Result => Algorithm.LastResult;
+        public dynamic Result => this.Algorithm.LastResult;
 
         /// <summary>
         /// The datatype of the result, useful for data validation.
         /// </summary>
-        public string ResultDataType => Algorithm.ResultType.ToString();
+        public string ResultDataType => this.Algorithm.ResultType.ToString();
 
         /// <summary>
         /// The last value used as input for Prediction.
         /// </summary>
-        public object LastTestValue => Algorithm.LastTestValue;
+        public object LastTestValue => this.Algorithm.LastTestValue;
 
         // Type helpers
         private Type AlgorithmClassType;
@@ -76,7 +77,7 @@ namespace AI
         /// <returns>The algorithm used by the machine for learning, as an object.</returns>
         public dynamic GetAlgorithm()
         {
-            return Convert.ChangeType(this.Algorithm, Algorithm.GetType());
+            return Convert.ChangeType(this.Algorithm, this.Algorithm.GetType());
         }
 
         /// <summary>
@@ -118,11 +119,11 @@ namespace AI
         public Machine(object algorithm, string name = null, string description = null) : this()
         {
             // record the algorithm used as an object and its type, required in GetAlgorithm method.
-            SetAlgorithm(algorithm);
+            this.SetAlgorithm(algorithm);
 
             // default values
-            Name = string.IsNullOrWhiteSpace(name) ? GUID : name;
-            Description = string.IsNullOrWhiteSpace(description) ? string.Empty : description;
+            this.Name = string.IsNullOrWhiteSpace(name) ? this.GUID : name;
+            this.Description = string.IsNullOrWhiteSpace(description) ? string.Empty : description;
         }
 
         /// <summary>
@@ -131,9 +132,9 @@ namespace AI
         [IsVisibleInDynamoLibrary(false)]
         public Machine()
         {
-            GUID = Guid.NewGuid().ToString();
-            TrainingTime = TimeSpan.Zero;
-            PredictionTime = TimeSpan.Zero;
+            this.GUID = Guid.NewGuid().ToString();
+            this.TrainingTime = TimeSpan.Zero;
+            this.PredictionTime = TimeSpan.Zero;
         }
 
         #endregion
@@ -157,13 +158,14 @@ namespace AI
             return didLearn ? this : null;
         }
 
+        [MultiReturn(new string[] { "Machine", "Result"})]
         /// <summary>
         /// Enables a trained machine to provide a prediction from an input value.
         /// Note that each algorithm expects a different data type as input.
         /// </summary>
         /// <param name="testData">The value(s) to use as input in the prediction.</param>
         /// <returns>The predicted value.</returns>
-        public dynamic Predict([ArbitraryDimensionArrayImport] dynamic testData)
+        public Dictionary<string, object> Predict([ArbitraryDimensionArrayImport] dynamic testData)
         {
             this.PredictionTime = TimeSpan.Zero;
             // don't predict if we haven't learned the model yet
@@ -175,11 +177,17 @@ namespace AI
             // time the prediction operation
             var timer = new Stopwatch();
             timer.Start();
-            var prediction = Algorithm.Predict(testData);
+            dynamic prediction = this.Algorithm.Predict(testData);
             timer.Stop();
             this.PredictionTime = TimeSpan.FromMilliseconds(timer.ElapsedMilliseconds);
 
-            return prediction;
+            // format the results into a multi-return dictionary
+            var dictionary = new Dictionary<string, object>
+            {
+                { "Machine", this },
+                { "Result", prediction }
+            };
+            return dictionary;
         }
 
         #endregion
