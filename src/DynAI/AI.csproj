@@ -114,6 +114,7 @@
   <ItemGroup>
     <Compile Include="Algorithms\AlgorithmTypeEnum.cs" />
     <Compile Include="Algorithms\Classifier\NaiveBayesClassifier.cs" />
+    <Compile Include="Algorithms\Clustering\KMeans.cs" />
     <Compile Include="Algorithms\Regression\MultipleLinearRegression.cs" />
     <Compile Include="Algorithms\Regression\MultivariateLinearRegression.cs" />
     <Compile Include="Algorithms\Regression\SimpleLinearRegression.cs" />

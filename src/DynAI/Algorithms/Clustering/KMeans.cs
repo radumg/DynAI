@@ -34,7 +34,6 @@ namespace AI.Algorithms.Clustering
         #region Custom properties
 
         private double[][] Inputs;
-        private int[] Outputs;
         private double[] TestValue;
         private int[] Result;
 
@@ -54,12 +53,12 @@ namespace AI.Algorithms.Clustering
         /// </summary>
         /// <param name="inputList">Use inputList as rows with equal numbers of featurs, which used for learning.</param>
         /// <param name="outputList">Use outputList as the rows that define the result column for each</param>
-        public KMeans(List<List<double>> inputList, List<int> outputList, int clusters):this()
+        public KMeans(List<List<double>> inputList, int clusters):this()
         {
             this.Clusters = clusters;
 
             // Process training data
-            LoadTrainingData(inputList, outputList);
+            LoadTrainingData(inputList);
 
             // set up K-Means clustering
             Clustering = new Accord.MachineLearning.KMeans(this.Clusters);
@@ -74,7 +73,6 @@ namespace AI.Algorithms.Clustering
             PredictionType = typeof(double[]);
             ResultType = typeof(int[]);
             Inputs = null;
-            Outputs = null;
             TestValue = null;
             Result = null;
 
@@ -106,13 +104,8 @@ namespace AI.Algorithms.Clustering
         }
 
         [IsVisibleInDynamoLibrary(false)]
-        public dynamic Predict(dynamic inputData)
+        public dynamic Predict([ArbitraryDimensionArrayImport] dynamic ignored)
         {
-            // parse input to required type - throws error if not possible
-            var input = ConvertToValidInputType(inputData);
-
-            // predict & cache test value
-            this.TestValue = input;
             this.Result = this.cluster.Decide(Inputs);
 
             return this.Result;
@@ -122,39 +115,13 @@ namespace AI.Algorithms.Clustering
 
         #region Utils
 
-        private double[] ConvertToValidInputType(object inputData)
-        {
-            if (inputData.GetType() == PredictionType) return (double[])inputData;
-
-            // if not exact same type, try parsing as double
-            if (!AI.Utils.Types.IsList(inputData)) throw new ArgumentException("Type cannot be converted");
-            var inputList = (IList)inputData;
-            var outputList = new double[inputList.Count];
-
-            for (int i = 0; i < inputList.Count; i++)
-            {
-                double parsed;
-                if (!double.TryParse(inputList[i].ToString(), out parsed))
-                {
-                    throw new Exception(
-                        "Input data type is not valid and conversion failed." + Environment.NewLine +
-                        "Supplied : " + inputData.GetType().ToString() + Environment.NewLine +
-                        "Expected : " + PredictionType.ToString());
-                }
-                else outputList[i] = parsed;
-            }
-            return outputList;
-        }
-
-
-        private void LoadTrainingData(List<List<double>> inputList, List<int> outputList)
+        private void LoadTrainingData(List<List<double>> inputList)
         {
             // validation
-            if (inputList == null || outputList == null) throw new ArgumentNullException("Neither the input list nor the output list can be NULL");
+            if (inputList == null) throw new ArgumentNullException("Neither the input list nor the output list can be NULL");
 
             // process input and output lists into multi-dimensional arrays
             Inputs = inputList.Select(x => x.ToArray()).ToArray();
-            Outputs = outputList.ToArray();
         }
 
         private bool HasTrainingData()
