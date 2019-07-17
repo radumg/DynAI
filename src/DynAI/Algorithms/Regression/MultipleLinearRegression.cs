@@ -55,17 +55,8 @@ namespace AI.Algorithms.Regression
         /// </summary>
         /// <param name="inputList">Use inputList as rows with equal numbers of featurs, which used for learning.</param>
         /// <param name="outputList">Use outputList as the rows that define the result column for each</param>
-        public MultipleLinearRegression(List<List<double>> inputList, List<double> outputList, string codifyColumn=null)
+        public MultipleLinearRegression(List<List<double>> inputList, List<double> outputList, string codifyColumn=null) : this()
         {
-            Name = "Multiple Linear Regression";
-            Type = AlgorithmType.Regression;
-            IsTrained = false;
-            PredictionType = typeof(double[]);
-            ResultType = typeof(double);
-            inputs = null;
-            outputs = null;
-            testValue = null;
-            result = null;
             if (!string.IsNullOrWhiteSpace(codifyColumn))
             {
                 codify = true;
@@ -86,7 +77,15 @@ namespace AI.Algorithms.Regression
         [IsVisibleInDynamoLibrary(false)]
         public MultipleLinearRegression()
         {
-
+            Name = "Multiple Linear Regression";
+            Type = AlgorithmType.Regression;
+            IsTrained = false;
+            PredictionType = typeof(double[]);
+            ResultType = typeof(double);
+            inputs = null;
+            outputs = null;
+            testValue = null;
+            result = null;
         }
         #endregion
 
@@ -114,12 +113,15 @@ namespace AI.Algorithms.Regression
             // return this as IAlgorithm;
         }
 
-        public dynamic Predict(dynamic input)
+        public dynamic Predict([ArbitraryDimensionArrayImport] dynamic inputData)
         {
-            throw new NotImplementedException();
+            // parse input to required type - throws error if not possible
+            double[] input = ConvertToValidInputType(inputData);
+
+            return this.Predict(input);
         }
 
-        public dynamic Predict(double[] input)
+        private dynamic Predict(double[] input)
         {
             // predict & cache test value
             this.testValue = input;
@@ -131,6 +133,31 @@ namespace AI.Algorithms.Regression
         #endregion
 
         #region Utils
+
+        private double[] ConvertToValidInputType(object inputData)
+        {
+            if (inputData.GetType() == PredictionType) return (double[])inputData;
+
+            // if not exact same type, try parsing as double
+            if (!AI.Utils.Types.IsList(inputData)) throw new ArgumentException("Type cannot be converted");
+            var inputList = (IList)inputData;
+            var outputList = new double[inputList.Count];
+
+            for (int i = 0; i < inputList.Count; i++)
+            {
+                double parsed;
+                if (!double.TryParse(inputList[i].ToString(), out parsed))
+                {
+                    throw new Exception(
+                        "Input data type is not valid and conversion failed." + Environment.NewLine +
+                        "Supplied : " + inputData.GetType().ToString() + Environment.NewLine +
+                        "Expected : " + PredictionType.ToString());
+                }
+                else outputList[i] = parsed;
+            }
+            return outputList;
+        }
+
 
         private void LoadTrainingData(List<List<double>> inputList, List<double> outputList)
         {
