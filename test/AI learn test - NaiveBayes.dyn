@@ -1,74 +1,563 @@
-<Workspace Version="1.3.0.875" X="393.524669451901" Y="259.157493896431" zoom="0.543223350986103" ScaleFactor="1" Name="Home" Description="" RunType="Automatic" RunPeriod="1000" HasRunWithoutCrash="True">
-  <NamespaceResolutionMap />
-  <Elements>
-    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="59070ff9-9dc7-4530-83d6-3c7bfb9b43bd" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="-435.89486296026" y="641.506905330171" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="name=&quot;NaiveBayesMachine&quot;;&#xA;desc=&quot;simple machine&quot;;&#xA;file=&quot;AI IO test -&quot;+name+&quot; (trained).json&quot;;" ShouldFocus="false" />
-    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="6d42e74e-b93d-4228-93f5-e4aace2c3363" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Machine.Machine" x="532.357450582433" y="138.096572510996" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="..\src\DynAI\bin\Debug\AI.dll" function="AI.Machine.Machine@var,string,string">
-      <PortInfo index="0" default="False" />
-      <PortInfo index="1" default="False" />
-      <PortInfo index="2" default="False" />
-    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
-    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="db8befc6-da01-40cf-9f1c-613987f6af20" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="-614.549277845861" y="310.853315214871" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="{ &quot;Outlook&quot;, &quot;Temperature&quot;, &quot;Humidity&quot;, &quot;Wind&quot;, &quot;PlayTennis&quot; };" ShouldFocus="false" />
-    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="3a3a9f7d-0224-4760-aad1-1efe6cafbf42" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="training data" x="-503.496011097325" y="-31.4220435768921" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="{&#xA;{ &quot;Sunny&quot;, &quot;Hot&quot;, &quot;High&quot;, &quot;Weak&quot;, &quot;No&quot; },&#xA;{ &quot;Sunny&quot;, &quot;Hot&quot;, &quot;High&quot;, &quot;Strong&quot;, &quot;No&quot; },&#xA;{ &quot;Overcast&quot;, &quot;Hot&quot;, &quot;High&quot;, &quot;Weak&quot;, &quot;Yes&quot; },&#xA;{ &quot;Rain&quot;, &quot;Mild&quot;, &quot;High&quot;, &quot;Weak&quot;, &quot;Yes&quot; },&#xA;{ &quot;Rain&quot;, &quot;Cool&quot;, &quot;Normal&quot;, &quot;Weak&quot;, &quot;Yes&quot; },&#xA;{ &quot;Rain&quot;, &quot;Cool&quot;, &quot;Normal&quot;, &quot;Strong&quot;, &quot;No&quot; },&#xA;{ &quot;Overcast&quot;, &quot;Cool&quot;, &quot;Normal&quot;, &quot;Strong&quot;, &quot;Yes&quot; },&#xA;{ &quot;Sunny&quot;, &quot;Mild&quot;, &quot;High&quot;, &quot;Weak&quot;, &quot;No&quot; },&#xA;{ &quot;Sunny&quot;, &quot;Cool&quot;, &quot;Normal&quot;, &quot;Weak&quot;, &quot;Yes&quot; },&#xA;{  &quot;Rain&quot;, &quot;Mild&quot;, &quot;Normal&quot;, &quot;Weak&quot;, &quot;Yes&quot; },&#xA;{  &quot;Sunny&quot;, &quot;Mild&quot;, &quot;Normal&quot;, &quot;Strong&quot;, &quot;Yes&quot; },&#xA;{  &quot;Overcast&quot;, &quot;Mild&quot;, &quot;High&quot;, &quot;Strong&quot;, &quot;Yes&quot; },&#xA;{  &quot;Overcast&quot;, &quot;Hot&quot;, &quot;Normal&quot;, &quot;Weak&quot;, &quot;Yes&quot; },&#xA;{  &quot;Rain&quot;, &quot;Mild&quot;, &quot;High&quot;, &quot;Strong&quot;, &quot;No&quot; }&#xA;};" ShouldFocus="false" />
-    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="cebc82d0-632a-4720-bff8-6b381ce2a257" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="-199.302334437214" y="393.507131997675" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="&quot;PlayTennis&quot;;" ShouldFocus="false" />
-    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="d39d12f9-f3ec-4b86-96f2-95a7e59822d6" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="validation line" x="1023.99641647408" y="347.071482286653" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="{&quot;Overcast&quot;,&quot;Hot&quot;,&quot;High&quot;,&quot;Weak&quot;};&#xA; // result should be : yes&#xA;&#xA;{&quot;Sunny&quot;,&quot;Hot&quot;,&quot;High&quot;,&quot;Weak&quot;};&#xA; // result should be : no" ShouldFocus="false" />
-    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="d5a2b72e-037b-40b3-84a0-0a940ee476f9" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Machine.Learn" x="823.833788024167" y="138.096572510996" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="..\src\DynAI\bin\Debug\AI.dll" function="AI.Machine.Learn">
-      <PortInfo index="0" default="False" />
-    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
-    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="53684aea-20d7-40c2-bad1-6eb112b5ac05" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Machine.GetAlgorithm" x="1073.87261506391" y="138.096572510996" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="..\src\DynAI\bin\Debug\AI.dll" function="AI.Machine.GetAlgorithm">
-      <PortInfo index="0" default="False" />
-    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
-    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="709a9fbd-8f14-41b7-a042-cbc32d923433" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="NaiveBayesClassifier.NaiveBayesClassifier" x="87.4040773621513" y="138.096572510996" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="..\src\DynAI\bin\Debug\AI.dll" function="AI.Algorithms.Classifier.NaiveBayesClassifier.NaiveBayesClassifier@string[][],string[],string">
-      <PortInfo index="0" default="False" />
-      <PortInfo index="1" default="False" />
-      <PortInfo index="2" default="False" />
-    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
-    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="6635dca2-2fea-416e-8a4a-a6da84065d7e" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="NaiveBayesClassifier.Predict" x="1391.86498540165" y="138.096572510996" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="true" assembly="..\src\DynAI\bin\Debug\AI.dll" function="AI.Algorithms.Classifier.NaiveBayesClassifier.Predict@var">
-      <PortInfo index="0" default="False" />
-      <PortInfo index="1" default="False" />
-    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
-  </Elements>
-  <Connectors>
-    <Dynamo.Graph.Connectors.ConnectorModel start="59070ff9-9dc7-4530-83d6-3c7bfb9b43bd" start_index="0" end="6d42e74e-b93d-4228-93f5-e4aace2c3363" end_index="1" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="59070ff9-9dc7-4530-83d6-3c7bfb9b43bd" start_index="1" end="6d42e74e-b93d-4228-93f5-e4aace2c3363" end_index="2" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="6d42e74e-b93d-4228-93f5-e4aace2c3363" start_index="0" end="d5a2b72e-037b-40b3-84a0-0a940ee476f9" end_index="0" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="db8befc6-da01-40cf-9f1c-613987f6af20" start_index="0" end="709a9fbd-8f14-41b7-a042-cbc32d923433" end_index="1" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="3a3a9f7d-0224-4760-aad1-1efe6cafbf42" start_index="0" end="709a9fbd-8f14-41b7-a042-cbc32d923433" end_index="0" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="cebc82d0-632a-4720-bff8-6b381ce2a257" start_index="0" end="709a9fbd-8f14-41b7-a042-cbc32d923433" end_index="2" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="d39d12f9-f3ec-4b86-96f2-95a7e59822d6" start_index="0" end="6635dca2-2fea-416e-8a4a-a6da84065d7e" end_index="1" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="d5a2b72e-037b-40b3-84a0-0a940ee476f9" start_index="0" end="53684aea-20d7-40c2-bad1-6eb112b5ac05" end_index="0" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="53684aea-20d7-40c2-bad1-6eb112b5ac05" start_index="0" end="6635dca2-2fea-416e-8a4a-a6da84065d7e" end_index="0" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="709a9fbd-8f14-41b7-a042-cbc32d923433" start_index="0" end="6d42e74e-b93d-4228-93f5-e4aace2c3363" end_index="0" portType="0" />
-  </Connectors>
-  <Notes>
-    <Dynamo.Graph.Notes.NoteModel guid="5cccfd81-bf06-4f95-b243-bb4d559268c9" text="In this exercise, we will be using the famous Play Tennis example by Tom Mitchell (1998). In Mitchell's example, one would like to infer if a person would play tennis or not based solely on four input variables :&#xD;&#xA;- Outlook&#xD;&#xA;- Temperature&#xD;&#xA;- Humidity&#xD;&#xA;- Wind &#xD;&#xA;&#xD;&#xA;The rows of data presented below represent days on which the behavior of the person has been registered, pretty much building our set of observation instances for learning." x="-511.701960802893" y="403.756682259485" />
-    <Dynamo.Graph.Notes.NoteModel guid="0ab36a02-7a57-4474-a1b4-47ce1886b2ec" text="Use the Predictor on the algorithm due to a bug in Dynamo's handling of data types. &#xD;&#xA;to be fixed later." x="1693.84714645181" y="138.096572510996" />
-  </Notes>
-  <Annotations>
-    <Dynamo.Graph.Annotations.AnnotationModel guid="d561c4b3-72a0-41d3-b2d4-dcffeab3f79f" annotationText="Build machine&#xD;&#xA;" left="77.4040773621513" top="56.0965725109963" width="703.953373220282" height="227" fontSize="30" InitialTop="138.096572510996" InitialHeight="175" TextblockHeight="72" backgrouund="#FF71C6A8">
-      <Models ModelGuid="6d42e74e-b93d-4228-93f5-e4aace2c3363" />
-      <Models ModelGuid="709a9fbd-8f14-41b7-a042-cbc32d923433" />
-    </Dynamo.Graph.Annotations.AnnotationModel>
-    <Dynamo.Graph.Annotations.AnnotationModel guid="e685f8ca-acd9-4ddc-b0da-954d9d7a00fa" annotationText="Inputs&#xD;&#xA;" left="-624.549277845861" top="-113.422043576892" width="583.654414885601" height="875.928948907063" fontSize="30" InitialTop="-31.4220435768921" InitialHeight="809.207749362596" TextblockHeight="72" backgrouund="#FF48B9FF">
-      <Models ModelGuid="db8befc6-da01-40cf-9f1c-613987f6af20" />
-      <Models ModelGuid="3a3a9f7d-0224-4760-aad1-1efe6cafbf42" />
-      <Models ModelGuid="cebc82d0-632a-4720-bff8-6b381ce2a257" />
-      <Models ModelGuid="5cccfd81-bf06-4f95-b243-bb4d559268c9" />
-      <Models ModelGuid="59070ff9-9dc7-4530-83d6-3c7bfb9b43bd" />
-    </Dynamo.Graph.Annotations.AnnotationModel>
-    <Dynamo.Graph.Annotations.AnnotationModel guid="b931a85c-d5a0-49b5-a8ee-83dedb51ad33" annotationText="The input value to test" left="1013.99641647408" top="301.071482286653" width="322" height="201" fontSize="30" InitialTop="347.071482286653" InitialHeight="185" TextblockHeight="36" backgrouund="#FF48B9FF">
-      <Models ModelGuid="d39d12f9-f3ec-4b86-96f2-95a7e59822d6" />
-    </Dynamo.Graph.Annotations.AnnotationModel>
-    <Dynamo.Graph.Annotations.AnnotationModel guid="ff6ad9b2-fb88-42b3-bc67-b06eece5a21b" annotationText="Learn&#xD;&#xA;" left="813.833788024167" top="56.0965725109963" width="210" height="175" fontSize="30" InitialTop="138.096572510996" InitialHeight="123" TextblockHeight="72" backgrouund="#FF71C6A8">
-      <Models ModelGuid="d5a2b72e-037b-40b3-84a0-0a940ee476f9" />
-    </Dynamo.Graph.Annotations.AnnotationModel>
-    <Dynamo.Graph.Annotations.AnnotationModel guid="6b2fca32-0460-4f26-97c5-fe8d1f02b74c" annotationText="Predict&#xD;&#xA;" left="1063.87261506391" top="56.0965725109963" width="927.9745313879" height="201" fontSize="30" InitialTop="138.096572510996" InitialHeight="149" TextblockHeight="72" backgrouund="#FF71C6A8">
-      <Models ModelGuid="0ab36a02-7a57-4474-a1b4-47ce1886b2ec" />
-      <Models ModelGuid="53684aea-20d7-40c2-bad1-6eb112b5ac05" />
-      <Models ModelGuid="6635dca2-2fea-416e-8a4a-a6da84065d7e" />
-    </Dynamo.Graph.Annotations.AnnotationModel>
-  </Annotations>
-  <Presets />
-  <Cameras>
-    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
-  </Cameras>
-</Workspace>
+{
+  "Uuid": "3c9d0464-8643-5ffe-96e5-ab1769818209",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "AI learn test - NaiveBayes",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"NaiveBayesMachine\";\n\"Simple classifier machine\";",
+      "Id": "59070ff99dc7453083d63c7bfb9b43bd",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "492e8d45743b47e0b842208012aa2408",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "fa3572f230f24d30adad84f8f546842f",
+          "Name": "",
+          "Description": "Value of expression at line 2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "AI.Machine.Machine@var,string,string",
+      "Id": "6d42e74eb93d422893f5e4aace2c3363",
+      "Inputs": [
+        {
+          "Id": "9a196223b26d45bfac343d5f0abbaf2c",
+          "Name": "algorithm",
+          "Description": "The algorithm to use for learning. Has to contain training data already.\n\nvar",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "527eb41fdf4c4fbdaa9b699e26af9a07",
+          "Name": "name",
+          "Description": "(optional) Specify a name for this machine.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "92f3304088f14d7d8da9db0afa3d31bc",
+          "Name": "description",
+          "Description": "(optional) specify a description for this machine.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "5949561ddaae446f8d62ad0933772e1b",
+          "Name": "Machine",
+          "Description": "Machine",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Build a new machine, to learn from training data and predict outcomes.\n\nMachine.Machine (algorithm: var, name: string, description: string): Machine"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "[ \"Outlook\", \"Temperature\", \"Humidity\", \"Wind\", \"PlayTennis\" ];",
+      "Id": "db8befc6da0140cf9f1c613987f6af20",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "696cfa515655423d97f64fedef3f7bbb",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "[\n[ \"Sunny\", \"Hot\", \"High\", \"Weak\", \"No\" ],\n[ \"Sunny\", \"Hot\", \"High\", \"Strong\", \"No\" ],\n[ \"Overcast\", \"Hot\", \"High\", \"Weak\", \"Yes\" ],\n[ \"Rain\", \"Mild\", \"High\", \"Weak\", \"Yes\" ],\n[ \"Rain\", \"Cool\", \"Normal\", \"Weak\", \"Yes\" ],\n[ \"Rain\", \"Cool\", \"Normal\", \"Strong\", \"No\" ],\n[ \"Overcast\", \"Cool\", \"Normal\", \"Strong\", \"Yes\" ],\n[ \"Sunny\", \"Mild\", \"High\", \"Weak\", \"No\" ],\n[ \"Sunny\", \"Cool\", \"Normal\", \"Weak\", \"Yes\" ],\n[  \"Rain\", \"Mild\", \"Normal\", \"Weak\", \"Yes\" ],\n[  \"Sunny\", \"Mild\", \"Normal\", \"Strong\", \"Yes\" ],\n[  \"Overcast\", \"Mild\", \"High\", \"Strong\", \"Yes\" ],\n[  \"Overcast\", \"Hot\", \"Normal\", \"Weak\", \"Yes\" ],\n[  \"Rain\", \"Mild\", \"High\", \"Strong\", \"No\" ]\n];",
+      "Id": "3a3a9f7d02244760aad11efe6cafbf42",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f34802dcb0b54c39bc11080d50a359fa",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"PlayTennis\";",
+      "Id": "cebc82d0632a4720bff86b381ce2a257",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "997d4f56d1bb463aa0153cf0a1de2be6",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "[\"Overcast\",\"Hot\",\"High\",\"Weak\"];\n // result should be : yes\n\n[\"Sunny\",\"Hot\",\"High\",\"Weak\"];\n // result should be : no",
+      "Id": "d39d12f9f3ec4b8696f295a7e59822d6",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "14cb3f1beb6d4d19b2bfdd82e6a24cd3",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "719a9c385b3e4ad3a2a54f1447695541",
+          "Name": "",
+          "Description": "Value of expression at line 4",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "AI.Machine.Learn",
+      "Id": "d5a2b72e037b40b384a00a940ee476f9",
+      "Inputs": [
+        {
+          "Id": "199f9867f9fc4fb48a91809f97a87fd7",
+          "Name": "machine",
+          "Description": "AI.Machine",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "db77f1e4a2a046fcbe7934f604410525",
+          "Name": "Machine",
+          "Description": "The input machine, now trained.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Tells a machine to learn from its training data.\n\nMachine.Learn ( ): Machine"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "AI.Algorithms.Classifier.NaiveBayesClassifier.NaiveBayesClassifier@string[][],string[],string",
+      "Id": "709a9fbd8f1441b7a042cbc32d923433",
+      "Inputs": [
+        {
+          "Id": "310da1e7ea194049837f6dedd52e1901",
+          "Name": "inputMatrix",
+          "Description": "string[][]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "848a6392c558416cbd271ab9dcefdfd1",
+          "Name": "columnList",
+          "Description": "string[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "8b0d835a98cf4948a341ccfd90f39645",
+          "Name": "outputColumn",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "db6c9d2463164c1fa778a9e61f5aa8fe",
+          "Name": "NaiveBayesClassifier",
+          "Description": "NaiveBayesClassifier",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "NaiveBayesClassifier.NaiveBayesClassifier (inputMatrix: string[][], columnList: string[], outputColumn: string): NaiveBayesClassifier"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "AI.Machine.Predict@var[]..[]",
+      "Id": "7968519d1f2144edb06e5caa72735f49",
+      "Inputs": [
+        {
+          "Id": "e4cf53e4a56e4df8a201e26ce29ecea3",
+          "Name": "machine",
+          "Description": "AI.Machine",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e693236ebbb24b93a79b0bb058e363d7",
+          "Name": "testData",
+          "Description": "var[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "091f3f93616e4cefab45e88a81a9f6bd",
+          "Name": "var[]..[]",
+          "Description": "var[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "The time it took for the machine to predict the new outcome.\n\nMachine.Predict (testData: var[]..[]): var[]..[]"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "492e8d45743b47e0b842208012aa2408",
+      "End": "527eb41fdf4c4fbdaa9b699e26af9a07",
+      "Id": "bb5a797686ce464b9fa90f05c1d6196e"
+    },
+    {
+      "Start": "fa3572f230f24d30adad84f8f546842f",
+      "End": "92f3304088f14d7d8da9db0afa3d31bc",
+      "Id": "60926e7bd5974d498b44cf7f99927aec"
+    },
+    {
+      "Start": "5949561ddaae446f8d62ad0933772e1b",
+      "End": "199f9867f9fc4fb48a91809f97a87fd7",
+      "Id": "83257c74675b40c3a0b05770fcbef134"
+    },
+    {
+      "Start": "696cfa515655423d97f64fedef3f7bbb",
+      "End": "848a6392c558416cbd271ab9dcefdfd1",
+      "Id": "ff2b97b91a2142a689f4a37cb8e0d987"
+    },
+    {
+      "Start": "f34802dcb0b54c39bc11080d50a359fa",
+      "End": "310da1e7ea194049837f6dedd52e1901",
+      "Id": "adc23cc58e5146dc9e98bc0a7dc9e7ab"
+    },
+    {
+      "Start": "997d4f56d1bb463aa0153cf0a1de2be6",
+      "End": "8b0d835a98cf4948a341ccfd90f39645",
+      "Id": "21f87746eeda42699df88613698cb9cc"
+    },
+    {
+      "Start": "14cb3f1beb6d4d19b2bfdd82e6a24cd3",
+      "End": "e693236ebbb24b93a79b0bb058e363d7",
+      "Id": "6982eed8c0884d59b3a90f4437894656"
+    },
+    {
+      "Start": "db77f1e4a2a046fcbe7934f604410525",
+      "End": "e4cf53e4a56e4df8a201e26ce29ecea3",
+      "Id": "f3e0e49c949b431e9ce80abe4b26741d"
+    },
+    {
+      "Start": "db6c9d2463164c1fa778a9e61f5aa8fe",
+      "End": "9a196223b26d45bfac343d5f0abbaf2c",
+      "Id": "3025f9b3296f417aae62544e91c2f184"
+    }
+  ],
+  "Dependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.0.2.6826",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "59070ff99dc7453083d63c7bfb9b43bd",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 159.93101951512944,
+        "Y": 287.32810043923359
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Machine.Machine",
+        "Id": "6d42e74eb93d422893f5e4aace2c3363",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 532.357450582433,
+        "Y": 138.096572510996
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "db8befc6da0140cf9f1c613987f6af20",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -550.583874955859,
+        "Y": 484.981356415432
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "training data",
+        "Id": "3a3a9f7d02244760aad11efe6cafbf42",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -439.530608207323,
+        "Y": 142.705997623669
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "cebc82d0632a4720bff86b381ce2a257",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -135.336931547212,
+        "Y": 567.635173198236
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "validation line",
+        "Id": "d39d12f9f3ec4b8696f295a7e59822d6",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 827.63765083369162,
+        "Y": 310.25421372908022
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Machine.Learn",
+        "Id": "d5a2b72e037b40b384a00a940ee476f9",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 823.833788024167,
+        "Y": 138.096572510996
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "NaiveBayesClassifier.NaiveBayesClassifier",
+        "Id": "709a9fbd8f1441b7a042cbc32d923433",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 87.4040773621513,
+        "Y": 138.096572510996
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Machine.Predict",
+        "Id": "7968519d1f2144edb06e5caa72735f49",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1191.6169690123531,
+        "Y": 138.09176603219345
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "d561c4b372a041d3b2d4dcffeab3f79f",
+        "Title": "Build machine\r\n",
+        "Nodes": [
+          "6d42e74eb93d422893f5e4aace2c3363",
+          "709a9fbd8f1441b7a042cbc32d923433",
+          "59070ff99dc7453083d63c7bfb9b43bd"
+        ],
+        "Left": 77.4040773621513,
+        "Top": 56.096572510996,
+        "Width": 704.28670655361509,
+        "Height": 333.56486126157091,
+        "FontSize": 30.0,
+        "InitialTop": 138.096572510996,
+        "InitialHeight": 294.2315279282376,
+        "TextblockHeight": 72.0,
+        "Background": "#FF71C6A8"
+      },
+      {
+        "Id": "e685f8caacd94ddcb0da954d9d7a00fa",
+        "Title": "Inputs\r\n",
+        "Nodes": [
+          "db8befc6da0140cf9f1c613987f6af20",
+          "3a3a9f7d02244760aad11efe6cafbf42",
+          "cebc82d0632a4720bff86b381ce2a257",
+          "5cccfd81bf064f95b243bb4d559268c9"
+        ],
+        "Left": -560.583874955859,
+        "Top": 60.705997623668992,
+        "Width": 572.58027674198036,
+        "Height": 748.51205916971037,
+        "FontSize": 30.0,
+        "InitialTop": 142.705997623669,
+        "InitialHeight": 575.178725836377,
+        "TextblockHeight": 72.0,
+        "Background": "#FF48B9FF"
+      },
+      {
+        "Id": "b931a85cd5a049b5a8ee83dedb51ad33",
+        "Title": "The input value to test",
+        "Nodes": [
+          "d39d12f9f3ec4b8696f295a7e59822d6"
+        ],
+        "Left": 817.63765083369162,
+        "Top": 264.25421372908022,
+        "Width": 322.66666666666669,
+        "Height": 201.0,
+        "FontSize": 30.0,
+        "InitialTop": 310.25421372908022,
+        "InitialHeight": 145.0,
+        "TextblockHeight": 36.0,
+        "Background": "#FF48B9FF"
+      },
+      {
+        "Id": "ff6ad9b2fb8842b3bc67b06eece5a21b",
+        "Title": "Learn\r\n",
+        "Nodes": [
+          "d5a2b72e037b40b384a00a940ee476f9"
+        ],
+        "Left": 813.833788024167,
+        "Top": 56.096572510996,
+        "Width": 243.33333333333334,
+        "Height": 175.0,
+        "FontSize": 30.0,
+        "InitialTop": 138.096572510996,
+        "InitialHeight": 145.0,
+        "TextblockHeight": 72.0,
+        "Background": "#FF71C6A8"
+      },
+      {
+        "Id": "6b2fca3204604f2697c5fe8d1f02b74c",
+        "Title": "Predict\r\n",
+        "Nodes": [
+          "7968519d1f2144edb06e5caa72735f49"
+        ],
+        "Left": 1181.6169690123531,
+        "Top": 56.091766032193448,
+        "Width": 234.66666666666666,
+        "Height": 201.0,
+        "FontSize": 30.0,
+        "InitialTop": 138.09176603219345,
+        "InitialHeight": 145.0,
+        "TextblockHeight": 72.0,
+        "Background": "#FF71C6A8"
+      },
+      {
+        "Id": "5cccfd81bf064f95b243bb4d559268c9",
+        "Title": "In this exercise, we will be using the famous Play Tennis example by Tom Mitchell (1998). In Mitchell's example, one would like to infer if a person would play tennis or not based solely on four input variables :\r\n- Outlook\r\n- Temperature\r\n- Humidity\r\n- Wind \r\n\r\nThe rows of data presented below represent days on which the behavior of the person has been registered, pretty much building our set of observation instances for learning.",
+        "Nodes": [],
+        "Left": -447.736557912891,
+        "Top": 577.884723460046,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": 375.87093964679741,
+    "Y": 154.20073773813033,
+    "Zoom": 0.56280424062844236
+  }
+}

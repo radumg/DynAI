@@ -1,7 +1,7 @@
 {
   "$type": "AI.Machine, AI",
   "Name": "NaiveBayesMachine",
-  "GUID": "380adb54-b4a6-433c-b91f-9a1d506d83da",
+  "GUID": "53a991a0-9f40-4fb2-ab90-2a1e699cb60e",
   "Description": "simple machine",
   "Algorithm": {
     "$type": "AI.Algorithms.Classifier.NaiveBayesClassifier, AI",
