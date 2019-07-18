@@ -160,54 +160,6 @@
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
       "NodeType": "FunctionNode",
-      "FunctionSignature": "AI.Algorithms.Classifier.NaiveBayesClassifier.NaiveBayesClassifier@string[][],string[],string",
-      "Id": "709a9fbd8f1441b7a042cbc32d923433",
-      "Inputs": [
-        {
-          "Id": "310da1e7ea194049837f6dedd52e1901",
-          "Name": "inputMatrix",
-          "Description": "string[][]",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "848a6392c558416cbd271ab9dcefdfd1",
-          "Name": "columnList",
-          "Description": "string[]",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "8b0d835a98cf4948a341ccfd90f39645",
-          "Name": "outputColumn",
-          "Description": "string",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "db6c9d2463164c1fa778a9e61f5aa8fe",
-          "Name": "NaiveBayesClassifier",
-          "Description": "NaiveBayesClassifier",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Replication": "Auto",
-      "Description": "NaiveBayesClassifier.NaiveBayesClassifier (inputMatrix: string[][], columnList: string[], outputColumn: string): NaiveBayesClassifier"
-    },
-    {
-      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "NodeType": "FunctionNode",
       "FunctionSignature": "AI.Machine.Predict@var[]..[]",
       "Id": "7968519d1f2144edb06e5caa72735f49",
       "Inputs": [
@@ -329,6 +281,54 @@
       ],
       "Replication": "Auto",
       "Description": "Create a new machine starting with an Algorithm, a Name and a Description for your machine.\n\nMachine.WithNameDescription (algorithm: var, name: string, description: string): Machine"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "AI.Algorithms.Classifier.NaiveBayesClassifier.WithTrainingData@string[][],string[],string",
+      "Id": "4a43feb83479493aa8a42ab2d337f73d",
+      "Inputs": [
+        {
+          "Id": "8ae4e6c58c464465974a0d2c5ac38aa1",
+          "Name": "inputMatrix",
+          "Description": "The matrix of inputs to use as features.\n\nstring[][]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "3a2645782a174f14b56691a912287d11",
+          "Name": "columnList",
+          "Description": "The names to use for the dataset's columns.\n\nstring[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "850d28e4d2b14e54b6e3be504f81efe8",
+          "Name": "outputColumn",
+          "Description": "The name of the column that codifies the result of the learning.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "b54335c02165432ca7a26c7ea4c3c4c9",
+          "Name": "NaiveBayesClassifier",
+          "Description": "NaiveBayesClassifier",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Construct a new Simple Linear Regression algorithm, using the specified training data.\n\nNaiveBayesClassifier.WithTrainingData (inputMatrix: string[][], columnList: string[], outputColumn: string): NaiveBayesClassifier"
     }
   ],
   "Connectors": [
@@ -344,33 +344,28 @@
     },
     {
       "Start": "696cfa515655423d97f64fedef3f7bbb",
-      "End": "848a6392c558416cbd271ab9dcefdfd1",
-      "Id": "ff2b97b91a2142a689f4a37cb8e0d987"
+      "End": "3a2645782a174f14b56691a912287d11",
+      "Id": "ce56c1d4c3bb4ca88e56071035cceb28"
     },
     {
       "Start": "f34802dcb0b54c39bc11080d50a359fa",
-      "End": "310da1e7ea194049837f6dedd52e1901",
-      "Id": "adc23cc58e5146dc9e98bc0a7dc9e7ab"
+      "End": "8ae4e6c58c464465974a0d2c5ac38aa1",
+      "Id": "180f27a194b047c7a12dd665eb2b6b9e"
     },
     {
       "Start": "997d4f56d1bb463aa0153cf0a1de2be6",
-      "End": "8b0d835a98cf4948a341ccfd90f39645",
-      "Id": "21f87746eeda42699df88613698cb9cc"
+      "End": "850d28e4d2b14e54b6e3be504f81efe8",
+      "Id": "4faccb0c82ca4aff92a6ec32f841fe8d"
     },
     {
       "Start": "14cb3f1beb6d4d19b2bfdd82e6a24cd3",
       "End": "e693236ebbb24b93a79b0bb058e363d7",
-      "Id": "6982eed8c0884d59b3a90f4437894656"
+      "Id": "f9c3eee410fa473b898d771e17776a47"
     },
     {
       "Start": "db77f1e4a2a046fcbe7934f604410525",
       "End": "e4cf53e4a56e4df8a201e26ce29ecea3",
       "Id": "f3e0e49c949b431e9ce80abe4b26741d"
-    },
-    {
-      "Start": "db6c9d2463164c1fa778a9e61f5aa8fe",
-      "End": "3f31be8c3cf64a54bb3c61261303a567",
-      "Id": "d909924b5e8f4dd691519acd544db8f4"
     },
     {
       "Start": "b3bf89e2e9e0468a9ee1737da46a6278",
@@ -381,6 +376,11 @@
       "Start": "cb1688b407bf4b84ac8a3fc0bb1ab195",
       "End": "199f9867f9fc4fb48a91809f97a87fd7",
       "Id": "134a82e859ae4a4b8a12ac1b006c69ab"
+    },
+    {
+      "Start": "b54335c02165432ca7a26c7ea4c3c4c9",
+      "End": "3f31be8c3cf64a54bb3c61261303a567",
+      "Id": "84fabbc4f559475fbd8cb8f57912fb26"
     }
   ],
   "Dependencies": [],
@@ -414,7 +414,7 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 159.93101951512944,
+        "X": 161.08769181220208,
         "Y": 287.32810043923359
       },
       {
@@ -469,16 +469,6 @@
       },
       {
         "ShowGeometry": true,
-        "Name": "NaiveBayesClassifier.NaiveBayesClassifier",
-        "Id": "709a9fbd8f1441b7a042cbc32d923433",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "X": 87.40407736215127,
-        "Y": 138.096572510996
-      },
-      {
-        "ShowGeometry": true,
         "Name": "Machine.Predict",
         "Id": "7968519d1f2144edb06e5caa72735f49",
         "IsSetAsInput": false,
@@ -494,8 +484,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 1464.3263160792062,
-        "Y": 152.44956606237338
+        "X": 1465.4829883762786,
+        "Y": 138.56949849750004
       },
       {
         "ShowGeometry": true,
@@ -506,6 +496,16 @@
         "Excluded": false,
         "X": 487.8447565896272,
         "Y": 138.096572510996
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "NaiveBayesClassifier.WithTrainingData",
+        "Id": "4a43feb83479493aa8a42ab2d337f73d",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 117.70962152633751,
+        "Y": 141.05356011531893
       }
     ],
     "Annotations": [
@@ -513,13 +513,13 @@
         "Id": "d561c4b372a041d3b2d4dcffeab3f79f",
         "Title": "Build machine\r\n",
         "Nodes": [
-          "709a9fbd8f1441b7a042cbc32d923433",
           "59070ff99dc7453083d63c7bfb9b43bd",
-          "878768cf5e6e4a188865e5bd33bd63cb"
+          "878768cf5e6e4a188865e5bd33bd63cb",
+          "4a43feb83479493aa8a42ab2d337f73d"
         ],
-        "Left": 77.40407736215127,
+        "Left": 107.70962152633751,
         "Top": 56.096572510996,
-        "Width": 659.7740125608093,
+        "Width": 629.468468396623,
         "Height": 333.56486126157091,
         "FontSize": 30.0,
         "InitialTop": 138.096572510996,
@@ -596,18 +596,18 @@
       },
       {
         "Id": "27ea92cbb8354c8c919ad7af278d6be7",
-        "Title": "Inspect",
+        "Title": "Inspect\r\n",
         "Nodes": [
           "d92c29f0b9e648c09f7be44150aa8b5d"
         ],
-        "Left": 1454.3263160792062,
-        "Top": 99.116232729040036,
-        "Width": 124.05000000000001,
-        "Height": 162.33333333333334,
-        "FontSize": 36.0,
-        "InitialTop": 152.44956606237338,
+        "Left": 1455.4829883762786,
+        "Top": 56.569498497500035,
+        "Width": 105.04,
+        "Height": 191.0,
+        "FontSize": 30.0,
+        "InitialTop": 138.56949849750004,
         "InitialHeight": 145.0,
-        "TextblockHeight": 43.333333333333336,
+        "TextblockHeight": 72.0,
         "Background": "#FFFFC999"
       },
       {
@@ -625,8 +625,8 @@
         "Background": "#FFC1D676"
       }
     ],
-    "X": 347.33786446356243,
-    "Y": 85.2165436434484,
-    "Zoom": 0.57636607045385013
+    "X": 229.40943664248152,
+    "Y": 181.59677526205277,
+    "Zoom": 0.3621781270991063
   }
 }

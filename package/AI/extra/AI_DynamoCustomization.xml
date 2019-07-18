@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>AI</name>
+  </assembly>
+  <namespaces>
+    <namespace name="AI.Algorithms">
+      <category>Algorithms</category>
+    </namespace>
+    <namespace name="AI.Machine">
+      <category>Machine</category>
+    </namespace>
+  </namespaces>
+</doc>

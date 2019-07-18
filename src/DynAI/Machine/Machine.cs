@@ -171,7 +171,7 @@ namespace AI
             return didLearn ? this : null;
         }
 
-        [MultiReturn(new string[] { "Machine", "Result"})]
+        [MultiReturn(new[] { "Machine", "Result" })]
         /// <summary>
         /// Enables a trained machine to provide a prediction from an input value.
         /// Note that each algorithm expects a different data type as input.
@@ -187,7 +187,7 @@ namespace AI
             if (!this.IsTrained && !this.Algorithm.IsTrainingDataLoaded) throw new Exception("Cannot predict before the algorithm has learned.");
 
             // check we haven't already predicted for this input and use cache if so
-            if (object.Equals(testData, this.LastTestValue)) DictFromResult(this.Result);
+            if (object.Equals(testData, this.LastTestValue)) DictionaryFromResult(this.Result);
 
             // time the prediction operation
             var timer = new Stopwatch();
@@ -196,10 +196,10 @@ namespace AI
             timer.Stop();
             this.PredictionTime = TimeSpan.FromMilliseconds(timer.ElapsedMilliseconds);
 
-            return DictFromResult(prediction);
+            return DictionaryFromResult(prediction);
         }
 
-        private Dictionary<string, object> DictFromResult(dynamic prediction)
+        private Dictionary<string, object> DictionaryFromResult(dynamic prediction)
         {
             // format the results into a multi-return dictionary
             var dictionary = new Dictionary<string, object>

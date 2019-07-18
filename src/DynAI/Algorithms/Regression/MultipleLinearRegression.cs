@@ -51,9 +51,9 @@ namespace AI.Algorithms.Regression
         #region Constructor
 
         /// <summary>
-        /// Construct a new Simple Linear Regression algorithm, using the specified training data.
+        /// Construct a new Multiple Linear Regression algorithm, using the specified training data.
         /// </summary>
-        /// <param name="inputList">Use inputList as rows with equal numbers of featurs, which used for learning.</param>
+        /// <param name="inputList">Use inputList as rows with equal numbers of features, which are used for learning.</param>
         /// <param name="outputList">Use outputList as the rows that define the result column for each</param>
         public static MultipleLinearRegression WithTrainingData(List<List<double>> inputList, List<double> outputList, string codifyColumn=null)
         {

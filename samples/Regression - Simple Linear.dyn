@@ -12,35 +12,6 @@
     {
       "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
       "NodeType": "CodeBlockNode",
-      "Code": "\"TestMachine #1\";\n\"simple machine\";",
-      "Id": "59070ff99dc7453083d63c7bfb9b43bd",
-      "Inputs": [],
-      "Outputs": [
-        {
-          "Id": "6015fb2e44b24cb49906be9c6a6c1cdb",
-          "Name": "",
-          "Description": "Value of expression at line 1",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "5bf6f9f8f01d41feba2cbb76be3d9910",
-          "Name": "",
-          "Description": "Value of expression at line 2",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Replication": "Disabled",
-      "Description": "Allows for DesignScript code to be authored directly"
-    },
-    {
-      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
-      "NodeType": "CodeBlockNode",
       "Code": "[1000000,\n1600000,\n2200000,\n2500000,\n3100000,\n3300000,\n3500000,\n2600000,\n3000000,\n4000000];",
       "Id": "57ed6c173d4147379325911673f79fab",
       "Inputs": [],
@@ -101,45 +72,6 @@
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
       "NodeType": "FunctionNode",
-      "FunctionSignature": "AI.Algorithms.Regression.SimpleLinearRegression.SimpleLinearRegression@double[],double[]",
-      "Id": "7b440909acf74511a96225d5847b0fd2",
-      "Inputs": [
-        {
-          "Id": "1a71165178614f179292bf0714f49fdd",
-          "Name": "inputList",
-          "Description": "double[]",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "d96c6e31f2934b26bb6b1ce5fc0e6fdc",
-          "Name": "outputList",
-          "Description": "double[]",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "5aaf7fa43ce741339699b7b22209f422",
-          "Name": "SimpleLinearRegression",
-          "Description": "SimpleLinearRegression",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Replication": "Auto",
-      "Description": "SimpleLinearRegression.SimpleLinearRegression (inputList: double[], outputList: double[]): SimpleLinearRegression"
-    },
-    {
-      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "NodeType": "FunctionNode",
       "FunctionSignature": "AI.Machine.Predict@var[]..[]",
       "Id": "4b56b386c374493e8d66ce2bac79d3a7",
       "Inputs": [
@@ -173,7 +105,7 @@
           "KeepListStructure": false
         },
         {
-          "Id": "edf0b218d00c4f72986e4a544368bdf2",
+          "Id": "04f334f7675d4751b9069b06bfb79eda",
           "Name": "Result",
           "Description": "var",
           "UsingDefaultValue": false,
@@ -334,18 +266,86 @@
       ],
       "Replication": "Auto",
       "Description": "Build a new machine, to learn from training data and predict outcomes, using a specific training algorithm.\n\nMachine.ByAlgorithm (algorithm: var): Machine"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "AI.Algorithms.Regression.SimpleLinearRegression.WithTrainingData@double[],double[]",
+      "Id": "ae89464f52ff4b8c9e0bbc9852cae51c",
+      "Inputs": [
+        {
+          "Id": "57f2744c66524cfaafce17ed82edcbd6",
+          "Name": "inputList",
+          "Description": "Use inputList as rows with equal numbers of featurs, which used for learning.\n\ndouble[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "51fb876a06a34413b4c9d13e4fde82c6",
+          "Name": "outputList",
+          "Description": "Use outputList as the rows that define the result column for each\n\ndouble[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "cbe47247f6e6417eb2c975b6696d8b3c",
+          "Name": "SimpleLinearRegression",
+          "Description": "SimpleLinearRegression",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Construct a new Simple Linear Regression algorithm, using the specified training data.\n\nSimpleLinearRegression.WithTrainingData (inputList: double[], outputList: double[]): SimpleLinearRegression"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "a7693afec21d4e41ac4d79f70a8ec6b2",
+      "Inputs": [
+        {
+          "Id": "bd0cc8b12ef5486e9c89b66eca2660ed",
+          "Name": "",
+          "Description": "Node to evaluate.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "73806e75a6604285860fa85796f830ca",
+          "Name": "",
+          "Description": "Watch contents.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualize the output of node."
     }
   ],
   "Connectors": [
     {
       "Start": "ee980e06720a44e5a9db788f20028d5a",
-      "End": "d96c6e31f2934b26bb6b1ce5fc0e6fdc",
-      "Id": "d017c5307f9641eab6f5d758c4fe11b9"
+      "End": "51fb876a06a34413b4c9d13e4fde82c6",
+      "Id": "0992f3de6f7d4f11b1939d61a9a1aeaa"
     },
     {
       "Start": "91070502a77745938e6e1d4ff361ba9a",
-      "End": "1a71165178614f179292bf0714f49fdd",
-      "Id": "17cba006caa64bb9bdec688fe8a9489e"
+      "End": "57f2744c66524cfaafce17ed82edcbd6",
+      "Id": "d7b93e9abce34177bafa0fa45ea311a7"
     },
     {
       "Start": "75aaf472460a48fd91e5302c3c595410",
@@ -353,9 +353,9 @@
       "Id": "b6ce98b36a014ed4862822fa85c100a8"
     },
     {
-      "Start": "5aaf7fa43ce741339699b7b22209f422",
-      "End": "455318d3756f41339836a988e4828eaa",
-      "Id": "a93234a4c75941ca8a0f4518875999b0"
+      "Start": "04f334f7675d4751b9069b06bfb79eda",
+      "End": "bd0cc8b12ef5486e9c89b66eca2660ed",
+      "Id": "7db7c3d865a343f0a133ab4637daac2d"
     },
     {
       "Start": "e1e687a14e1e4f63939fa238e1135f8e",
@@ -381,6 +381,11 @@
       "Start": "a12c9e5f1b9544d9b2179bacaf857487",
       "End": "8b0169e5c82840e3aa497a9ec68b14e9",
       "Id": "b597920679fd4a6e86b901e0c6be6252"
+    },
+    {
+      "Start": "cbe47247f6e6417eb2c975b6696d8b3c",
+      "End": "455318d3756f41339836a988e4828eaa",
+      "Id": "778b8de942894d1698d12254b00a7b15"
     }
   ],
   "Dependencies": [],
@@ -407,16 +412,6 @@
       "UpZ": 0.0
     },
     "NodeViews": [
-      {
-        "ShowGeometry": true,
-        "Name": "Code Block",
-        "Id": "59070ff99dc7453083d63c7bfb9b43bd",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "X": 164.270029673591,
-        "Y": 232.849045248559
-      },
       {
         "ShowGeometry": true,
         "Name": "Corresponding output values",
@@ -449,23 +444,13 @@
       },
       {
         "ShowGeometry": true,
-        "Name": "SimpleLinearRegression.SimpleLinearRegression",
-        "Id": "7b440909acf74511a96225d5847b0fd2",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "X": 48.456706923250692,
-        "Y": 232.849045248559
-      },
-      {
-        "ShowGeometry": true,
         "Name": "Machine.Predict",
         "Id": "4b56b386c374493e8d66ce2bac79d3a7",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 1244.04445809556,
-        "Y": 238.544047201542
+        "X": 1239.0272546804697,
+        "Y": 234.5302844694699
       },
       {
         "ShowGeometry": true,
@@ -514,8 +499,28 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 415.57828270661844,
+        "X": 416.5854805807071,
         "Y": 234.38949213512913
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "SimpleLinearRegression.WithTrainingData",
+        "Id": "ae89464f52ff4b8c9e0bbc9852cae51c",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 41.54549542359581,
+        "Y": 232.38347987349982
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Watch",
+        "Id": "a7693afec21d4e41ac4d79f70a8ec6b2",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1533.6917049537162,
+        "Y": 244.83019434596315
       }
     ],
     "Annotations": [
@@ -523,17 +528,16 @@
         "Id": "7fb1df36a81e42e0bf39dc6e1f8554f0",
         "Title": "Constructor\r\n",
         "Nodes": [
-          "59070ff99dc7453083d63c7bfb9b43bd",
-          "7b440909acf74511a96225d5847b0fd2",
-          "7783e61dd3b84315890d52b8e50df999"
+          "7783e61dd3b84315890d52b8e50df999",
+          "ae89464f52ff4b8c9e0bbc9852cae51c"
         ],
-        "Left": 38.456706923250692,
-        "Top": 150.849045248559,
-        "Width": 617.12157578336769,
-        "Height": 201.00000000000006,
+        "Left": 31.54549542359581,
+        "Top": 150.38347987349982,
+        "Width": 625.03998515711123,
+        "Height": 201.00000000000003,
         "FontSize": 30.0,
-        "InitialTop": 232.849045248559,
-        "InitialHeight": 301.420012441071,
+        "InitialTop": 232.38347987349982,
+        "InitialHeight": 147.00601226162931,
         "TextblockHeight": 72.0,
         "Background": "#FF48B9FF"
       },
@@ -550,7 +554,7 @@
         "Height": 435.46672024420735,
         "FontSize": 30.0,
         "InitialTop": 232.849045248559,
-        "InitialHeight": 407.336048010268,
+        "InitialHeight": 256.13338691087404,
         "TextblockHeight": 72.0,
         "Background": "#FFA4E1FF"
       },
@@ -559,16 +563,16 @@
         "Title": "Predict new values\r\n",
         "Nodes": [
           "ceb39825ae4f477e939d9b96df9a680c",
-          "b192c2ec8b1d479fb62301309a6058f5",
-          "4b56b386c374493e8d66ce2bac79d3a7"
+          "4b56b386c374493e8d66ce2bac79d3a7",
+          "b192c2ec8b1d479fb62301309a6058f5"
         ],
         "Left": 1093.81033345858,
-        "Top": 156.544047201542,
-        "Width": 383.56745797031328,
-        "Height": 440.33695411024769,
+        "Top": 152.5302844694699,
+        "Width": 378.550254555223,
+        "Height": 444.3507168423198,
         "FontSize": 30.0,
-        "InitialTop": 238.544047201542,
-        "InitialHeight": 313.793184097476,
+        "InitialTop": 234.5302844694699,
+        "InitialHeight": 381.670287443581,
         "TextblockHeight": 72.0,
         "Background": "#FF71C6A8"
       },
@@ -586,7 +590,7 @@
         "Height": 226.1826088806481,
         "FontSize": 30.0,
         "InitialTop": -76.5027267655853,
-        "InitialHeight": 214.086307785752,
+        "InitialHeight": 232.1826088806481,
         "TextblockHeight": 36.0,
         "Background": "#FFFFC999"
       },
@@ -602,9 +606,25 @@
         "Height": 175.0,
         "FontSize": 30.0,
         "InitialTop": 232.849045248559,
-        "InitialHeight": 225.138438509364,
+        "InitialHeight": 145.0,
         "TextblockHeight": 72.0,
         "Background": "#FF71C6A8"
+      },
+      {
+        "Id": "2d83d93e76b84644b3dd159fcc82cab1",
+        "Title": "Result\r\n",
+        "Nodes": [
+          "a7693afec21d4e41ac4d79f70a8ec6b2"
+        ],
+        "Left": 1523.6917049537162,
+        "Top": 148.16352767929646,
+        "Width": 161.33333333333334,
+        "Height": 205.66666666666669,
+        "FontSize": 36.0,
+        "InitialTop": 244.83019434596315,
+        "InitialHeight": 139.0,
+        "TextblockHeight": 86.666666666666671,
+        "Background": "#FFFFC999"
       },
       {
         "Id": "b192c2ec8b1d479fb62301309a6058f5",
@@ -621,8 +641,8 @@
         "Background": "#FFC1D676"
       }
     ],
-    "X": 265.40581900293336,
-    "Y": 186.42303686421798,
-    "Zoom": 0.66190237670010366
+    "X": 162.87208471035345,
+    "Y": 255.99387521817286,
+    "Zoom": 0.37360312093977821
   }
 }

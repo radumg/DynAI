@@ -10,45 +10,6 @@
   "Outputs": [],
   "Nodes": [
     {
-      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "NodeType": "FunctionNode",
-      "FunctionSignature": "AI.Algorithms.Regression.MultivariateLinearRegression.MultivariateLinearRegression@double[][],double[][]",
-      "Id": "cedee3e2156948ff9c8b9fef3b345493",
-      "Inputs": [
-        {
-          "Id": "0846e533ad2c43a6b67b0f26ba0cb506",
-          "Name": "inputList",
-          "Description": "double[][]",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "e4749a7b283b4cdd934dcc2ea192d51b",
-          "Name": "outputList",
-          "Description": "double[][]",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "8fae9accb28041b19490989b9a77e792",
-          "Name": "MultivariateLinearRegression",
-          "Description": "MultivariateLinearRegression",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Replication": "Auto",
-      "Description": "MultivariateLinearRegression.MultivariateLinearRegression (inputList: double[][], outputList: double[][]): MultivariateLinearRegression"
-    },
-    {
       "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
       "NodeType": "CodeBlockNode",
       "Code": "[\n[  1,  1,  1 ],\n[  2,  1,  1 ],\n[  3,  1,  1 ]\n];",
@@ -244,23 +205,57 @@
       ],
       "Replication": "Auto",
       "Description": "Build a new machine, to learn from training data and predict outcomes, using a specific training algorithm.\n\nMachine.ByAlgorithm (algorithm: var): Machine"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "AI.Algorithms.Regression.MultivariateLinearRegression.WithTrainingData@double[][],double[][]",
+      "Id": "296482ccac9647139ad7537dc906e9c5",
+      "Inputs": [
+        {
+          "Id": "3adf04ed52384c54843d84aec69a0e07",
+          "Name": "inputList",
+          "Description": "Use inputList as rows with equal numbers of featurs, which used for learning.\n\ndouble[][]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0824be9413d34a62a8ec57b01395e273",
+          "Name": "outputList",
+          "Description": "Use outputList as the rows that define the result column for each\n\ndouble[][]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "d6ec9d4a109444459aca02673d9d7489",
+          "Name": "MultivariateLinearRegression",
+          "Description": "MultivariateLinearRegression",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Construct a new Simple Linear Regression algorithm, using the specified training data.\n\nMultivariateLinearRegression.WithTrainingData (inputList: double[][], outputList: double[][]): MultivariateLinearRegression"
     }
   ],
   "Connectors": [
     {
-      "Start": "8fae9accb28041b19490989b9a77e792",
-      "End": "ba5c137c8db74c4d8c5f2fbc307268d3",
-      "Id": "80fc6963b22647c6a84758795079ee97"
-    },
-    {
       "Start": "58774a28cd9a4751bb06bd4bc87535d2",
-      "End": "0846e533ad2c43a6b67b0f26ba0cb506",
-      "Id": "8b7d129c0bc345ba8a1806d98cbc497e"
+      "End": "3adf04ed52384c54843d84aec69a0e07",
+      "Id": "cb2c51ed4931492793d87bdb0978a311"
     },
     {
       "Start": "02c235db5532499eb64a9063857d9084",
-      "End": "e4749a7b283b4cdd934dcc2ea192d51b",
-      "Id": "e65fb5245477436a898f5b974c632801"
+      "End": "0824be9413d34a62a8ec57b01395e273",
+      "Id": "d1e76c669dec44c0acb6e5e0d3722285"
     },
     {
       "Start": "47e3d02bfc874d8fb09e2cf0470ef270",
@@ -281,6 +276,11 @@
       "Start": "553b785ec7d8417c9f2eff4b214269d7",
       "End": "d71eee0c821444f1b3ee8df5ec3de3f3",
       "Id": "a8b8529da1864653b05bcad37d302dfa"
+    },
+    {
+      "Start": "d6ec9d4a109444459aca02673d9d7489",
+      "End": "ba5c137c8db74c4d8c5f2fbc307268d3",
+      "Id": "7b29ad3c9deb46da9d8daf5958f39dad"
     }
   ],
   "Dependencies": [],
@@ -307,16 +307,6 @@
       "UpZ": 0.0
     },
     "NodeViews": [
-      {
-        "ShowGeometry": true,
-        "Name": "MultivariateLinearRegression.MultivariateLinearRegression",
-        "Id": "cedee3e2156948ff9c8b9fef3b345493",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "X": -6.8332309319403066,
-        "Y": 1026.3092282754139
-      },
       {
         "ShowGeometry": true,
         "Name": "Code Block",
@@ -386,6 +376,16 @@
         "Excluded": false,
         "X": 416.13753131280623,
         "Y": 1027.0298257048112
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "MultivariateLinearRegression.WithTrainingData",
+        "Id": "296482ccac9647139ad7537dc906e9c5",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 8.8679412666383541,
+        "Y": 1020.8150017774756
       }
     ],
     "Annotations": [
@@ -443,16 +443,16 @@
         "Id": "9e9ee90381bb438fbc730bdd277d34f9",
         "Title": "Build machine",
         "Nodes": [
-          "cedee3e2156948ff9c8b9fef3b345493",
-          "80f9b1b3266d4fa189a7897e0a3677e6"
+          "80f9b1b3266d4fa189a7897e0a3677e6",
+          "296482ccac9647139ad7537dc906e9c5"
         ],
-        "Left": -16.833230931940307,
-        "Top": 972.97589494208057,
-        "Width": 672.97076224474654,
+        "Left": -1.1320587333616459,
+        "Top": 967.4816684441422,
+        "Width": 657.26959004616788,
         "Height": 172.33333333333337,
         "FontSize": 36.0,
-        "InitialTop": 1026.3092282754139,
-        "InitialHeight": 309.708553474583,
+        "InitialTop": 1020.8150017774756,
+        "InitialHeight": 145.72059742939723,
         "TextblockHeight": 43.333333333333336,
         "Background": "#FF71C6A8"
       },
@@ -503,8 +503,8 @@
         "Background": "#FFC1D676"
       }
     ],
-    "X": 342.74851992945281,
-    "Y": -305.67781174161985,
-    "Zoom": 0.5561695050394343
+    "X": 226.63415230923607,
+    "Y": -64.26372915025604,
+    "Zoom": 0.349680053444683
   }
 }

@@ -63,7 +63,7 @@ namespace AI.Algorithms.Classifier
         #region Constructor
 
         /// <summary>
-        /// Construct a new Simple Linear Regression algorithm, using the specified training data.
+        /// Construct a new Naive Bayes classifier algorithm, using the specified training data.
         /// </summary>
         /// <param name="inputMatrix">The matrix of inputs to use as features.</param>
         /// <param name="columnList">The names to use for the dataset's columns.</param>

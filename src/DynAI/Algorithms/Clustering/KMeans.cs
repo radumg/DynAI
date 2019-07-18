@@ -27,6 +27,8 @@ namespace AI.Algorithms.Clustering
         public object LastTestValue => this.TestValue;
         public object LastResult => this.Result;
 
+        private const int DEFAULT_CLUSTER_COUNT = 2;
+
         #endregion
 
         #region Custom properties
@@ -47,14 +49,18 @@ namespace AI.Algorithms.Clustering
         #region Constructor
 
         /// <summary>
-        /// Construct a new Simple Linear Regression algorithm, using the specified training data.
+        /// Construct a new K-Means clustering algorithm, using the specified training data.
+        /// This will cluster the provided data into a given number of groups.
         /// </summary>
         /// <param name="inputList">Use inputList as rows with equal numbers of featurs, which used for learning.</param>
-        /// <param name="outputList">Use outputList as the rows that define the result column for each</param>
+        /// <param name="clusters">The number of clusters the dataset should be split into</param>
         public static KMeans WithTrainingData(List<List<double>> inputList, int clusters)
         {
             var kmeans = new KMeans();
             kmeans.Clusters = clusters;
+
+            // override K-Means clustering
+            kmeans.Clustering = new Accord.MachineLearning.KMeans(clusters);
 
             // Process training data
             kmeans.LoadTrainingData(inputList);
@@ -78,7 +84,7 @@ namespace AI.Algorithms.Clustering
             Generator.Seed = new Random().Next();
 
             // set up K-Means clustering
-            this.Clustering = new Accord.MachineLearning.KMeans(this.Clusters);
+            this.Clustering = new Accord.MachineLearning.KMeans(DEFAULT_CLUSTER_COUNT);
         }
 
         #endregion

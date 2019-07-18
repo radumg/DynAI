@@ -50,54 +50,6 @@
     {
       "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
       "NodeType": "FunctionNode",
-      "FunctionSignature": "AI.Algorithms.Regression.MultipleLinearRegression.MultipleLinearRegression@double[][],double[],string",
-      "Id": "cb211660c64e4cb89f78c21ac04a97c4",
-      "Inputs": [
-        {
-          "Id": "ca6191d33db14c8c81b0ee21442a6fb7",
-          "Name": "inputList",
-          "Description": "double[][]",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "332a07d7f67e4132aaba506e219743e8",
-          "Name": "outputList",
-          "Description": "double[]",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        },
-        {
-          "Id": "dc32d2bc1dae41728d6f838ec2e1068a",
-          "Name": "codifyColumn",
-          "Description": "string",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Outputs": [
-        {
-          "Id": "77cc4d0845e04a8983cc8a4a58f6ef32",
-          "Name": "MultipleLinearRegression",
-          "Description": "MultipleLinearRegression",
-          "UsingDefaultValue": false,
-          "Level": 2,
-          "UseLevels": false,
-          "KeepListStructure": false
-        }
-      ],
-      "Replication": "Auto",
-      "Description": "MultipleLinearRegression.MultipleLinearRegression (inputList: double[][], outputList: double[], codifyColumn: string): MultipleLinearRegression"
-    },
-    {
-      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
-      "NodeType": "FunctionNode",
       "FunctionSignature": "AI.Machine.Learn",
       "Id": "74cee571940c46a1a76aa98456ced08b",
       "Inputs": [
@@ -459,14 +411,57 @@
       ],
       "Replication": "Auto",
       "Description": "Build a new machine, to learn from training data and predict outcomes, using a specific training algorithm.\n\nMachine.ByAlgorithm (algorithm: var): Machine"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "AI.Algorithms.Regression.MultipleLinearRegression.WithTrainingData@double[][],double[],string",
+      "Id": "c4861852e0a44ff3a57c0fa5fe708f67",
+      "Inputs": [
+        {
+          "Id": "a388b858b36e481a89605b290beb332a",
+          "Name": "inputList",
+          "Description": "Use inputList as rows with equal numbers of featurs, which used for learning.\n\ndouble[][]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7fe1bc5e487548cbbfe21b022b1cd8ef",
+          "Name": "outputList",
+          "Description": "Use outputList as the rows that define the result column for each\n\ndouble[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "1397dadb269f43fbad945dfb51311a0c",
+          "Name": "codifyColumn",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a611516fe459409cbefa63dcc48ac813",
+          "Name": "MultipleLinearRegression",
+          "Description": "MultipleLinearRegression",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Construct a new Simple Linear Regression algorithm, using the specified training data.\n\nMultipleLinearRegression.WithTrainingData (inputList: double[][], outputList: double[], codifyColumn: string): MultipleLinearRegression"
     }
   ],
   "Connectors": [
-    {
-      "Start": "77cc4d0845e04a8983cc8a4a58f6ef32",
-      "End": "9e7789eb28c44502991745e74b6b2ac0",
-      "Id": "e6357c7ade0448999ec1c0bd1c131598"
-    },
     {
       "Start": "e66f7350c8454f749a5cd1e6a878c056",
       "End": "0777ead17e4d4a4dad850f9c8b2fa1a2",
@@ -474,8 +469,8 @@
     },
     {
       "Start": "f462218d7b7b4f8e864eab8cc49f12f4",
-      "End": "dc32d2bc1dae41728d6f838ec2e1068a",
-      "Id": "46bd2edccffb441b8c3fa2c38060b8e7"
+      "End": "1397dadb269f43fbad945dfb51311a0c",
+      "Id": "29324fb9485647ea95f779c5b9ac1a02"
     },
     {
       "Start": "bfe38af92c0149a491a64096387adfda",
@@ -494,13 +489,13 @@
     },
     {
       "Start": "1258ee463a7a4dc699457962cb8520b1",
-      "End": "332a07d7f67e4132aaba506e219743e8",
-      "Id": "4e1cfbfa1cc94b6a94d8b7175433f6e1"
+      "End": "7fe1bc5e487548cbbfe21b022b1cd8ef",
+      "Id": "e60f8c0171b942dea36ff59df9b17c3d"
     },
     {
       "Start": "f20692a43982476db2453d7df522b763",
-      "End": "ca6191d33db14c8c81b0ee21442a6fb7",
-      "Id": "94deeb77167644a3aa4b31945af55040"
+      "End": "a388b858b36e481a89605b290beb332a",
+      "Id": "38a85ff3fef34d06914c47a2c44669ea"
     },
     {
       "Start": "38ed3acb14d8469fb878110e481c43f0",
@@ -526,6 +521,11 @@
       "Start": "f266616b4ff849b3af60db15be37d5c1",
       "End": "5987fe98212b46f6ae279f7db88ed820",
       "Id": "d194a6ec57044582b1b6a482cef7a693"
+    },
+    {
+      "Start": "a611516fe459409cbefa63dcc48ac813",
+      "End": "9e7789eb28c44502991745e74b6b2ac0",
+      "Id": "0f5a429a98df459b8dd067a3e23c9c87"
     }
   ],
   "Dependencies": [],
@@ -564,23 +564,13 @@
       },
       {
         "ShowGeometry": true,
-        "Name": "MultipleLinearRegression.MultipleLinearRegression",
-        "Id": "cb211660c64e4cb89f78c21ac04a97c4",
-        "IsSetAsInput": false,
-        "IsSetAsOutput": false,
-        "Excluded": false,
-        "X": -31.114184619279285,
-        "Y": 68.3438858131424
-      },
-      {
-        "ShowGeometry": true,
         "Name": "Machine.Learn",
         "Id": "74cee571940c46a1a76aa98456ced08b",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 682.422450150293,
-        "Y": 128.091606355623
+        "X": 674.59550524018857,
+        "Y": 63.519310847261806
       },
       {
         "ShowGeometry": true,
@@ -589,8 +579,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": -151.078434262144,
-        "Y": 241.607846661151
+        "X": -190.21315881266614,
+        "Y": 182.90575983536789
       },
       {
         "ShowGeometry": true,
@@ -659,8 +649,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 708.87649595557536,
-        "Y": 380.03221171920796
+        "X": 679.52545254268375,
+        "Y": 284.15213657042904
       },
       {
         "ShowGeometry": true,
@@ -669,8 +659,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 1027.8769043051395,
-        "Y": 127.8782671877334
+        "X": 1014.1797507124568,
+        "Y": 57.435762996793756
       },
       {
         "ShowGeometry": true,
@@ -701,6 +691,16 @@
         "Excluded": false,
         "X": 356.18860775281678,
         "Y": 67.11045039615982
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "MultipleLinearRegression.WithTrainingData",
+        "Id": "c4861852e0a44ff3a57c0fa5fe708f67",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -49.780848167817794,
+        "Y": 49.57688585473727
       }
     ],
     "Annotations": [
@@ -708,16 +708,16 @@
         "Id": "d561c4b372a041d3b2d4dcffeab3f79f",
         "Title": "Build machine\r\n",
         "Nodes": [
-          "cb211660c64e4cb89f78c21ac04a97c4",
-          "15c4affc49354cf0b5fff9b3d1f59159"
+          "15c4affc49354cf0b5fff9b3d1f59159",
+          "c4861852e0a44ff3a57c0fa5fe708f67"
         ],
-        "Left": -41.114184619279285,
-        "Top": -14.88954960384018,
-        "Width": 637.30279237209606,
-        "Height": 228.23343541698259,
+        "Left": -59.780848167817794,
+        "Top": -32.42311414526273,
+        "Width": 655.96945592063457,
+        "Height": 227.0,
         "FontSize": 30.0,
-        "InitialTop": 67.11045039615982,
-        "InitialHeight": 206.2603689621626,
+        "InitialTop": 49.57688585473727,
+        "InitialHeight": 146.23343541698259,
         "TextblockHeight": 72.0,
         "Background": "#FF71C6A8"
       },
@@ -727,12 +727,12 @@
         "Nodes": [
           "e39289b9d9da4e69993cedad7b24a60d"
         ],
-        "Left": 1017.8769043051395,
-        "Top": 45.8782671877334,
+        "Left": 1004.1797507124568,
+        "Top": -24.564237003206244,
         "Width": 243.33333333333334,
         "Height": 201.0,
         "FontSize": 30.0,
-        "InitialTop": 127.8782671877334,
+        "InitialTop": 57.435762996793756,
         "InitialHeight": 145.0,
         "TextblockHeight": 72.0,
         "Background": "#FF71C6A8"
@@ -743,12 +743,12 @@
         "Nodes": [
           "74cee571940c46a1a76aa98456ced08b"
         ],
-        "Left": 672.422450150293,
-        "Top": 46.091606355623014,
+        "Left": 664.59550524018857,
+        "Top": -18.480689152738194,
         "Width": 243.33333333333334,
         "Height": 175.0,
         "FontSize": 30.0,
-        "InitialTop": 128.091606355623,
+        "InitialTop": 63.519310847261806,
         "InitialHeight": 145.0,
         "TextblockHeight": 72.0,
         "Background": "#FF71C6A8"
@@ -798,12 +798,12 @@
         "Nodes": [
           "fe13625bd07441b2875caba48fa1f9cd"
         ],
-        "Left": 698.87649595557536,
-        "Top": 298.03221171920796,
+        "Left": 669.52545254268375,
+        "Top": 202.15213657042904,
         "Width": 248.0,
         "Height": 175.0,
         "FontSize": 30.0,
-        "InitialTop": 380.03221171920796,
+        "InitialTop": 284.15213657042904,
         "InitialHeight": 145.0,
         "TextblockHeight": 72.0,
         "Background": "#FF48B9FF"
@@ -869,8 +869,8 @@
         "Background": "#FFC1D676"
       }
     ],
-    "X": 485.89167542775306,
-    "Y": 130.11346846393383,
-    "Zoom": 0.49429005985587338
+    "X": 316.63244565568118,
+    "Y": 209.73100945411977,
+    "Zoom": 0.31077463431822311
   }
 }
