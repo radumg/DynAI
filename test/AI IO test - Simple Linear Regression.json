@@ -1,17 +1,31 @@
 {
   "$type": "AI.Machine, AI",
   "Name": "TestMachine #1",
-  "GUID": "82ab8496-7e6d-4227-8fcd-7b0105d24577",
+  "GUID": "c8f5ece6-834b-4ac8-81e8-0756bfe68f04",
   "Description": "simple machine",
+  "TrainingTime": "00:00:00.0180000",
+  "PredictionTime": "00:00:00",
   "Algorithm": {
     "$type": "AI.Algorithms.Regression.SimpleLinearRegression, AI",
     "Name": "Simple Linear Regression",
     "Type": 0,
     "IsTrainingDataLoaded": true,
-    "IsTrained": false,
+    "IsTrained": true,
     "PredictionType": "System.Double, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
-    "ResultType": "System.Double, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+    "ResultType": "System.Double, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+    "LastTestValue": 500.0,
+    "LastResult": 963194.62733737356,
+    "Regression": {
+      "$type": "Accord.Statistics.Models.Regression.Linear.SimpleLinearRegression, Accord.Statistics",
+      "Slope": 410.71898867526977,
+      "Intercept": 757835.13299973868,
+      "NumberOfParameters": 2,
+      "NumberOfInputs": 1,
+      "NumberOfOutputs": 1
+    }
   },
-  "IsTrained": false,
-  "ResultDataType": "System.Double"
+  "IsTrained": true,
+  "Result": 963194.62733737356,
+  "ResultDataType": "System.Double",
+  "LastTestValue": 500.0
 }

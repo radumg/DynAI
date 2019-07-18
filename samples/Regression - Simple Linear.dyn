@@ -1,0 +1,648 @@
+{
+  "Uuid": "3c9d0464-8643-5ffe-96e5-ab1769818209",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Regression - Simple Linear",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "[1000000,\n1600000,\n2200000,\n2500000,\n3100000,\n3300000,\n3500000,\n2600000,\n3000000,\n4000000];",
+      "Id": "57ed6c173d4147379325911673f79fab",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "ee980e06720a44e5a9db788f20028d5a",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "[500,\n3500,\n4400,\n4700,\n5400,\n3700,\n6200,\n5200,\n6600,\n6600];",
+      "Id": "0b7a3fc110724c8b8079d579a974fa9c",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "91070502a77745938e6e1d4ff361ba9a",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "4506;",
+      "Id": "ceb39825ae4f477e939d9b96df9a680c",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "75aaf472460a48fd91e5302c3c595410",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "AI.Machine.Predict@var[]..[]",
+      "Id": "4b56b386c374493e8d66ce2bac79d3a7",
+      "Inputs": [
+        {
+          "Id": "c8db4d96072b481f94ee74cd977d7ec1",
+          "Name": "machine",
+          "Description": "AI.Machine",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "90ba3514cfb14e4cbf835b4eccce2b99",
+          "Name": "testData",
+          "Description": "var[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "1eaf5d4737084bf99584dbae1f7bb8fb",
+          "Name": "Machine",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "04f334f7675d4751b9069b06bfb79eda",
+          "Name": "Result",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "The time it took for the machine to predict the new outcome.\n\nMachine.Predict (testData: var[]..[]): var[]..[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "AI.Machine.GetAlgorithm",
+      "Id": "55bb40b5ce204527b69e06928232e73f",
+      "Inputs": [
+        {
+          "Id": "8b0169e5c82840e3aa497a9ec68b14e9",
+          "Name": "machine",
+          "Description": "AI.Machine",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e1e687a14e1e4f63939fa238e1135f8e",
+          "Name": "var[]..[]",
+          "Description": "The algorithm used by the machine for learning, as an object.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get the algorithm used by the machine for learning.\n\nMachine.GetAlgorithm ( ): var[]..[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "AI.Machine.GUID",
+      "Id": "3999de6cc37743c6ad5a897a6ba67b41",
+      "Inputs": [
+        {
+          "Id": "01db720b1fc3401091e3905b3d52ad7e",
+          "Name": "machine",
+          "Description": "AI.Machine",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "fcf6fec548c441cbb5988dadb78a4f54",
+          "Name": "string",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "The globally unique ID of the machine. Useful when storing the results to disk, does not affect results in any way.\n\nMachine.GUID: string"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "AI.Machine.Learn",
+      "Id": "bad85f962b5046459641cb05a399392f",
+      "Inputs": [
+        {
+          "Id": "6ce7ed21e2914784a25b77a010f5237b",
+          "Name": "machine",
+          "Description": "AI.Machine",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "20a62f27572f4914b2cc6511091c5296",
+          "Name": "Machine",
+          "Description": "The input machine, now trained.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Tells a machine to learn from its training data.\n\nMachine.Learn ( ): Machine"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "AI.Algorithms.Regression.SimpleLinearRegression.IsTrainingDataLoaded",
+      "Id": "670613dd65564252a74990782377d188",
+      "Inputs": [
+        {
+          "Id": "ca36b52040e6481f9625eb774b6f64bf",
+          "Name": "simpleLinearRegression",
+          "Description": "AI.Algorithms.Regression.SimpleLinearRegression",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "5737051f8b7148aaa5f4e9429e452db9",
+          "Name": "bool",
+          "Description": "bool",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "SimpleLinearRegression.IsTrainingDataLoaded: bool"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "AI.Machine.ByAlgorithm@var",
+      "Id": "7783e61dd3b84315890d52b8e50df999",
+      "Inputs": [
+        {
+          "Id": "455318d3756f41339836a988e4828eaa",
+          "Name": "algorithm",
+          "Description": "The algorithm to use for learning. Has to contain training data already.\n\nvar",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a12c9e5f1b9544d9b2179bacaf857487",
+          "Name": "Machine",
+          "Description": "Machine",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Build a new machine, to learn from training data and predict outcomes, using a specific training algorithm.\n\nMachine.ByAlgorithm (algorithm: var): Machine"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "AI.Algorithms.Regression.SimpleLinearRegression.WithTrainingData@double[],double[]",
+      "Id": "ae89464f52ff4b8c9e0bbc9852cae51c",
+      "Inputs": [
+        {
+          "Id": "57f2744c66524cfaafce17ed82edcbd6",
+          "Name": "inputList",
+          "Description": "Use inputList as rows with equal numbers of featurs, which used for learning.\n\ndouble[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "51fb876a06a34413b4c9d13e4fde82c6",
+          "Name": "outputList",
+          "Description": "Use outputList as the rows that define the result column for each\n\ndouble[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "cbe47247f6e6417eb2c975b6696d8b3c",
+          "Name": "SimpleLinearRegression",
+          "Description": "SimpleLinearRegression",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Construct a new Simple Linear Regression algorithm, using the specified training data.\n\nSimpleLinearRegression.WithTrainingData (inputList: double[], outputList: double[]): SimpleLinearRegression"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "a7693afec21d4e41ac4d79f70a8ec6b2",
+      "Inputs": [
+        {
+          "Id": "bd0cc8b12ef5486e9c89b66eca2660ed",
+          "Name": "",
+          "Description": "Node to evaluate.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "73806e75a6604285860fa85796f830ca",
+          "Name": "",
+          "Description": "Watch contents.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualize the output of node."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "ee980e06720a44e5a9db788f20028d5a",
+      "End": "51fb876a06a34413b4c9d13e4fde82c6",
+      "Id": "0992f3de6f7d4f11b1939d61a9a1aeaa"
+    },
+    {
+      "Start": "91070502a77745938e6e1d4ff361ba9a",
+      "End": "57f2744c66524cfaafce17ed82edcbd6",
+      "Id": "d7b93e9abce34177bafa0fa45ea311a7"
+    },
+    {
+      "Start": "75aaf472460a48fd91e5302c3c595410",
+      "End": "90ba3514cfb14e4cbf835b4eccce2b99",
+      "Id": "b6ce98b36a014ed4862822fa85c100a8"
+    },
+    {
+      "Start": "04f334f7675d4751b9069b06bfb79eda",
+      "End": "bd0cc8b12ef5486e9c89b66eca2660ed",
+      "Id": "7db7c3d865a343f0a133ab4637daac2d"
+    },
+    {
+      "Start": "e1e687a14e1e4f63939fa238e1135f8e",
+      "End": "ca36b52040e6481f9625eb774b6f64bf",
+      "Id": "c7747966642f40b991acb25064aefd1d"
+    },
+    {
+      "Start": "20a62f27572f4914b2cc6511091c5296",
+      "End": "c8db4d96072b481f94ee74cd977d7ec1",
+      "Id": "7410db0e257643cda9f98ec5edce06f1"
+    },
+    {
+      "Start": "a12c9e5f1b9544d9b2179bacaf857487",
+      "End": "6ce7ed21e2914784a25b77a010f5237b",
+      "Id": "36b44cba3b6549869d9d4a3ad41efc3b"
+    },
+    {
+      "Start": "a12c9e5f1b9544d9b2179bacaf857487",
+      "End": "01db720b1fc3401091e3905b3d52ad7e",
+      "Id": "d1cdbf75deca41b99727e2f3949a2a3d"
+    },
+    {
+      "Start": "a12c9e5f1b9544d9b2179bacaf857487",
+      "End": "8b0169e5c82840e3aa497a9ec68b14e9",
+      "Id": "b597920679fd4a6e86b901e0c6be6252"
+    },
+    {
+      "Start": "cbe47247f6e6417eb2c975b6696d8b3c",
+      "End": "455318d3756f41339836a988e4828eaa",
+      "Id": "778b8de942894d1698d12254b00a7b15"
+    }
+  ],
+  "Dependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.0.2.6826",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Corresponding output values",
+        "Id": "57ed6c173d4147379325911673f79fab",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -247.202199512776,
+        "Y": 343.982432159433
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Input values",
+        "Id": "0b7a3fc110724c8b8079d579a974fa9c",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -355.65036067183,
+        "Y": 232.849045248559
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "ceb39825ae4f477e939d9b96df9a680c",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1103.94609268164,
+        "Y": 381.673807825241
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Machine.Predict",
+        "Id": "4b56b386c374493e8d66ce2bac79d3a7",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1239.0272546804697,
+        "Y": 234.5302844694699
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Machine.GetAlgorithm",
+        "Id": "55bb40b5ce204527b69e06928232e73f",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 830.257490175312,
+        "Y": -76.5027267655853
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Machine.GUID",
+        "Id": "3999de6cc37743c6ad5a897a6ba67b41",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 831.55872314368,
+        "Y": 10.6798821150628
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Machine.Learn",
+        "Id": "bad85f962b5046459641cb05a399392f",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 824.668299621142,
+        "Y": 232.849045248559
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "SimpleLinearRegression.IsTrainingDataLoaded",
+        "Id": "670613dd65564252a74990782377d188",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1162.67517115864,
+        "Y": -76.0989334156013
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Machine.ByAlgorithm",
+        "Id": "7783e61dd3b84315890d52b8e50df999",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 416.5854805807071,
+        "Y": 234.38949213512913
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "SimpleLinearRegression.WithTrainingData",
+        "Id": "ae89464f52ff4b8c9e0bbc9852cae51c",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 41.54549542359581,
+        "Y": 232.38347987349982
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Watch",
+        "Id": "a7693afec21d4e41ac4d79f70a8ec6b2",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1533.6917049537162,
+        "Y": 244.83019434596315
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "7fb1df36a81e42e0bf39dc6e1f8554f0",
+        "Title": "Constructor\r\n",
+        "Nodes": [
+          "7783e61dd3b84315890d52b8e50df999",
+          "ae89464f52ff4b8c9e0bbc9852cae51c"
+        ],
+        "Left": 31.54549542359581,
+        "Top": 150.38347987349982,
+        "Width": 625.03998515711123,
+        "Height": 201.00000000000003,
+        "FontSize": 30.0,
+        "InitialTop": 232.38347987349982,
+        "InitialHeight": 147.00601226162931,
+        "TextblockHeight": 72.0,
+        "Background": "#FF48B9FF"
+      },
+      {
+        "Id": "c0d1f5b18800478aa519772328cdc31b",
+        "Title": "Training Data\r\n",
+        "Nodes": [
+          "57ed6c173d4147379325911673f79fab",
+          "0b7a3fc110724c8b8079d579a974fa9c"
+        ],
+        "Left": -365.65036067183,
+        "Top": 150.849045248559,
+        "Width": 321.11482782572068,
+        "Height": 435.46672024420735,
+        "FontSize": 30.0,
+        "InitialTop": 232.849045248559,
+        "InitialHeight": 256.13338691087404,
+        "TextblockHeight": 72.0,
+        "Background": "#FFA4E1FF"
+      },
+      {
+        "Id": "57abd99eef4d46dcb6c765def2bb4461",
+        "Title": "Predict new values\r\n",
+        "Nodes": [
+          "ceb39825ae4f477e939d9b96df9a680c",
+          "4b56b386c374493e8d66ce2bac79d3a7",
+          "b192c2ec8b1d479fb62301309a6058f5"
+        ],
+        "Left": 1093.81033345858,
+        "Top": 152.5302844694699,
+        "Width": 378.550254555223,
+        "Height": 444.3507168423198,
+        "FontSize": 30.0,
+        "InitialTop": 234.5302844694699,
+        "InitialHeight": 381.670287443581,
+        "TextblockHeight": 72.0,
+        "Background": "#FF71C6A8"
+      },
+      {
+        "Id": "3a2541339f254469bccec307ddce9267",
+        "Title": "Inspect",
+        "Nodes": [
+          "55bb40b5ce204527b69e06928232e73f",
+          "3999de6cc37743c6ad5a897a6ba67b41",
+          "670613dd65564252a74990782377d188"
+        ],
+        "Left": 820.257490175312,
+        "Top": -122.50272676558529,
+        "Width": 654.41768098332807,
+        "Height": 226.1826088806481,
+        "FontSize": 30.0,
+        "InitialTop": -76.5027267655853,
+        "InitialHeight": 232.1826088806481,
+        "TextblockHeight": 36.0,
+        "Background": "#FFFFC999"
+      },
+      {
+        "Id": "89cf15204f6149d998f30402c76be962",
+        "Title": "Learn\r\n",
+        "Nodes": [
+          "bad85f962b5046459641cb05a399392f"
+        ],
+        "Left": 814.668299621142,
+        "Top": 150.849045248559,
+        "Width": 243.33333333333334,
+        "Height": 175.0,
+        "FontSize": 30.0,
+        "InitialTop": 232.849045248559,
+        "InitialHeight": 145.0,
+        "TextblockHeight": 72.0,
+        "Background": "#FF71C6A8"
+      },
+      {
+        "Id": "2d83d93e76b84644b3dd159fcc82cab1",
+        "Title": "Result\r\n",
+        "Nodes": [
+          "a7693afec21d4e41ac4d79f70a8ec6b2"
+        ],
+        "Left": 1523.6917049537162,
+        "Top": 148.16352767929646,
+        "Width": 161.33333333333334,
+        "Height": 205.66666666666669,
+        "FontSize": 36.0,
+        "InitialTop": 244.83019434596315,
+        "InitialHeight": 139.0,
+        "TextblockHeight": 86.666666666666671,
+        "Background": "#FFFFC999"
+      },
+      {
+        "Id": "b192c2ec8b1d479fb62301309a6058f5",
+        "Title": "Our machine has never before seen this particular value as input, so it will have to predict what the corresponding output value is.\r\n\r\nThis is essentially what all the learning is about, being able to handle new scenarios.",
+        "Nodes": [],
+        "Left": 1103.81033345858,
+        "Top": 480.214334645123,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": 162.87208471035345,
+    "Y": 255.99387521817286,
+    "Zoom": 0.37360312093977821
+  }
+}

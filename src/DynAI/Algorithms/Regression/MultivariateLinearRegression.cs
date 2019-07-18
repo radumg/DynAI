@@ -2,6 +2,7 @@
 using Accord.Statistics.Models.Regression.Linear;
 using Autodesk.DesignScript.Runtime;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -17,7 +18,7 @@ namespace AI.Algorithms.Regression
         // Metadata
         public string Name { get; set; }
         public AlgorithmType Type { get; }
-        public bool IsTrainingDataLoaded => HasTrainingData();
+        public bool IsTrainingDataLoaded => this.HasTrainingData();
         public bool IsTrained { get; set; }
 
         // Type support
@@ -25,8 +26,8 @@ namespace AI.Algorithms.Regression
         public Type ResultType { get; private set; }
 
         // dataset
-        public object LastTestValue => TestValue;
-        public object LastResult => Result;
+        public object LastTestValue => this.TestValue;
+        public object LastResult => this.Result;
 
         #endregion
 
@@ -38,7 +39,7 @@ namespace AI.Algorithms.Regression
         private double[][] Result;
 
         // Learner & predictor - these are not part of the interface
-        private Accord.Statistics.Models.Regression.Linear.MultivariateLinearRegression regression;
+        public Accord.Statistics.Models.Regression.Linear.MultivariateLinearRegression Regression { get; set; }
         private OrdinaryLeastSquares ols;
 
         #endregion
@@ -46,37 +47,37 @@ namespace AI.Algorithms.Regression
         #region Constructor
 
         /// <summary>
-        /// Construct a new Simple Linear Regression algorithm, using the specified training data.
+        /// Construct a new Multivariate Regression algorithm, using the specified training data.
         /// </summary>
-        /// <param name="inputList">Use inputList as rows with equal numbers of featurs, which used for learning.</param>
+        /// <param name="inputList">Use inputList as rows with equal numbers of features, which are used for learning.</param>
         /// <param name="outputList">Use outputList as the rows that define the result column for each</param>
-        public MultivariateLinearRegression(List<List<double>> inputList, List<List<double>> outputList)
+        public static MultivariateLinearRegression WithTrainingData(List<List<double>> inputList, List<List<double>> outputList)
         {
-            Name = "Multivariate Linear Regression";
-            Type = AlgorithmType.Regression;
-            IsTrained = false;
-            PredictionType = typeof(double[][]);
-            ResultType = typeof(double[][]);
-            Inputs = null;
-            Outputs = null;
-            TestValue = null;
-            Result = null;
-
-            // initialise seed value for Accord framework
-            Generator.Seed = new Random().Next();
-
+            var regression = new MultivariateLinearRegression();
             // Process training data
-            LoadTrainingData(inputList, outputList);
+            regression.LoadTrainingData(inputList, outputList);
 
-            // set up linear regression using OrdinaryLeastSquares
-            regression = new Accord.Statistics.Models.Regression.Linear.MultivariateLinearRegression();
-            ols = new OrdinaryLeastSquares();
+            return regression;
         }
 
         [IsVisibleInDynamoLibrary(false)]
         public MultivariateLinearRegression()
         {
+            this.Name = "Multivariate Linear Regression";
+            this.Type = AlgorithmType.Regression;
+            this.IsTrained = false;
+            this.PredictionType = typeof(double[][]);
+            this.ResultType = typeof(double[][]);
+            this.Inputs = null;
+            this.Outputs = null;
+            this.TestValue = null;
+            this.Result = null;
 
+            // initialise seed value for Accord framework
+            Generator.Seed = new Random().Next();
+            // set up linear regression using OrdinaryLeastSquares
+            this.Regression = new Accord.Statistics.Models.Regression.Linear.MultivariateLinearRegression();
+            this.ols = new OrdinaryLeastSquares();
         }
         #endregion
 
@@ -86,8 +87,8 @@ namespace AI.Algorithms.Regression
         {
             try
             {
-                regression = this.ols.Learn(Inputs, Outputs);
-                IsTrained = true;
+                this.Regression = this.ols.Learn(this.Inputs, this.Outputs);
+                this.IsTrained = true;
                 return true;
             }
             catch (Exception e)
@@ -97,23 +98,23 @@ namespace AI.Algorithms.Regression
                     "Inner exception : " + e.Message
                     );
             }
-           // return this as IAlgorithm;
+            // return this as IAlgorithm;
         }
 
         [IsVisibleInDynamoLibrary(false)]
-        public dynamic Predict(dynamic inputData)
-        {
-            return Predict(inputData as double[][]);
-        }
-
-        public double[][] PredictDouble(double[][] inputData)
+        public dynamic Predict([ArbitraryDimensionArrayImport] dynamic inputData)
         {
             // parse input to required type - throws error if not possible
-            //this.TestValue = inputData as double[][];
+            double[][] input = this.ConvertToValidInputType(inputData);
 
+            return this.Predict(input);
+        }
+
+        private double[][] Predict(double[][] inputData)
+        {
             // predict & cache test value
             this.TestValue = inputData;
-            this.Result = this.regression.Transform(inputData);
+            this.Result = this.Regression.Transform(inputData);
 
             return this.Result;
         }
@@ -122,14 +123,50 @@ namespace AI.Algorithms.Regression
 
         #region Utils
 
+        private double[][] ConvertToValidInputType(object inputData)
+        {
+            if (inputData.GetType() == this.PredictionType) return (double[][])inputData;
+
+            // if not exact same type, try parsing as double
+            if (!AI.Utils.Types.IsList(inputData)) throw new ArgumentException("Type cannot be converted");
+            var inputMatrix = (IList)inputData;
+            var outputMatrix = new double[inputMatrix.Count][];
+
+            for (var i = 0; i < inputMatrix.Count; i++)
+            {
+                var currentItem = inputMatrix[i];
+                if (!Utils.Types.IsList(currentItem))
+                {
+                    throw new Exception("Expected a matrix of elements, but an inner list was a single object.");
+                }
+                var innerList = (IList)currentItem;
+                var innerOutput = new double[innerList.Count];
+
+                for (var j = 0; j < innerList.Count; j++)
+                {
+                    double parsed;
+                    if (!double.TryParse(innerList[i].ToString(), out parsed))
+                        throw new Exception(
+                            "Input data type is not valid and conversion failed." + Environment.NewLine +
+                            "Supplied : " + inputData.GetType().ToString() + Environment.NewLine +
+                            "Expected : " + this.PredictionType.ToString());
+
+                    innerOutput[i] = parsed;
+                }
+                outputMatrix[i] = innerOutput;
+
+            }
+            return outputMatrix;
+        }
+
         private void LoadTrainingData(List<List<double>> inputList, List<List<double>> outputList)
         {
             // validation
             if (inputList == null || outputList == null) throw new ArgumentNullException("Neither the input list nor the output list can be NULL");
 
             // process input and output lists into multi-dimensional arrays
-            Inputs = inputList.Select(x => x.ToArray()).ToArray();
-            Outputs = outputList.Select(x => x.ToArray()).ToArray();
+            this.Inputs = inputList.Select(x => x.ToArray()).ToArray();
+            this.Outputs = outputList.Select(x => x.ToArray()).ToArray();
         }
 
         private bool HasTrainingData()

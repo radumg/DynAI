@@ -1,0 +1,510 @@
+{
+  "Uuid": "3c9d0464-8643-5ffe-96e5-ab1769818209",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "Regression - Multivariate Linear",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "[\n[  1,  1,  1 ],\n[  2,  1,  1 ],\n[  3,  1,  1 ]\n];",
+      "Id": "5f32fb54fb3640e1aaa4f96e1f49e800",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "58774a28cd9a4751bb06bd4bc87535d2",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "[\n[  2,  3 ],\n[  4,  6 ],\n[  6,  9 ]\n];",
+      "Id": "627d48fdc1db47a2aea348de8f4b3e28",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "02c235db5532499eb64a9063857d9084",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "AI.Machine.Learn",
+      "Id": "28537cb7e00e47e8bf6e9930fc30c60b",
+      "Inputs": [
+        {
+          "Id": "d71eee0c821444f1b3ee8df5ec3de3f3",
+          "Name": "machine",
+          "Description": "AI.Machine",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "47e3d02bfc874d8fb09e2cf0470ef270",
+          "Name": "Machine",
+          "Description": "The input machine, now trained.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Tells a machine to learn from its training data.\n\nMachine.Learn ( ): Machine"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "AI.Machine.Predict@var[]..[]",
+      "Id": "5feb8782c8034caca3fb6a2837218431",
+      "Inputs": [
+        {
+          "Id": "abe0ff6e05444669982e9d3af9270921",
+          "Name": "machine",
+          "Description": "AI.Machine",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ea2127ecb7f44cd0b9dd697f6251e077",
+          "Name": "testData",
+          "Description": "var[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "56d16d77c12e4dce86f7760b1a39b2a7",
+          "Name": "Machine",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "83d390c3bfb9494dbd2b9b8408ae359b",
+          "Name": "Result",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "The time it took for the machine to predict the new outcome.\n\nMachine.Predict (testData: var[]..[]): var[]..[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "[\n[  2,  1,  1 ],\n[  3,  1,  1 ]\n];",
+      "Id": "85c8d04eb8db4bce878285243b91b61b",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "aaa349edfdbb40258353108c737a7840",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "30f982615f4343dc97f3b3b1f703f34e",
+      "Inputs": [
+        {
+          "Id": "1571b5ec1889493ab4465a6b4fcef776",
+          "Name": "",
+          "Description": "Node to evaluate.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "451f3bb8469749c999b291d3ddd0477b",
+          "Name": "",
+          "Description": "Watch contents.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualize the output of node."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "AI.Machine.ByAlgorithm@var",
+      "Id": "80f9b1b3266d4fa189a7897e0a3677e6",
+      "Inputs": [
+        {
+          "Id": "ba5c137c8db74c4d8c5f2fbc307268d3",
+          "Name": "algorithm",
+          "Description": "The algorithm to use for learning. Has to contain training data already.\n\nvar",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "553b785ec7d8417c9f2eff4b214269d7",
+          "Name": "Machine",
+          "Description": "Machine",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Build a new machine, to learn from training data and predict outcomes, using a specific training algorithm.\n\nMachine.ByAlgorithm (algorithm: var): Machine"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "AI.Algorithms.Regression.MultivariateLinearRegression.WithTrainingData@double[][],double[][]",
+      "Id": "296482ccac9647139ad7537dc906e9c5",
+      "Inputs": [
+        {
+          "Id": "3adf04ed52384c54843d84aec69a0e07",
+          "Name": "inputList",
+          "Description": "Use inputList as rows with equal numbers of featurs, which used for learning.\n\ndouble[][]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0824be9413d34a62a8ec57b01395e273",
+          "Name": "outputList",
+          "Description": "Use outputList as the rows that define the result column for each\n\ndouble[][]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "d6ec9d4a109444459aca02673d9d7489",
+          "Name": "MultivariateLinearRegression",
+          "Description": "MultivariateLinearRegression",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Construct a new Simple Linear Regression algorithm, using the specified training data.\n\nMultivariateLinearRegression.WithTrainingData (inputList: double[][], outputList: double[][]): MultivariateLinearRegression"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "58774a28cd9a4751bb06bd4bc87535d2",
+      "End": "3adf04ed52384c54843d84aec69a0e07",
+      "Id": "cb2c51ed4931492793d87bdb0978a311"
+    },
+    {
+      "Start": "02c235db5532499eb64a9063857d9084",
+      "End": "0824be9413d34a62a8ec57b01395e273",
+      "Id": "d1e76c669dec44c0acb6e5e0d3722285"
+    },
+    {
+      "Start": "47e3d02bfc874d8fb09e2cf0470ef270",
+      "End": "abe0ff6e05444669982e9d3af9270921",
+      "Id": "b541464cdfa8412ea6e1ae9809e34561"
+    },
+    {
+      "Start": "83d390c3bfb9494dbd2b9b8408ae359b",
+      "End": "1571b5ec1889493ab4465a6b4fcef776",
+      "Id": "2cb2bf88603a4a91ad25c2fc99a70f39"
+    },
+    {
+      "Start": "aaa349edfdbb40258353108c737a7840",
+      "End": "ea2127ecb7f44cd0b9dd697f6251e077",
+      "Id": "155d60cb93564c11942cc448d1a050ac"
+    },
+    {
+      "Start": "553b785ec7d8417c9f2eff4b214269d7",
+      "End": "d71eee0c821444f1b3ee8df5ec3de3f3",
+      "Id": "a8b8529da1864653b05bcad37d302dfa"
+    },
+    {
+      "Start": "d6ec9d4a109444459aca02673d9d7489",
+      "End": "ba5c137c8db74c4d8c5f2fbc307268d3",
+      "Id": "7b29ad3c9deb46da9d8daf5958f39dad"
+    }
+  ],
+  "Dependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.0.2.6826",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "5f32fb54fb3640e1aaa4f96e1f49e800",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -240.832027405841,
+        "Y": 976.866233307944
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "627d48fdc1db47a2aea348de8f4b3e28",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -229.0,
+        "Y": 1130.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Machine.Learn",
+        "Id": "28537cb7e00e47e8bf6e9930fc30c60b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 778.440530683351,
+        "Y": 1021.1441762583412
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Machine.Predict",
+        "Id": "5feb8782c8034caca3fb6a2837218431",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1078.3086740293727,
+        "Y": 1046.7690749130156
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "85c8d04eb8db4bce878285243b91b61b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 785.20953150518926,
+        "Y": 1278.1470300427147
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Watch",
+        "Id": "30f982615f4343dc97f3b3b1f703f34e",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1371.2764483443443,
+        "Y": 1009.0665933146295
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Machine.ByAlgorithm",
+        "Id": "80f9b1b3266d4fa189a7897e0a3677e6",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 416.13753131280623,
+        "Y": 1027.0298257048112
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "MultivariateLinearRegression.WithTrainingData",
+        "Id": "296482ccac9647139ad7537dc906e9c5",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 8.8679412666383541,
+        "Y": 1020.8150017774756
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "e685f8caacd94ddcb0da954d9d7a00fa",
+        "Title": "Inputs\r\n",
+        "Nodes": [
+          "627d48fdc1db47a2aea348de8f4b3e28",
+          "5f32fb54fb3640e1aaa4f96e1f49e800",
+          "5cccfd81bf064f95b243bb4d559268c9"
+        ],
+        "Left": -572.32590441519778,
+        "Top": 894.866233307944,
+        "Width": 495.49387700935677,
+        "Height": 390.13376669205604,
+        "FontSize": 30.0,
+        "InitialTop": 976.866233307944,
+        "InitialHeight": 298.13376669205604,
+        "TextblockHeight": 72.0,
+        "Background": "#FF48B9FF"
+      },
+      {
+        "Id": "6b2fca3204604f2697c5fe8d1f02b74c",
+        "Title": "Predict\r\n",
+        "Nodes": [
+          "5feb8782c8034caca3fb6a2837218431"
+        ],
+        "Left": 1068.3086740293727,
+        "Top": 964.76907491301563,
+        "Width": 243.33333333333334,
+        "Height": 201.0,
+        "FontSize": 30.0,
+        "InitialTop": 1046.7690749130156,
+        "InitialHeight": 145.0,
+        "TextblockHeight": 72.0,
+        "Background": "#FF71C6A8"
+      },
+      {
+        "Id": "0a8f2524e73b4f5f94c10c57942166a7",
+        "Title": "Learn",
+        "Nodes": [
+          "28537cb7e00e47e8bf6e9930fc30c60b"
+        ],
+        "Left": 768.440530683351,
+        "Top": 967.81084292500782,
+        "Width": 243.33333333333334,
+        "Height": 146.33333333333337,
+        "FontSize": 36.0,
+        "InitialTop": 1021.1441762583412,
+        "InitialHeight": 145.0,
+        "TextblockHeight": 43.333333333333336,
+        "Background": "#FF71C6A8"
+      },
+      {
+        "Id": "9e9ee90381bb438fbc730bdd277d34f9",
+        "Title": "Build machine",
+        "Nodes": [
+          "80f9b1b3266d4fa189a7897e0a3677e6",
+          "296482ccac9647139ad7537dc906e9c5"
+        ],
+        "Left": -1.1320587333616459,
+        "Top": 967.4816684441422,
+        "Width": 657.26959004616788,
+        "Height": 172.33333333333337,
+        "FontSize": 36.0,
+        "InitialTop": 1020.8150017774756,
+        "InitialHeight": 145.72059742939723,
+        "TextblockHeight": 43.333333333333336,
+        "Background": "#FF71C6A8"
+      },
+      {
+        "Id": "9516ed194df34b178f91a309c503f0ad",
+        "Title": "The input value to test",
+        "Nodes": [
+          "85c8d04eb8db4bce878285243b91b61b"
+        ],
+        "Left": 775.20953150518926,
+        "Top": 1138.8136967093815,
+        "Width": 174.0,
+        "Height": 276.33333333333326,
+        "FontSize": 36.0,
+        "InitialTop": 1278.1470300427147,
+        "InitialHeight": 145.0,
+        "TextblockHeight": 129.33333333333334,
+        "Background": "#FF48B9FF"
+      },
+      {
+        "Id": "e1a28471e9924c9ba4d635b616c31072",
+        "Title": "Inspect",
+        "Nodes": [
+          "30f982615f4343dc97f3b3b1f703f34e"
+        ],
+        "Left": 1361.2764483443443,
+        "Top": 955.7332599812961,
+        "Width": 256.0,
+        "Height": 277.0,
+        "FontSize": 36.0,
+        "InitialTop": 1009.0665933146295,
+        "InitialHeight": 145.0,
+        "TextblockHeight": 43.333333333333336,
+        "Background": "#FFFFC999"
+      },
+      {
+        "Id": "5cccfd81bf064f95b243bb4d559268c9",
+        "Title": "In this exercise, we will be using the famous Play Tennis example by Tom Mitchell (1998). In Mitchell's example, one would like to infer if a person would play tennis or not based solely on four input variables :\r\n- Outlook\r\n- Temperature\r\n- Humidity\r\n- Wind \r\n\r\nThe rows of data presented below represent days on which the behavior of the person has been registered, pretty much building our set of observation instances for learning.",
+        "Nodes": [],
+        "Left": -562.32590441519778,
+        "Top": 983.98495904667266,
+        "Width": 0.0,
+        "Height": 0.0,
+        "FontSize": 36.0,
+        "InitialTop": 0.0,
+        "InitialHeight": 0.0,
+        "TextblockHeight": 0.0,
+        "Background": "#FFC1D676"
+      }
+    ],
+    "X": 226.63415230923607,
+    "Y": -64.26372915025604,
+    "Zoom": 0.349680053444683
+  }
+}

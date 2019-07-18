@@ -3,13 +3,14 @@ using Accord.Statistics.Filters;
 using Accord.Statistics.Models.Regression.Linear;
 using Autodesk.DesignScript.Runtime;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace AI.Algorithms.Regression
 {
     /// <summary>
-    ///  In linear regression, the model specification is that the dependent variable, y is a linear combination of the parameters (but need not be linear in the independent variables). 
+    ///  Multiple linear regression. 
     /// </summary>
     public class MultipleLinearRegression :IAlgorithm
     {
@@ -26,22 +27,22 @@ namespace AI.Algorithms.Regression
         public Type ResultType { get; private set; }
 
         // dataset
-        public object LastTestValue => TestValue;
-        public object LastResult => Result;
+        public object LastTestValue => testValue;
+        public object LastResult => result;
 
         #endregion
 
         #region Custom properties
 
-        private double[][] Inputs;
-        private double[] Outputs;
-        private double[] TestValue;
-        private double? Result;
+        private double[][] inputs;
+        private double[] outputs;
+        private double[] testValue;
+        private double? result;
 
         // Learner & predictor - these are not part of the interface
-        private Accord.Statistics.Models.Regression.Linear.MultipleLinearRegression regression;
+        public Accord.Statistics.Models.Regression.Linear.MultipleLinearRegression Regression { get; set; }
         private Codification codebook;
-        private bool Codify;
+        private bool codify;
         private string CodifyColumn = string.Empty;
         private OrdinaryLeastSquares ols;
 
@@ -50,42 +51,46 @@ namespace AI.Algorithms.Regression
         #region Constructor
 
         /// <summary>
-        /// Construct a new Simple Linear Regression algorithm, using the specified training data.
+        /// Construct a new Multiple Linear Regression algorithm, using the specified training data.
         /// </summary>
-        /// <param name="inputList">Use inputList as rows with equal numbers of featurs, which used for learning.</param>
+        /// <param name="inputList">Use inputList as rows with equal numbers of features, which are used for learning.</param>
         /// <param name="outputList">Use outputList as the rows that define the result column for each</param>
-        public MultipleLinearRegression(List<List<double>> inputList, List<double> outputList, string codifyColumn=null)
+        public static MultipleLinearRegression WithTrainingData(List<List<double>> inputList, List<double> outputList, string codifyColumn=null)
+        {
+            var regression = new MultipleLinearRegression();
+
+            // use the codify column if specified
+            if (!string.IsNullOrWhiteSpace(codifyColumn))
+            {
+                regression.codify = true;
+                regression.CodifyColumn = codifyColumn;
+            }
+
+            // Process training data
+            regression.LoadTrainingData(inputList, outputList);
+
+            return regression;
+        }
+
+        [IsVisibleInDynamoLibrary(false)]
+        public MultipleLinearRegression()
         {
             Name = "Multiple Linear Regression";
             Type = AlgorithmType.Regression;
             IsTrained = false;
             PredictionType = typeof(double[]);
             ResultType = typeof(double);
-            Inputs = null;
-            Outputs = null;
-            TestValue = null;
-            Result = null;
-            if (!string.IsNullOrWhiteSpace(codifyColumn))
-            {
-                Codify = true;
-                CodifyColumn = codifyColumn;
-            }
+            inputs = null;
+            outputs = null;
+            testValue = null;
+            result = null;
 
             // initialise seed value for Accord framework
             Generator.Seed = new Random().Next();
 
-            // Process training data
-            LoadTrainingData(inputList, outputList);
-
             // set up linear regression using OrdinaryLeastSquares
-            regression = new Accord.Statistics.Models.Regression.Linear.MultipleLinearRegression();
+            Regression = new Accord.Statistics.Models.Regression.Linear.MultipleLinearRegression();
             ols = new OrdinaryLeastSquares() { UseIntercept = true };
-        }
-
-        [IsVisibleInDynamoLibrary(false)]
-        public MultipleLinearRegression()
-        {
-
         }
         #endregion
 
@@ -93,13 +98,13 @@ namespace AI.Algorithms.Regression
 
         public bool Learn()
         {
-            if (Codify)
+            if (codify)
             {
                 // ADD CODE FOR CODIFICATION SUPPORT HERE.
             }
             try
             {
-                regression = this.ols.Learn(Inputs, Outputs);
+                Regression = this.ols.Learn(inputs, outputs);
                 IsTrained = true;
                 return true;
             }
@@ -113,25 +118,51 @@ namespace AI.Algorithms.Regression
             // return this as IAlgorithm;
         }
 
-        public dynamic Predict(dynamic input)
+        public dynamic Predict([ArbitraryDimensionArrayImport] dynamic inputData)
         {
-            throw new NotImplementedException();
+            // parse input to required type - throws error if not possible
+            double[] input = ConvertToValidInputType(inputData);
+
+            return this.Predict(input);
         }
 
-        public dynamic Predict(List<double> inputData)
+        private dynamic Predict(double[] input)
         {
-            var input = inputData.ToArray();
-
             // predict & cache test value
-            this.TestValue = inputData.ToArray();
-            this.Result = this.regression.Transform(input);
+            this.testValue = input;
+            this.result = this.Regression.Transform(input);
 
-            return this.Result;
+            return this.result;
         }
 
         #endregion
 
         #region Utils
+
+        private double[] ConvertToValidInputType(object inputData)
+        {
+            if (inputData.GetType() == PredictionType) return (double[])inputData;
+
+            // if not exact same type, try parsing as double
+            if (!AI.Utils.Types.IsList(inputData)) throw new ArgumentException("Type cannot be converted");
+            var inputList = (IList)inputData;
+            var outputList = new double[inputList.Count];
+
+            for (int i = 0; i < inputList.Count; i++)
+            {
+                double parsed;
+                if (!double.TryParse(inputList[i].ToString(), out parsed))
+                {
+                    throw new Exception(
+                        "Input data type is not valid and conversion failed." + Environment.NewLine +
+                        "Supplied : " + inputData.GetType().ToString() + Environment.NewLine +
+                        "Expected : " + PredictionType.ToString());
+                }
+                else outputList[i] = parsed;
+            }
+            return outputList;
+        }
+
 
         private void LoadTrainingData(List<List<double>> inputList, List<double> outputList)
         {
@@ -139,10 +170,10 @@ namespace AI.Algorithms.Regression
             if (inputList == null || outputList == null) throw new ArgumentNullException("Neither the input list nor the output list can be NULL");
 
             // process input and output lists into arrays
-            Inputs = inputList.Select(x => x.ToArray()).ToArray();
-            Outputs = outputList.ToArray();
+            inputs = inputList.Select(x => x.ToArray()).ToArray();
+            outputs = outputList.ToArray();
 
-            if (Codify)
+            if (codify)
             {
                 /*
                 
@@ -163,8 +194,8 @@ namespace AI.Algorithms.Regression
 
         private bool HasTrainingData()
         {
-            if (this.Inputs == null) return false;
-            if (this.Inputs.Length == 0) return false;
+            if (this.inputs == null) return false;
+            if (this.inputs.Length == 0) return false;
             return true;
         }
 

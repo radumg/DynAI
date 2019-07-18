@@ -53,7 +53,7 @@ namespace AI.Algorithms.Classifier
         public string OutputColumn { get; private set; }
 
         // Learner & predictor - these are not part of the interface
-        private NaiveBayes classifier;
+        public NaiveBayes Classifier { get; set; }
         private NaiveBayesLearning learner;
         private Codification codebook { get; set; }
         public double[] Probabilities { get; private set; }
@@ -63,12 +63,23 @@ namespace AI.Algorithms.Classifier
         #region Constructor
 
         /// <summary>
-        /// Construct a new Simple Linear Regression algorithm, using the specified training data.
+        /// Construct a new Naive Bayes classifier algorithm, using the specified training data.
         /// </summary>
         /// <param name="inputMatrix">The matrix of inputs to use as features.</param>
         /// <param name="columnList">The names to use for the dataset's columns.</param>
         /// <param name="outputColumn">The name of the column that codifies the result of the learning.</param>
-        public NaiveBayesClassifier(string[][] inputMatrix, List<string> columnList, string outputColumn)
+        public static NaiveBayesClassifier WithTrainingData(string[][] inputMatrix, List<string> columnList, string outputColumn)
+        {
+            var classifier = new NaiveBayesClassifier();
+
+            // Process training data
+            classifier.LoadTrainingData(inputMatrix, columnList, outputColumn);
+
+            return classifier;
+        }
+
+        [IsVisibleInDynamoLibrary(false)]
+        public NaiveBayesClassifier()
         {
             Name = "Naive Bayes Classifier";
             Type = AlgorithmType.Classifier;
@@ -84,17 +95,8 @@ namespace AI.Algorithms.Classifier
             // initialise seed value for Accord framework
             Generator.Seed = new Random().Next();
 
-            // Process training data
-            LoadTrainingData(inputMatrix, columnList, outputColumn);
-
             // Create a new Naive Bayes learner
             this.learner = new NaiveBayesLearning();
-        }
-
-        [IsVisibleInDynamoLibrary(false)]
-        public NaiveBayesClassifier()
-        {
-
         }
         #endregion
 
@@ -104,7 +106,7 @@ namespace AI.Algorithms.Classifier
         {
             try
             {
-                this.classifier = this.learner.Learn(this.codifiedDataset, this.codifiedOutputs);
+                this.Classifier = this.learner.Learn(this.codifiedDataset, this.codifiedOutputs);
                 IsTrained = true;
                 return true;
             }
@@ -117,27 +119,15 @@ namespace AI.Algorithms.Classifier
             }
         }
 
-        public dynamic Predict(dynamic inputData)
+        public dynamic Predict([ArbitraryDimensionArrayImport] dynamic inputData)
         {
             // parse input to required type - throws error if not possible
-            this.TestValue = inputData;
+            string[] input = ConvertToValidInputType(inputData);
 
-            // First encode the test instance
-            int[] instance = this.codebook.Transform(inputData);
-
-            // Let us obtain the numeric output that represents the answer
-            int codeword = this.classifier.Decide(instance);
-
-            // Now let us convert the numeric output to an actual answer
-            this.Result = this.codebook.Revert(this.OutputColumn, codeword);
-
-            // We can also extract the probabilities for each possible answer
-            this.Probabilities = this.classifier.Probabilities(instance);
-
-            return this.Result;
+            return this.Predict(input);
         }
 
-        public string Predict(string[] inputData)
+        private string Predict(string[] inputData)
         {
             // parse input to required type - throws error if not possible
             this.TestValue = inputData;
@@ -146,13 +136,13 @@ namespace AI.Algorithms.Classifier
             int[] instance = this.codebook.Transform(inputData);
 
             // Let us obtain the numeric output that represents the answer
-            int codeword = this.classifier.Decide(instance);
+            int codeword = this.Classifier.Decide(instance);
 
             // Now let us convert the numeric output to an actual answer
             this.Result = this.codebook.Revert(this.OutputColumn, codeword);
 
             // We can also extract the probabilities for each possible answer
-            this.Probabilities = this.classifier.Probabilities(instance);
+            this.Probabilities = this.Classifier.Probabilities(instance);
 
             return this.Result;
         }
@@ -160,6 +150,24 @@ namespace AI.Algorithms.Classifier
         #endregion
 
         #region Utils
+
+        private string[] ConvertToValidInputType(object inputData)
+        {
+            if (inputData.GetType() == PredictionType) return (string[])inputData;
+
+            // if not exact same type, try parsing as double
+            if (!Utils.Types.IsList(inputData)) throw new ArgumentException("Expected a list or array of objects.");
+
+            var inputList = (IList)inputData;
+            var outputList = new string[inputList.Count];
+
+            for (int i = 0; i < inputList.Count; i++)
+            {
+                outputList[i] = inputList[i]?.ToString();
+            }
+            return outputList;
+        }
+
 
         private void LoadTrainingData(string[][] dataset, List<string> outputList, string outputColumn)
         {

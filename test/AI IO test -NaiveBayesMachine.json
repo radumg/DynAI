@@ -1,8 +1,10 @@
 {
   "$type": "AI.Machine, AI",
-  "Name": "NaiveBayesMachine",
-  "GUID": "53a991a0-9f40-4fb2-ab90-2a1e699cb60e",
-  "Description": "simple machine",
+  "Name": "725d050d-cc75-48f0-8786-d629dd089d85",
+  "GUID": "725d050d-cc75-48f0-8786-d629dd089d85",
+  "Description": "",
+  "TrainingTime": "00:00:00",
+  "PredictionTime": "00:00:00",
   "Algorithm": {
     "$type": "AI.Algorithms.Classifier.NaiveBayesClassifier, AI",
     "Dataset": {
@@ -163,11 +165,11 @@
     "Name": "Naive Bayes Classifier",
     "Type": 1,
     "IsTrainingDataLoaded": true,
-    "IsTrained": true,
+    "IsTrained": false,
     "PredictionType": "System.String[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
     "ResultType": "System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
     "OutputColumn": "PlayTennis"
   },
-  "IsTrained": true,
+  "IsTrained": false,
   "ResultDataType": "System.String"
 }

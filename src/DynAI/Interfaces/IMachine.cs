@@ -1,10 +1,11 @@
-﻿using System;
-using Autodesk.DesignScript.Runtime;
+﻿using Autodesk.DesignScript.Runtime;
+using System;
+using System.Collections.Generic;
 
 namespace AI
 {
     /// <summary>
-    /// The generic capabilities of a machine, used for machine learning
+    /// The generic capabilities of a machine that can learn and predict.
     /// </summary>
     [IsVisibleInDynamoLibrary(false)]
     public interface IMachine
@@ -32,6 +33,16 @@ namespace AI
         /// </summary>
         dynamic Result { get; }
 
+        /// <summary>
+        /// The time it took to train the model.
+        /// </summary>
+        TimeSpan TrainingTime { get; }
+
+        /// <summary>
+        /// The time it took to predict the new outcome.
+        /// </summary>
+        TimeSpan PredictionTime { get; }
+
         #endregion
 
         #region ML
@@ -54,43 +65,8 @@ namespace AI
         /// </summary>
         /// <param name="testData">Input for the prediction</param>
         /// <returns>The predicted value</returns>
-        dynamic Predict(dynamic testData);
+        Dictionary<string,object> Predict(dynamic testData);
 
         #endregion
-    }
-
-    /// <summary>
-    /// This provides an abstraction so that different machines can use different formats for training data.
-    /// </summary>
-    [IsVisibleInDynamoLibrary(false)]
-    public interface ITrainingData
-    {
-        /// <summary>
-        /// Fetches the training data.
-        /// </summary>
-        /// <returns>The training dataset.</returns>
-        double[] GetTrainingData();
-
-        /// <summary>
-        /// Allows us to set the training data.
-        /// </summary>
-        /// <returns>True if the operation succeeded, false otherwise.</returns>
-        bool SetTrainingData();
-    }
-
-    [IsVisibleInDynamoLibrary(false)]
-    public interface IInputData<T>
-    {
-        /// <summary>
-        /// Retrieves the input data.
-        /// </summary>
-        /// <returns>The data.</returns>
-        T GetInputData();
-
-        /// <summary>
-        /// Sets the input data for the machine to the specified values.
-        /// </summary>
-        /// <returns>True if the operation succeeded, false otherwise.</returns>
-        bool SetInputData();
     }
 }
