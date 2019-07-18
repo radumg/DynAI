@@ -68,13 +68,14 @@ namespace AI.Algorithms.Classifier
         /// <param name="inputMatrix">The matrix of inputs to use as features.</param>
         /// <param name="columnList">The names to use for the dataset's columns.</param>
         /// <param name="outputColumn">The name of the column that codifies the result of the learning.</param>
-        public NaiveBayesClassifier(string[][] inputMatrix, List<string> columnList, string outputColumn):this()
+        public static NaiveBayesClassifier WithTrainingData(string[][] inputMatrix, List<string> columnList, string outputColumn)
         {
-            // Process training data
-            LoadTrainingData(inputMatrix, columnList, outputColumn);
+            var classifier = new NaiveBayesClassifier();
 
-            // Create a new Naive Bayes learner
-            this.learner = new NaiveBayesLearning();
+            // Process training data
+            classifier.LoadTrainingData(inputMatrix, columnList, outputColumn);
+
+            return classifier;
         }
 
         [IsVisibleInDynamoLibrary(false)]
@@ -93,6 +94,9 @@ namespace AI.Algorithms.Classifier
 
             // initialise seed value for Accord framework
             Generator.Seed = new Random().Next();
+
+            // Create a new Naive Bayes learner
+            this.learner = new NaiveBayesLearning();
         }
         #endregion
 

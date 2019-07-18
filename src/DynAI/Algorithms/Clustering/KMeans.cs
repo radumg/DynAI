@@ -1,8 +1,6 @@
 ﻿using Accord.Math.Random;
-using Accord.Statistics.Models.Regression.Linear;
 using Autodesk.DesignScript.Runtime;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -18,7 +16,7 @@ namespace AI.Algorithms.Clustering
         // Metadata
         public string Name { get; set; }
         public AlgorithmType Type { get; }
-        public bool IsTrainingDataLoaded => HasTrainingData();
+        public bool IsTrainingDataLoaded => this.HasTrainingData();
         public bool IsTrained { get; set; }
 
         // Type support
@@ -26,8 +24,8 @@ namespace AI.Algorithms.Clustering
         public Type ResultType { get; private set; }
 
         // dataset
-        public object LastTestValue => TestValue;
-        public object LastResult => Result;
+        public object LastTestValue => this.TestValue;
+        public object LastResult => this.Result;
 
         #endregion
 
@@ -53,31 +51,34 @@ namespace AI.Algorithms.Clustering
         /// </summary>
         /// <param name="inputList">Use inputList as rows with equal numbers of featurs, which used for learning.</param>
         /// <param name="outputList">Use outputList as the rows that define the result column for each</param>
-        public KMeans(List<List<double>> inputList, int clusters):this()
+        public static KMeans WithTrainingData(List<List<double>> inputList, int clusters)
         {
-            this.Clusters = clusters;
+            var kmeans = new KMeans();
+            kmeans.Clusters = clusters;
 
             // Process training data
-            LoadTrainingData(inputList);
+            kmeans.LoadTrainingData(inputList);
 
-            // set up K-Means clustering
-            Clustering = new Accord.MachineLearning.KMeans(this.Clusters);
+            return kmeans;
         }
 
         [IsVisibleInDynamoLibrary(false)]
         public KMeans()
         {
-            Name = "K-Means Clustering";
-            Type = AlgorithmType.Clustering;
-            IsTrained = false;
-            PredictionType = typeof(double[]);
-            ResultType = typeof(int[]);
-            Inputs = null;
-            TestValue = null;
-            Result = null;
+            this.Name = "K-Means Clustering";
+            this.Type = AlgorithmType.Clustering;
+            this.IsTrained = false;
+            this.PredictionType = typeof(double[]);
+            this.ResultType = typeof(int[]);
+            this.Inputs = null;
+            this.TestValue = null;
+            this.Result = null;
 
             // initialise seed value for Accord framework
             Generator.Seed = new Random().Next();
+
+            // set up K-Means clustering
+            this.Clustering = new Accord.MachineLearning.KMeans(this.Clusters);
         }
 
         #endregion
@@ -90,8 +91,8 @@ namespace AI.Algorithms.Clustering
             this.IsTrained = false;
             try
             {
-                cluster = this.Clustering.Learn(Inputs);
-                IsTrained = true;
+                this.cluster = this.Clustering.Learn(this.Inputs);
+                this.IsTrained = true;
                 return true;
             }
             catch (Exception e)
@@ -106,7 +107,7 @@ namespace AI.Algorithms.Clustering
         [IsVisibleInDynamoLibrary(false)]
         public dynamic Predict([ArbitraryDimensionArrayImport] dynamic ignored)
         {
-            this.Result = this.cluster.Decide(Inputs);
+            this.Result = this.cluster.Decide(this.Inputs);
 
             return this.Result;
         }
@@ -121,7 +122,7 @@ namespace AI.Algorithms.Clustering
             if (inputList == null) throw new ArgumentNullException("Neither the input list nor the output list can be NULL");
 
             // process input and output lists into multi-dimensional arrays
-            Inputs = inputList.Select(x => x.ToArray()).ToArray();
+            this.Inputs = inputList.Select(x => x.ToArray()).ToArray();
         }
 
         private bool HasTrainingData()

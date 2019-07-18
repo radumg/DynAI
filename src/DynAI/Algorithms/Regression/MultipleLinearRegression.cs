@@ -55,20 +55,21 @@ namespace AI.Algorithms.Regression
         /// </summary>
         /// <param name="inputList">Use inputList as rows with equal numbers of featurs, which used for learning.</param>
         /// <param name="outputList">Use outputList as the rows that define the result column for each</param>
-        public MultipleLinearRegression(List<List<double>> inputList, List<double> outputList, string codifyColumn=null) : this()
+        public static MultipleLinearRegression WithTrainingData(List<List<double>> inputList, List<double> outputList, string codifyColumn=null)
         {
+            var regression = new MultipleLinearRegression();
+
+            // use the codify column if specified
             if (!string.IsNullOrWhiteSpace(codifyColumn))
             {
-                codify = true;
-                CodifyColumn = codifyColumn;
+                regression.codify = true;
+                regression.CodifyColumn = codifyColumn;
             }
 
             // Process training data
-            LoadTrainingData(inputList, outputList);
+            regression.LoadTrainingData(inputList, outputList);
 
-            // set up linear regression using OrdinaryLeastSquares
-            Regression = new Accord.Statistics.Models.Regression.Linear.MultipleLinearRegression();
-            ols = new OrdinaryLeastSquares() { UseIntercept = true };
+            return regression;
         }
 
         [IsVisibleInDynamoLibrary(false)]
@@ -86,6 +87,10 @@ namespace AI.Algorithms.Regression
 
             // initialise seed value for Accord framework
             Generator.Seed = new Random().Next();
+
+            // set up linear regression using OrdinaryLeastSquares
+            Regression = new Accord.Statistics.Models.Regression.Linear.MultipleLinearRegression();
+            ols = new OrdinaryLeastSquares() { UseIntercept = true };
         }
         #endregion
 

@@ -16,7 +16,7 @@ namespace AI.Algorithms.Regression
         // Metadata
         public string Name { get; set; }
         public AlgorithmType Type { get; }
-        public bool IsTrainingDataLoaded => HasTrainingData();
+        public bool IsTrainingDataLoaded => this.HasTrainingData();
         public bool IsTrained { get; set; }
 
         // Type support
@@ -24,8 +24,8 @@ namespace AI.Algorithms.Regression
         public Type ResultType { get; private set; }
 
         // dataset
-        public object LastTestValue => TestValue;
-        public object LastResult => Result;
+        public object LastTestValue => this.TestValue;
+        public object LastResult => this.Result;
 
         #endregion
 
@@ -50,31 +50,35 @@ namespace AI.Algorithms.Regression
         /// </summary>
         /// <param name="inputList">Use inputList as rows with equal numbers of featurs, which used for learning.</param>
         /// <param name="outputList">Use outputList as the rows that define the result column for each</param>
-        public SimpleLinearRegression(List<double> inputList, List<double> outputList) : this()
+        public static SimpleLinearRegression WithTrainingData(List<double> inputList, List<double> outputList)
         {
-            // Process training data
-            LoadTrainingData(inputList, outputList);
+            var regression = new SimpleLinearRegression();
 
-            // set up linear regression using OrdinaryLeastSquares
-            Regression = new Accord.Statistics.Models.Regression.Linear.SimpleLinearRegression();
-            ols = new OrdinaryLeastSquares();
+            // Process training data
+            regression.LoadTrainingData(inputList, outputList);
+
+            return regression;
         }
 
         [IsVisibleInDynamoLibrary(false)]
         public SimpleLinearRegression()
         {
-            Name = "Simple Linear Regression";
-            Type = AlgorithmType.Regression;
-            IsTrained = false;
-            PredictionType = typeof(double);
-            ResultType = typeof(double);
-            Inputs = null;
-            Outputs = null;
-            TestValue = null;
-            Result = null;
+            this.Name = "Simple Linear Regression";
+            this.Type = AlgorithmType.Regression;
+            this.IsTrained = false;
+            this.PredictionType = typeof(double);
+            this.ResultType = typeof(double);
+            this.Inputs = null;
+            this.Outputs = null;
+            this.TestValue = null;
+            this.Result = null;
 
             // initialise seed value for Accord framework
             Generator.Seed = new Random().Next();
+
+            // set up linear regression using OrdinaryLeastSquares
+            this.Regression = new Accord.Statistics.Models.Regression.Linear.SimpleLinearRegression();
+            this.ols = new OrdinaryLeastSquares();
         }
         #endregion
 
@@ -85,8 +89,8 @@ namespace AI.Algorithms.Regression
         {
             try
             {
-                Regression = this.ols.Learn(Inputs, Outputs);
-                IsTrained = true;
+                this.Regression = this.ols.Learn(this.Inputs, this.Outputs);
+                this.IsTrained = true;
                 return true;
             }
             catch (Exception e)
@@ -103,7 +107,7 @@ namespace AI.Algorithms.Regression
         public dynamic Predict(dynamic inputData)
         {
             // parse input to required type - throws error if not possible
-            var input = ConvertToValidInputType(inputData);
+            dynamic input = ConvertToValidInputType(inputData);
 
             // predict & cache test value
             this.TestValue = input;
@@ -118,7 +122,7 @@ namespace AI.Algorithms.Regression
 
         private double ConvertToValidInputType(object inputData)
         {
-            if (inputData.GetType() == PredictionType) return (double)inputData;
+            if (inputData.GetType() == this.PredictionType) return (double)inputData;
 
             // if not exact same type, try parsing as double
             var parsed = new double();
@@ -128,7 +132,7 @@ namespace AI.Algorithms.Regression
                 throw new Exception(
                     "Input data type is not valid and conversion failed." + Environment.NewLine +
                     "Supplied : " + inputData.GetType().ToString() + Environment.NewLine +
-                    "Expected : " + PredictionType.ToString());
+                    "Expected : " + this.PredictionType.ToString());
             }
             else return parsed;
         }
@@ -139,8 +143,8 @@ namespace AI.Algorithms.Regression
             if (inputList == null || outputList == null) throw new ArgumentNullException("Neither the input list nor the output list can be NULL");
 
             // process input and output lists into arrays
-            Inputs = inputList.ToArray();
-            Outputs = outputList.ToArray();
+            this.Inputs = inputList.ToArray();
+            this.Outputs = outputList.ToArray();
         }
 
         private bool HasTrainingData()
