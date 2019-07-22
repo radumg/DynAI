@@ -258,7 +258,7 @@
         {
           "Id": "48b7466891544483ba053856e6d15bfc",
           "Name": "clusters",
-          "Description": "int",
+          "Description": "The number of clusters the dataset should be split into\n\nint",
           "UsingDefaultValue": false,
           "Level": 2,
           "UseLevels": false,
@@ -277,7 +277,7 @@
         }
       ],
       "Replication": "Auto",
-      "Description": "Construct a new Simple Linear Regression algorithm, using the specified training data.\n\nKMeans.WithTrainingData (inputList: double[][], clusters: int): KMeans"
+      "Description": "Construct a new K-Means clustering algorithm, using the specified training data. This will cluster the provided data into a given number of groups.\n\nKMeans.WithTrainingData (inputList: double[][], clusters: int): KMeans"
     }
   ],
   "Connectors": [
@@ -347,91 +347,91 @@
     },
     "NodeViews": [
       {
-        "ShowGeometry": true,
-        "Name": "Machine.Learn",
         "Id": "74cee571940c46a1a76aa98456ced08b",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
+        "Name": "Machine.Learn",
+        "ShowGeometry": true,
         "Excluded": false,
         "X": 669.11772199935024,
         "Y": 153.45112645347359
       },
       {
-        "ShowGeometry": true,
-        "Name": "Code Block",
         "Id": "de9b2f2052b141d8ade8100080f5a37d",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
+        "Name": "Code Block",
+        "ShowGeometry": true,
         "Excluded": false,
         "X": -329.42510378505744,
         "Y": 153.45112645347359
       },
       {
-        "ShowGeometry": true,
-        "Name": "Code Block",
         "Id": "fe13625bd07441b2875caba48fa1f9cd",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
+        "Name": "Code Block",
+        "ShowGeometry": true,
         "Excluded": false,
         "X": 555.3086328432712,
         "Y": 368.66431003466158
       },
       {
-        "ShowGeometry": true,
-        "Name": "Machine.Predict",
         "Id": "e39289b9d9da4e69993cedad7b24a60d",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
+        "Name": "Machine.Predict",
+        "ShowGeometry": true,
         "Excluded": false,
         "X": 1006.3846511382324,
         "Y": 153.45112645347359
       },
       {
-        "ShowGeometry": true,
-        "Name": "Watch",
         "Id": "e647ea3fc988412e8b69b5d428eb61b1",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
+        "Name": "Watch",
+        "ShowGeometry": true,
         "Excluded": false,
         "X": 1303.7652587383125,
         "Y": 293.52005735307421
       },
       {
-        "ShowGeometry": true,
-        "Name": "Machine.PredictionTime",
         "Id": "4214b74691564e40ae762e85540aa978",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
+        "Name": "Machine.PredictionTime",
+        "ShowGeometry": true,
         "Excluded": false,
         "X": 1309.8069903135954,
         "Y": 153.45112645347359
       },
       {
-        "ShowGeometry": true,
-        "Name": "Machine.ByAlgorithm",
         "Id": "15c4affc49354cf0b5fff9b3d1f59159",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
+        "Name": "Machine.ByAlgorithm",
+        "ShowGeometry": true,
         "Excluded": false,
         "X": 328.55571082393612,
         "Y": 153.45112645347359
       },
       {
-        "ShowGeometry": true,
-        "Name": "Number of clusters",
         "Id": "304c418562a34e89ae97d489df14285c",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
+        "Name": "Number of clusters",
+        "ShowGeometry": true,
         "Excluded": false,
         "X": -333.53194659582675,
         "Y": 406.32418047282175
       },
       {
-        "ShowGeometry": true,
-        "Name": "KMeans.WithTrainingData",
         "Id": "7026e64203ee4cb184b62b56b340550d",
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
+        "Name": "KMeans.WithTrainingData",
+        "ShowGeometry": true,
         "Excluded": false,
         "X": 52.453760504292745,
         "Y": 151.21488952617744
